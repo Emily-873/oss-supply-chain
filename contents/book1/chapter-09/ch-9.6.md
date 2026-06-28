@@ -94,11 +94,11 @@ module "vpc" {
   version = "5.0.0"
 }
 
-# BEST: Also verifies checksums via lock file
-# terraform.lock.hcl maintains hashes
+# BEST: Pin providers and commit the dependency lock file
+# .terraform.lock.hcl verifies provider hashes, not module archives
 ```
 
-Terraform 0.14 introduced [`.terraform.lock.hcl`][terraform-lock] for provider checksums, providing npm-lockfile-equivalent verification.
+Terraform 0.14 introduced [`.terraform.lock.hcl`][terraform-lock] for provider checksums. It does not lock module source archives, so modules still require explicit version pinning and source review.
 
 ## Ansible Roles and Galaxy
 
@@ -151,6 +151,12 @@ collections:
 ```
 
 Without explicit version pinning, `ansible-galaxy install` fetches the latest version—creating the same update-as-attack-vector risk seen in other ecosystems.
+
+**Parallel: Linux User Repositories and PKGBUILD Scripts:**
+
+Linux distribution packaging shows the same trust boundary in a different form. Around June 11, 2026, Sonatype characterized "Atomic Arch," a campaign against the Arch User Repository (AUR) that targeted orphaned-but-trusted community packages by adopting them and modifying their `PKGBUILD` build instructions ([Sonatype][atomic-arch-sonatype]). Early public reporting described more than 400 affected AUR packages ([CybersecurityNews][atomic-arch-csn]). The malicious `PKGBUILD` scripts, executed by AUR helpers such as `yay` and `paru` during installation, silently fetched npm packages including `atomic-lockfile` and `js-digest` as the malware delivery mechanism.
+
+The reported payloads targeted browser credentials and cookies, SSH private keys, environment variables that may contain API tokens or cloud credentials, and cryptocurrency wallet data; reporting also described rootkit-style persistence that disguised processes as kernel threads to evade tools such as `ps` and `htop` ([CybersecurityNews][atomic-arch-csn]). Arch's official repositories (`[core]`, `[extra]`, and `[multilib]`) were reported unaffected because they follow stricter review processes. The weak point was the AUR's community-trust model: low-friction maintainer adoption plus build-time script execution let attackers inherit trust from packages users already knew. Arch maintainers reverted malicious `PKGBUILD` commits, banned the offending accounts, and published an affected-package checklist ([CybersecurityNews][atomic-arch-csn]).
 
 ## Helm Charts and Kubernetes Operators
 
@@ -366,7 +372,7 @@ Where supported, verify checksums:
 
 3. **Maintain an internal module registry.** For critical infrastructure, curate approved modules in an internal registry rather than pulling directly from public sources.
 
-4. **Scan IaC for security issues.** Use tools like Checkov, tfsec, or Terrascan to analyze Terraform; ansible-lint and molecule for Ansible.
+4. **Scan IaC for security issues.** Use tools like Checkov, Trivy (including tfsec-derived checks), or Terrascan to analyze Terraform; ansible-lint and molecule for Ansible.
 
 5. **Review module updates before applying.** When updating modules, review changes rather than blindly accepting new versions.
 
@@ -402,6 +408,8 @@ Infrastructure-as-Code supply chains represent a convergence of software depende
 [ansible]: https://www.ansible.com/
 [ansible-galaxy]: https://galaxy.ansible.com/
 [galaxy-security]: https://docs.ansible.com/ansible/latest/galaxy/user_guide.html
+[atomic-arch-sonatype]: https://www.sonatype.com/blog/atomic-arch-npm-campaign-adds-malicious-dependency
+[atomic-arch-csn]: https://cybersecuritynews.com/arch-linux-aur-packages-compromised/
 [helm]: https://helm.sh/
 [artifact-hub]: https://artifacthub.io/
 [bitnami]: https://bitnami.com/

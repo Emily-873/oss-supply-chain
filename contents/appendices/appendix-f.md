@@ -96,9 +96,9 @@ This appendix provides a chronological reference of significant software supply 
 
 **Date:** March 22, 2016
 
-**Summary:** Developer Azer Koculu unpublished 273 NPM packages, including the 11-line `left-pad` utility, following a trademark dispute with messaging app Kik. Because `left-pad` was a dependency of Babel, React, and thousands of other projects, builds worldwide began failing immediately. NPM took the unprecedented step of un-unpublishing the package to restore service.
+**Summary:** Developer Azer Koculu unpublished 273 npm packages, including the 11-line `left-pad` utility, following a trademark dispute with messaging app Kik. Because `left-pad` was a dependency of Babel, React, and thousands of other projects, builds worldwide began failing immediately. npm took the unprecedented step of un-unpublishing the package to restore service.
 
-**Impact Scope:** Thousands of JavaScript projects experienced build failures; major frameworks including React and Babel were affected; incident lasted approximately 2.5 hours before NPM intervention
+**Impact Scope:** Thousands of JavaScript projects experienced build failures; major frameworks including React and Babel were affected; incident lasted approximately 2.5 hours before npm intervention
 
 **Key Lessons:**
 
@@ -111,7 +111,7 @@ This appendix provides a chronological reference of significant software supply 
 
 - Koculu, A., "I've Just Liberated My Modules," 2016[^koculu-leftpad-2016]
 - Williams, C., "How one developer just broke Node, Babel and thousands of projects," The Register, 2016[^register-leftpad-2016]
-- NPM Blog, "kik, left-pad, and npm," 2016[^npm-leftpad-2016]
+- npm Blog, "kik, left-pad, and npm," 2016[^npm-leftpad-2016]
 
 ---
 
@@ -121,7 +121,7 @@ This appendix provides a chronological reference of significant software supply 
 
 **Date:** November 26, 2018 (disclosed)
 
-**Summary:** A malicious actor gained maintainership of the popular `event-stream` NPM package through social engineering, then added a dependency on `flatmap-stream` containing obfuscated code targeting the Copay Bitcoin wallet. The attack specifically extracted private keys from Copay wallet users. The original maintainer had transferred control after the attacker offered to help maintain the project.
+**Summary:** A malicious actor gained maintainership of the popular `event-stream` npm package through social engineering, then added a dependency on `flatmap-stream` containing obfuscated code targeting the Copay Bitcoin wallet. The attack specifically extracted private keys from Copay wallet users. The original maintainer had transferred control after the attacker offered to help maintain the project.
 
 **Impact Scope:** `event-stream` had approximately 2 million weekly downloads; the malicious payload specifically targeted Copay wallet versions 5.0.2 through 5.1.0
 
@@ -136,7 +136,7 @@ This appendix provides a chronological reference of significant software supply 
 
 - GitHub Issue #116, "I don't know what to say," dominictarr/event-stream[^eventstream-issue-116]
 - Snyk, "Malicious code found in npm package event-stream," 2018[^snyk-eventstream-2018]
-- NPM Security Advisory[^npm-advisory-737]
+- npm Security Advisory[^npm-advisory-737]
 
 ---
 
@@ -195,7 +195,7 @@ This appendix provides a chronological reference of significant software supply 
 
 **Date:** October 22, 2021
 
-**Summary:** Attackers compromised the NPM account of the `ua-parser-js` maintainer and published three malicious versions (0.7.29, 0.8.0, 1.0.0) containing cryptocurrency miners and password-stealing trojans. The package, used for parsing browser user-agent strings, had approximately 8 million weekly downloads. The compromise was detected and removed within hours.
+**Summary:** Attackers compromised the npm account of the `ua-parser-js` maintainer and published three malicious versions (0.7.29, 0.8.0, 1.0.0) containing cryptocurrency miners and password-stealing trojans. The package, used for parsing browser user-agent strings, had approximately 8 million weekly downloads. The compromise was detected and removed within hours.
 
 **Impact Scope:** Approximately 8 million weekly downloads; malicious versions available for approximately 4 hours; CISA issued alert regarding potential federal agency exposure
 
@@ -380,7 +380,7 @@ No confirmed large-scale compromise, but repeated near-misses across major repos
 
 - Former employee accounts should be promptly deactivated
 - Cryptocurrency and financial software are high-value targets
-- NPM account security (MFA, access controls) is critical for sensitive packages
+- npm account security (MFA, access controls) is critical for sensitive packages
 - Real-time monitoring for package modifications can reduce attack windows
 - End-user impact can be immediate and financially devastating
 
@@ -1102,6 +1102,151 @@ In November 2025, a second wave dubbed "Shai-Hulud 2.0" emerged with modified ta
 
 ---
 
+#### Claude Mythos Preview / Project Glasswing
+
+**Date:** April 7, 2026
+
+**Summary:** Anthropic announced "Claude Mythos Preview" and "Project Glasswing," reporting that the limited-access AI model autonomously discovered thousands of zero-day vulnerabilities in critical software and constructed sophisticated exploits, including a 27-year-old OpenBSD bug and a 16-year-old FFmpeg bug. Anthropic gated access to roughly 50 organizations, later expanding toward roughly 150, and pledged up to $100 million in usage credits plus $4 million in donations to open source security.
+
+**Impact Scope:** Critical operating systems, browsers, and infrastructure software; an inflection point for AI-discovered vulnerabilities at machine speed, with independent AISLE analysis showing small open-weights models recovered much of the same analysis
+
+**Key Lessons:**
+
+- AI vulnerability discovery compresses the time between bug existence, exploit construction, and disclosure
+- Access controls and responsible disclosure processes must scale with machine-speed discovery
+- Open source security programs need resources to absorb large volumes of AI-generated vulnerability reports
+- Smaller models narrowing the gap reinforces the "jagged frontier" of uneven but rapidly diffusing capability
+
+**Sources:**
+
+- Anthropic, "Identifying vulnerabilities and exploits with Claude Mythos Preview," 2026[^anthropic-glasswing-2026]
+- AISLE, "AI Cybersecurity After Mythos: The Jagged Frontier," 2026[^aisle-mythos-jagged-frontier-2026]
+
+---
+
+#### Mini Shai-Hulud npm Worm Resurgence
+
+**Date:** May 2026
+
+**Summary:** The threat actor TeamPCP was linked to a renewed "Mini Shai-Hulud" self-spreading npm worm that compromised TanStack (CVE-2026-45321, CVSS 9.6, 42 packages and 84 versions), plus UiPath, Mistral AI, OpenSearch, and Guardrails AI packages. The campaign abused GitHub Actions trusted publishing and OIDC through `pull_request_target`, Actions cache poisoning, and runner OIDC-token extraction to publish validly SLSA Build L3-attested malicious packages. The malware stole credentials and established persistence in Claude Code and VS Code.
+
+**Impact Scope:** Multiple high-profile npm ecosystems; reportedly the first documented npm worm producing validly attested malware; developer credentials and CI/CD secrets exposed
+
+**Key Lessons:**
+
+- Provenance attestations can faithfully attest a compromised build path when CI/CD trust boundaries are broken
+- `pull_request_target`, cache poisoning, and OIDC token handling require explicit hardening
+- Developer-tool persistence turns package compromise into durable workstation compromise
+- Registry and CI defenses must reason about self-propagating behavior, not only package contents
+
+**Sources:**
+
+- The Hacker News, "Mini Shai-Hulud Worm Compromises npm and PyPI Packages," May 2026[^hackernews-mini-shai-hulud-2026]
+
+---
+
+#### Shai-Hulud AntV / Alibaba Ecosystem Wave
+
+**Date:** 2026
+
+**Summary:** Distinct from the November 2025 "Shai-Hulud 2.0" wave (see the *Shai-Hulud npm Worm* entry above), a later "Shai-Hulud: Here We Go Again" resurgence compromised the npm account `atool`, affecting `timeago.js` (approximately 1.5 million weekly downloads) and packages across Alibaba's `@antv` namespace. The malware harvested CI/CD and developer secrets, used stolen tokens to create more than 2,200 attacker-controlled GitHub repositories, and represented one of the largest npm campaigns documented.
+
+**Impact Scope:** AntV/Alibaba visualization ecosystem; thousands of attacker-created repositories; credentials exposed from affected developer and CI environments
+
+**Key Lessons:**
+
+- A single npm account with namespace reach can create ecosystem-scale blast radius
+- Public repository creation can expose real-time evidence of stolen-token abuse
+- CI/CD and developer credential harvesting remains central to self-spreading npm campaigns
+
+**Sources:**
+
+- StepSecurity, "Shai-Hulud: Here We Go Again," 2026[^stepsecurity-antv-shai-hulud-2026]
+
+---
+
+#### Miasma / Leo Platform npm Campaigns
+
+**Date:** June 3 and June 24, 2026
+
+**Summary:** StepSecurity documented related npm campaigns using a shared toolkit. The Miasma campaign began June 3, 2026 with 57 packages and more than 286 versions; on June 24, attackers published malicious versions of 20 Leo Platform packages in a burst lasting less than three seconds. The toolkit used a "Phantom Gyp" `binding.gyp` hook, three-layer obfuscation, the Bun runtime, `/proc/{pid}/mem` secret extraction, and worm-like self-spread using 2FA-bypass tokens.
+
+**Impact Scope:** Miasma and Leo Platform package consumers; CI/CD secrets, cloud credentials, package-registry tokens, and password-manager data exposed
+
+**Key Lessons:**
+
+- Native build hooks such as `binding.gyp` are powerful install-time execution points
+- Fast coordinated publishes indicate automated maintainer-account abuse
+- Secret extraction from runner memory bypasses masking controls intended only for logs
+- 2FA-bypass tokens can undermine otherwise strong account authentication
+
+**Sources:**
+
+- StepSecurity, "Mass npm Supply Chain Attack: 20 Leo Platform Packages Compromised," June 2026[^stepsecurity-leo-miasma-2026]
+
+---
+
+#### Atomic Arch AUR Compromise
+
+**Date:** Approximately June 11, 2026
+
+**Summary:** Sonatype reported the "Atomic Arch" campaign compromising more than 400 Arch User Repository packages through orphaned-package adoption. Malicious PKGBUILDs fetched npm dependencies including `atomic-lockfile` and `js-digest`, which delivered an infostealer and rootkit. The official Arch repositories were unaffected.
+
+**Impact Scope:** Arch Linux users installing affected AUR packages; more than 400 community-maintained packages compromised; official Arch repositories unaffected
+
+**Key Lessons:**
+
+- Orphaned package adoption is a maintainer-succession risk in community repositories
+- Cross-ecosystem payload staging can hide malicious behavior behind secondary package managers
+- Unofficial repositories require separate trust and review assumptions from official distribution repositories
+
+**Sources:**
+
+- Cybersecurity News, "Arch Linux AUR Packages Compromised," June 2026[^cybersecuritynews-aur-2026]
+- Sonatype, "Atomic Arch npm Campaign Adds Malicious Dependency," 2026[^sonatype-atomic-arch-2026]
+
+---
+
+#### Cordyceps CI/CD Workflow Exposure
+
+**Date:** June 2026
+
+**Summary:** Novee Security disclosed "Cordyceps," a CI/CD weakness involving unauthenticated pull requests that could trigger privileged workflows. In a scan of approximately 30,000 high-impact repositories, more than 300 were fully exploitable, including Microsoft Azure Sentinel, Google `adk-samples`, Apache Doris, Cloudflare Workers SDK, and PSF Black.
+
+**Impact Scope:** More than 300 high-impact repositories fully exploitable through PR-triggered privileged workflow abuse
+
+**Key Lessons:**
+
+- Unauthenticated PRs must not be able to trigger privileged workflows or access secrets
+- High-impact repositories need automated CI/CD configuration scanning, not only application-code review
+- Public contribution workflows require explicit separation between untrusted code and privileged automation
+
+**Sources:**
+
+- The Hacker News, "Cordyceps CI/CD Flaws Expose 300+ GitHub Repositories," June 2026[^hackernews-cordyceps-2026]
+
+---
+
+#### PinpinRAT Fake-Interview Attack
+
+**Date:** June 25, 2026 (reported)
+
+**Summary:** A Rust/crates.io maintainer documented a failed fake-interview attack in which a fabricated venture-capital persona sent a malicious TypeScript take-home repository. The payload hid in a `patch-package` patch file (`typescript+5.9.2.patch`) that self-executed during setup, illustrating the "contagious interview" pattern of developer-targeted social engineering.
+
+**Impact Scope:** Attempted compromise of a package maintainer's development environment; no confirmed successful package compromise reported in the source
+
+**Key Lessons:**
+
+- Recruiting and interview workflows are part of the developer attack surface
+- Patch files and setup scripts in take-home repositories require the same scrutiny as dependencies
+- Maintainers of package ecosystems are high-value social-engineering targets
+
+**Sources:**
+
+- Amos Wenger, "Dissecting a Failed Nation-State Attack," June 25, 2026[^grack-pinpinrat-2026]
+
+---
+
 ### Summary of Attack Vectors by Incident
 
 | Incident | Year | Primary Vector | Sophistication |
@@ -1148,6 +1293,13 @@ In November 2025, a second wave dubbed "Shai-Hulud 2.0" emerged with modified ta
 | Metro4Shell (KEV) | 2026 | Developer tooling exploitation | Critical |
 | dYdX | 2026 | Multi-registry maintainer compromise | High |
 | OpenClaw Ecosystem | 2026 | Multi-vector (malicious skills, RCE, impersonation) | High |
+| Claude Mythos / Project Glasswing | 2026 | AI-discovered vulnerabilities and exploits | Very High |
+| Mini Shai-Hulud Resurgence | 2026 | Trusted publishing/OIDC abuse + self-replicating malware | Very High |
+| Shai-Hulud AntV / Alibaba Wave | 2026 | Account compromise + self-replicating malware | Very High |
+| Miasma / Leo Platform | 2026 | Malicious npm install hooks / CI secret theft | High |
+| Atomic Arch | 2026 | Orphaned-package adoption / malicious dependencies | High |
+| Cordyceps | 2026 | Privileged workflow abuse | High |
+| PinpinRAT | 2026 | Social engineering / malicious interview repo | High |
 
 ---
 
@@ -1192,13 +1344,13 @@ These incidents collectively demonstrate that software supply chain security req
 
 [^register-leftpad-2016]: Williams, C., "How one developer just broke Node, Babel and thousands of projects," The Register, 2016, https://www.theregister.com/2016/03/23/npm_left_pad_chaos/
 
-[^npm-leftpad-2016]: NPM Blog, "kik, left-pad, and npm," 2016, https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm
+[^npm-leftpad-2016]: npm Blog, "kik, left-pad, and npm," 2016, https://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm
 
 [^eventstream-issue-116]: GitHub, "Issue #116: I don't know what to say," dominictarr/event-stream, 2018, https://github.com/dominictarr/event-stream/issues/116
 
 [^snyk-eventstream-2018]: Snyk, "Malicious code found in npm package event-stream," 2018, https://snyk.io/blog/malicious-code-found-in-npm-package-event-stream/
 
-[^npm-advisory-737]: NPM, "Security Advisory 737," 2018, https://www.npmjs.com/advisories/737
+[^npm-advisory-737]: npm, "Security Advisory 737," 2018, https://www.npmjs.com/advisories/737
 
 [^cisa-aa20-352a]: CISA, "Advanced Persistent Threat Compromise of Government Agencies," Alert AA20-352A, 2020, https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a
 
@@ -1365,3 +1517,21 @@ These incidents collectively demonstrate that software supply chain security req
 [^aikido-clawdbot-2026]: Aikido Security, "Fake Clawdbot VS Code Extension Installs ScreenConnect RAT," January 2026, https://www.aikido.dev/blog/fake-clawdbot-vscode-extension-malware
 
 [^reuters-moltbook-2026]: Reuters, "'Moltbook' social media site for AI agents had big security hole, cyber firm Wiz says," February 2, 2026, https://www.reuters.com/legal/litigation/moltbook-social-media-site-ai-agents-had-big-security-hole-cyber-firm-wiz-says-2026-02-02/
+
+[^anthropic-glasswing-2026]: Anthropic, "Identifying vulnerabilities and exploits with Claude Mythos Preview," 2026, https://www.anthropic.com/glasswing
+
+[^aisle-mythos-jagged-frontier-2026]: AISLE, "AI Cybersecurity After Mythos: The Jagged Frontier," 2026, https://aisle.com/blog/ai-cybersecurity-after-mythos-the-jagged-frontier
+
+[^hackernews-mini-shai-hulud-2026]: The Hacker News, "Mini Shai-Hulud Worm Compromises npm and PyPI Packages," 2026, https://thehackernews.com/2026/05/mini-shai-hulud-worm-compromises.html
+
+[^stepsecurity-antv-shai-hulud-2026]: StepSecurity, "Shai-Hulud: Here We Go Again," 2026, https://www.stepsecurity.io/blog/shai-hulud-here-we-go-again-mass-npm-supply-chain-attack-hits-the-antv-ecosystem
+
+[^stepsecurity-leo-miasma-2026]: StepSecurity, "Mass npm Supply Chain Attack: 20 Leo Platform Packages Compromised," June 2026, https://www.stepsecurity.io/blog/mass-npm-supply-chain-attack-20-leo-platform-packages-compromised
+
+[^cybersecuritynews-aur-2026]: Cybersecurity News, "Arch Linux AUR Packages Compromised," 2026, https://cybersecuritynews.com/arch-linux-aur-packages-compromised/
+
+[^sonatype-atomic-arch-2026]: Sonatype, "Atomic Arch npm Campaign Adds Malicious Dependency," 2026, https://www.sonatype.com/blog/atomic-arch-npm-campaign-adds-malicious-dependency
+
+[^hackernews-cordyceps-2026]: The Hacker News, "Cordyceps CI/CD Flaws Expose 300+ GitHub Repositories," 2026, https://thehackernews.com/2026/06/cordyceps-cicd-flaws-expose-300-github.html
+
+[^grack-pinpinrat-2026]: Amos Wenger, "Dissecting a Failed Nation-State Attack," June 25, 2026, https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack/
