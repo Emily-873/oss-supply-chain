@@ -132,7 +132,7 @@ Freund profiled the sshd process and found that significant CPU time was being s
 
 > "After observing a few odd symptoms around liblzma (part of the xz package) on
 Debian sid installations over the last weeks (logins with ssh taking a lot of
-CPU, valgrind errors) I figured out the answer: The upstream xz repository and the xz tarballs have been backdoored." -[Freund, via the oss-security mailing list][freund-disclosure]
+CPU, valgrind errors) I figured out the answer: The upstream xz repository and the xz tarballs have been backdoored." — [Freund, via the oss-security mailing list][freund-disclosure]
 
 His investigation revealed:
 
@@ -312,7 +312,7 @@ The XZ Utils incident may prove to be a turning point for open source security. 
 [xz-mailing-list]: https://www.mail-archive.com/xz-devel@tukaani.org/msg00568.html
 [xz-ens]: https://www.mail-archive.com/xz-devel@tukaani.org/msg00569.html
 [xz-response]: https://www.mail-archive.com/xz-devel@tukaani.org/msg00567.html
-[valsorda-analysis]: https://bsky.app/profile/filippo.abyssdomain.expert/post/3kouaom62oi2b
+[valsorda-analysis]: https://www.theregister.com/software/2024/04/01/malicious-xz-backdoor-reveals-fragility-of-open-source/1443312
 [cisa-xz]: https://www.cisa.gov/news-events/alerts/2024/03/29/reported-supply-chain-compromise-affecting-xz-utils-data-compression-library-cve-2024-3094
 [cve-2024-3094]: https://nvd.nist.gov/vuln/detail/CVE-2024-3094
 [openssf-xz]: https://openssf.org/blog/2024/04/15/open-source-security-openssf-and-openjs-foundations-issue-alert-for-social-engineering-takeovers-of-open-source-projects/

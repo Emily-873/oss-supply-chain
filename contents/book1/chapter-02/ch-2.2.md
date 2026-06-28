@@ -104,4 +104,4 @@ Different governance models create different security profiles.
 **Minimal governance** (hobby projects, abandoned projects) offers no security assurances. There may be no one monitoring for vulnerabilities, no process for receiving security reports, no commitment to timely fixes.
 
 For organizations consuming open source software, evaluating governance is as important as evaluating code quality. A technically excellent project with fragile governance poses supply chain risks that well-governed alternatives might avoid. The companion volumes in this series provide additional guidance: Book 2, Chapter 13 explores how to assess these factors when selecting dependencies, and Book 3, Chapter 24 provides guidance for maintainers seeking to strengthen their project's governance and security posture.
-![The open source maintainer crisis: statistics on burnout and security implications](img/ch-2-maintainer-crisis.svg)
+![Open source governance models from BDFL to Foundation with security implications](img/ch-2-governance-models.svg)

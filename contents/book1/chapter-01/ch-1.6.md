@@ -10,7 +10,7 @@ The previous section documented why supply chain security has become urgent now,
 
 ## The Foundational Insight: Trusting Trust
 
-The intellectual foundation for understanding supply chain security was laid in 1984, when Ken Thompson delivered his Turing Award lecture, "Reflections on Trusting Trust."[^thompson-1984b] Thompson, co-creator of Unix and the C programming language, presented a thought experiment that remains the clearest articulation of why software supply chains are inherently vulnerable.
+The intellectual foundation for understanding supply chain security was laid in 1984, when Ken Thompson delivered his Turing Award lecture, "Reflections on Trusting Trust."[^thompson-1984b] Thompson, co-creator of Unix and creator of the B language that influenced C, presented a thought experiment that remains the clearest articulation of why software supply chains are inherently vulnerable.
 
 !!! example "Thompson's Self-Replicating Compiler Backdoor"
 
@@ -38,7 +38,7 @@ Before the internet made software distribution instantaneous and global, softwar
 
 The **Brain virus**, discovered in 1986, is often cited as the first IBM PC virus found "in the wild." Created by two brothers in Lahore, Pakistan, Brain spread through infected floppy disks. While the brothers claimed their intent was to track piracy of their medical software rather than cause harm, Brain demonstrated how software distribution channels could propagate malicious code. Infected disks passed from user to user, each recipient trusting that software received from a colleague or purchased from a vendor was safe.
 
-The physical distribution era saw numerous instances of **commercial software shipping with infections**. In 1988, the MacMag virus spread when an infected game, "Mr. Potato Head," was distributed to user groups and bulletin board systems. In 1991, the Tequila virus was accidentally included on disks shipped with a legitimate software product in Europe. These incidents were typically accidental—resulting from infected development or duplication environments—but they demonstrated that the supply chain between software creation and software use contained vulnerable points.
+The physical distribution era saw numerous instances of **commercial software shipping with infections**. In 1988, the MacMag virus spread through a HyperCard stack called "New Apple Products" and later infected Aldus FreeHand disks, forcing a recall. In 1991, the Tequila virus was accidentally included on disks shipped with a legitimate software product in Europe. These incidents were typically accidental—resulting from infected development or duplication environments—but they demonstrated that the supply chain between software creation and software use contained vulnerable points.
 
 Perhaps the most striking historical parallel to modern supply chain attacks was the **1992 Michelangelo scare**. The Michelangelo virus, designed to activate on March 6 (the artist's birthday) and overwrite hard drive data, spread through infected floppy disks. When security researchers discovered that several hardware and software vendors had inadvertently shipped products with infected disks, media coverage reached near-hysteria. While the actual impact on March 6, 1992 was far less severe than predicted, the incident highlighted how manufacturing and distribution processes could become vectors for malware distribution.
 

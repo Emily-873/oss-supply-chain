@@ -32,7 +32,7 @@ A Lambda function can include up to five layers. When the function initializes, 
 Layers create dependencies that may not be visible in function code:
 
 - **Third-party layers**: AWS provides some layers; organizations can publish layers; and public layer repositories exist. Each is a trust relationship.
-- **Version management**: Layers have versions. A function pinned to `arn:aws:lambda:...:layer:my-layer:3` depends on that specific version—but organizations may update layer content while keeping version numbers.
+- **Version management**: Layers have versions. A function pinned to `arn:aws:lambda:...:layer:my-layer:3` depends on that immutable layer version, but function configuration can be updated to point at a new layer version without changing application code.
 - **Transitive dependencies**: Layers contain their own dependencies. A "database utilities" layer might include ORM libraries, connection pooling, and their dependencies.
 
 **Malicious Layer Risks:**
@@ -308,7 +308,7 @@ Deviations may indicate compromise.
 
 2. **Minimize dependencies.** Serverless cold starts penalize large packages anyway. Fewer dependencies mean reduced attack surface.
 
-3. **Pin layer versions.** Reference specific layer versions rather than `$LATEST`. Understand what each layer contains.
+3. **Track layer versions.** Lambda layers are referenced by versioned ARNs. Treat any configuration change that points at a new layer version as a dependency update, and understand what each layer contains.
 
 4. **Audit initialization code.** Review what executes at module load time. Malicious dependencies often strike during initialization.
 

@@ -49,13 +49,13 @@ Several factors contribute to hallucination:
 
 !!! note "AI Hallucination Rates"
 
-    Research found commercial AI models hallucinated packages in ~5.2% of code samples, while open-source models reached 21.7%. Of hallucinated names, 58% were repeated more than once across 10 runs, with 43% appearing every time.
+    Research found commercial AI models hallucinated about 5.2% of recommended packages, while open-source models reached 21.7%. Of hallucinated names, 58% were repeated more than once across 10 runs, with 43% appearing every time.
 
 Academic research has begun quantifying the slopsquatting risk. A [study by Spracklen et al.][spracklen-study] titled "We Have a Package for You!" systematically tested AI models' tendency to hallucinate package names.
 
 **Key findings:**
 
-- Commercial AI models hallucinated packages in approximately **5.2% of code samples**, while open-source models reached **21.7%**
+- Commercial AI models hallucinated approximately **5.2% of recommended packages**, while open-source models reached **21.7%**
 - Hallucination rates varied by model and ecosystem, with some model-ecosystem combinations exceeding 25%
 - **Python (PyPI)** and **JavaScript (npm)** were particularly affected due to their large package ecosystems and prominence in training data
 - Newer models did not consistently perform better than older ones on this dimension
@@ -75,7 +75,7 @@ The Spracklen study found that hallucinated package names showed a bimodal distr
 
 This repeatability exists because hallucinations are not truly random—they result from deterministic patterns in model behavior. The same training data biases that cause one developer to receive a hallucinated recommendation will cause other developers with similar prompts to receive the same recommendation.
 
-[Socket.dev research][socket-slopsquatting] confirmed this pattern, identifying specific hallucinated package names that appeared consistently across different AI models and user sessions. Some hallucinated names were recommended thousands of times across the developer community.
+[Socket.dev research][socket-slopsquatting] highlighted this pattern, identifying specific hallucinated package names that appeared consistently across repeated model runs. Some hallucinated names are therefore more valuable to attackers because they can be elicited predictably.
 
 ## Attack Mechanics
 
@@ -113,9 +113,9 @@ The distinction matters for defense. Typosquatting detection focuses on edit dis
 
 ## Vibe Coding and Reduced Verification
 
-!!! warning "Vibe Coding Reduces Verification"
+!!! warning "Vibe Coding Can Reduce Verification"
 
-    Research found developers using AI assistants were significantly less likely to verify packages than developers working without AI assistance. The convenience that makes AI assistants valuable also reduces the friction that previously served as a security check.
+    The convenience that makes AI assistants valuable can also reduce the friction that previously served as a security check. Treat AI-recommended packages as suggestions that still require independent verification.
 
 The slopsquatting risk is amplified by changing developer practices around AI-generated code. The phenomenon of **"vibe coding"**—accepting AI-generated code with minimal review because it "vibes" correctly—reduces the verification that might catch non-existent packages.
 
@@ -137,7 +137,7 @@ With AI-assisted development, the flow often becomes:
 
 If the AI hallucinates a package name that an attacker has registered, the developer may install it without ever verifying that the package is what they expected. The AI's authoritative presentation of the code discourages questioning.
 
-[Research on AI-generated code][trendmicro-ai-code] found that developers using AI assistants were significantly less likely to verify packages than developers working without AI assistance. The convenience that makes AI assistants valuable also reduces the friction that previously served as a security check.
+To counter this tendency, teams should make package verification explicit rather than assuming AI-generated imports refer to legitimate packages.
 
 ## Detection and Defense
 
@@ -387,7 +387,6 @@ The emergence of slopsquatting and AI slop reports illustrates how new technolog
 
 [^hai-triage]: HackerOne, "Hai Triage," https://www.hackerone.com/platform/hai
 
-[trendmicro-ai-code]: https://www.trendmicro.com/en_us/what-is/ai/security-risks.html
 [socket]: https://socket.dev/
 [snyk]: https://snyk.io/
 ![Slopsquatting: AI hallucination exploitation](img/ch-6-slopsquatting-attack.svg)

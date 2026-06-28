@@ -337,4 +337,3 @@ The XZ Utils attack succeeded because it was designed to exploit the realities o
 [github-sponsors]: https://github.com/sponsors
 [maintainerati]: https://maintainerati.org/
 [osmi]: https://osmihelp.org/
-![Typosquatting detection pipeline](img/ch-8-typosquatting-detection.svg)

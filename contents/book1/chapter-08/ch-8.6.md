@@ -16,7 +16,7 @@ This attack vector weaponizes the urgency and authority that legitimate security
 
 ## The Rise of Fake Vulnerability Reports
 
-[Beginning around 2021][fake-researchers], security researchers and maintainers began documenting campaigns of fake security reports targeting open source projects. These campaigns share common characteristics:
+Security teams have documented attackers building [fake security researcher personas and malicious proof-of-concept repositories][fake-researchers]. Maintainers face a related pattern: fake vulnerability reports and "fixes" that use the authority of security research to manipulate project decisions. These campaigns share common characteristics:
 
 **Mass-Submitted "Vulnerability" Reports:**
 

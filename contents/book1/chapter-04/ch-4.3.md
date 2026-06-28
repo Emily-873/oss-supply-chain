@@ -95,15 +95,15 @@ Organizations often discover surprising commonalities when they perform this ana
 
 Certain categories of dependencies warrant elevated scrutiny regardless of specific context:
 
-**Cryptographic libraries** (OpenSSL, libsodium, BouncyCastle, python-cryptography) underpin security for data protection, authentication, and secure communication. The Heartbleed vulnerability (§5.5) demonstrated how a single cryptographic library flaw can expose hundreds of thousands of systems worldwide.
+**Cryptographic libraries** (OpenSSL, libsodium, Bouncy Castle, `cryptography`) underpin security for data protection, authentication, and secure communication. The Heartbleed vulnerability (§5.5) demonstrated how a single cryptographic library flaw can expose hundreds of thousands of systems worldwide.
 
 **Authentication and identity** packages (OAuth libraries, JWT handlers, identity providers) control who can access your systems. Compromise enables account takeover, privilege escalation, and unauthorized access.
 
-**Serialization and parsing** libraries (Jackson, Gson, PyYAML, xml parsers) convert external data into internal objects. These libraries process untrusted input and have historically been rich sources of vulnerabilities, including remote code execution. The Log4j vulnerability was fundamentally a parsing issue—interpreting attacker-controlled strings as code.
+**Serialization and parsing** libraries (Jackson, Gson, PyYAML, XML parsers) convert external data into internal objects. These libraries process untrusted input and have historically been rich sources of vulnerabilities, including remote code execution. The Log4j vulnerability was fundamentally an input-interpretation issue—treating attacker-controlled strings as instructions to perform lookups.
 
 **Network and HTTP** libraries handle communication with external systems. Compromise can enable man-in-the-middle attacks, request smuggling, or server-side request forgery.
 
-**Database drivers and ORMs** have access to persistent data stores. SQL injection vulnerabilities in these components affect every query the application makes.
+**Database drivers and ORMs** have access to persistent data stores. Vulnerabilities in these components can affect every query the application makes.
 
 **Build tools and plugins** (Maven plugins, npm scripts, Gradle plugins) execute during build with access to source code, environment variables, and publishing credentials. The SolarWinds attack (§7.2) targeted build infrastructure precisely because it provides such privileged access.
 
@@ -209,4 +209,4 @@ Book 2 examines risk measurement and management in greater depth, building on th
 
 [criticality-score]: https://github.com/ossf/criticality_score
 [scorecard]: https://securityscorecards.dev/
-![Attack tree: compromising production via dependencies](img/ch-4-attack-tree.svg)
+![Dependency criticality tiers pyramid](img/ch-4-dependency-tiers.svg)

@@ -104,8 +104,8 @@ This exploited how Git parsed certain URL formats, allowing command injection th
 
 Submodule references include both the URL and a specific commit hash. Attackers who control the referenced repository can:
 
-- Force-push different content to the referenced commit (rare due to hash collision difficulty)
-- More practically, compromise the repository so that legitimate-looking commits contain malicious code
+- Remove the referenced commit or make the submodule unavailable, disrupting builds
+- More practically, compromise the repository so that future submodule pointer updates reference legitimate-looking commits containing malicious code
 
 **Defense**:
 
@@ -220,7 +220,7 @@ Git communicates using several protocols, each with distinct security properties
 - **Git Protocol** (`git://`): Unauthenticated, unencrypted, fast but insecure
 - **File Protocol**: Local access, follows filesystem permissions
 
-**[CVE-2022-23521][cve-2022-23521] and [CVE-2022-41903][cve-2022-41903]** demonstrated critical vulnerabilities in Git's protocol handling. Integer overflow and heap overflow bugs in gitattributes parsing allowed remote code execution when cloning malicious repositories. These vulnerabilities are particularly dangerous because repositories can be transferred in many ways, including over the network during clone or fetch operations.
+**[CVE-2022-41903][cve-2022-41903] and [CVE-2022-23521][cve-2022-23521]** demonstrated critical vulnerabilities in Git's handling of repository data. The former affected commit formatting, while the latter affected `.gitattributes` parsing; both could lead to arbitrary code execution when affected Git operations processed malicious repository content.
 
 **The Danger of `git://` Protocol:**
 
@@ -228,7 +228,7 @@ The unauthenticated `git://` protocol allows man-in-the-middle attacks:
 
 - Network attackers can modify content in transit
 - DNS hijacking can redirect to malicious servers
-- No integrity verification occurs
+- Git object hashes validate internal consistency, but the protocol does not authenticate that the server is the one you intended to reach
 
 Despite its risks, some repositories still offer `git://` URLs.
 
@@ -236,7 +236,7 @@ Despite its risks, some repositories still offer `git://` URLs.
 
 - Use HTTPS or SSH exclusively; avoid `git://` protocol
 - Configure `git config --global protocol.file.allow user` to require explicit consent for file protocol
-- Keep Git client updated; protocol parser vulnerabilities are regularly discovered
+- Keep Git client updated; repository parser vulnerabilities are regularly discovered
 - Consider `git config --global url."https://".insteadOf git://` to rewrite URLs
 
 ## Repository History Manipulation
@@ -290,13 +290,13 @@ git clone --recurse-submodules <malicious-repo>
 
 This fetches and checks out submodules, potentially triggering:
 
-- Hooks in the submodules (if somehow present)
+- Vulnerabilities in recursive clone or submodule handling
 - Case-collision exploits
 - Path traversal through submodule configuration
 
 **Large File Storage (LFS) Smudge Filters:**
 
-Git LFS uses **smudge filters** that process files after checkout. A malicious `.gitattributes` could potentially specify commands:
+Git LFS uses **smudge filters** that process files after checkout. A malicious `.gitattributes` file can request a named filter:
 
 ```
 *.bin filter=malicious
@@ -304,16 +304,16 @@ Git LFS uses **smudge filters** that process files after checkout. A malicious `
 
 If the `malicious` filter is defined in configuration, it executes during checkout.
 
-**Configuration from Repository:**
+**Configuration Trust Boundaries:**
 
-Certain `.git/config` directives can be set through `.gitattributes` or included from repository content:
+Git does not normally trust repository content to set arbitrary `.git/config` directives. The risk appears when surrounding tooling copies configuration from the repository, uses templates, or includes configuration paths that point into the worktree:
 
 ```ini
 [include]
     path = ../malicious-config
 ```
 
-This could potentially import configuration from files in the repository tree.
+That pattern can import attacker-controlled settings if the include path resolves to repository content.
 
 **Defense**:
 

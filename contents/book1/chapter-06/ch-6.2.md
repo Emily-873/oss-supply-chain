@@ -67,9 +67,9 @@ His methodology was straightforward:
 
 5. **Wait for victims to build**: When companies ran builds that referenced the targeted internal package names, their build systems fetched Birsan's packages from public registries instead of internal ones.
 
-!!! quote "Alex Birsan"
+!!! note "Research Result"
 
-    "I was able to gain access to internal systems of over 35 major technology companies. All of the companies targeted were informed about the issue during the regular bug bounty process."
+    Birsan reported successful dependency confusion findings at more than 35 organizations and disclosed them through coordinated vulnerability disclosure and bug bounty programs.
 
 The results were remarkable. Birsan received bug bounty payments exceeding $130,000 from affected companies, including:
 
@@ -89,7 +89,7 @@ Understanding dependency confusion requires understanding how package managers r
 
 **npm** allows multiple registries to be configured through `.npmrc`. When a package is requested, npm checks registries in order unless the package uses scoped naming (`@company/package-name`). Before npm's scope enforcement improvements, organizations using private registries alongside npm's public registry faced dependency confusion risk.
 
-**pip (Python)** historically checked PyPI before private indexes unless explicitly configured otherwise. The `--extra-index-url` flag, commonly used to add private indexes, does not replace PyPI but adds to the search path. Pip then prefers the highest version number across all sources.
+**pip (Python)** includes PyPI by default unless explicitly configured otherwise. The `--extra-index-url` flag, commonly used to add private indexes, does not replace PyPI but adds to the search path. Pip then selects the best matching version across all configured sources, which can allow a higher-version public package to win.
 
 **RubyGems** similarly allows multiple sources. When a package exists in multiple sources, resolution behavior can be ambiguous, and version number comparison across sources is possible.
 
@@ -111,7 +111,7 @@ Each package ecosystem presented distinct vulnerability characteristics:
 
 **npm/Node.js**: Organizations using unscoped package names for internal packages were vulnerable. npm's scope feature (`@company/package-name`) provides protection when properly used because scopes are controlled by verified organizations. However, many organizations had legacy internal packages without scopes, or used `--registry` configurations that did not fully isolate sources.
 
-**Python/PyPI**: The pip `--extra-index-url` behavior was particularly problematic. This flag is commonly used in documentation and CI configurations to add private package sources, but it does not disable PyPI—it adds a source while keeping PyPI active. The `--index-url` flag replaces PyPI, but requires explicit listing of both sources if both are needed.
+**Python/PyPI**: The pip `--extra-index-url` behavior was particularly problematic. This flag is commonly used in documentation and CI configurations to add private package sources, but it does not disable PyPI—it adds a source while keeping PyPI active. The `--index-url` flag replaces PyPI; if both private and public packages are needed, organizations should use a controlled proxy or constrained configuration rather than assuming pip will prioritize the private index.
 
 Birsan found that many organizations had misconfigured pip, thinking `--extra-index-url` created isolation when it did not.
 
@@ -152,7 +152,7 @@ Migrate internal packages to scoped naming:
 
 **Configure package sources correctly**: Ensure build systems check internal registries first and public registries only for packages known to be public.
 
-For pip, use `--index-url` with your private registry and `--extra-index-url` for PyPI (reversing the common pattern). Or use pip's dependency link features to explicitly specify sources.
+For pip, avoid using `--extra-index-url` for private packages because pip does not treat indexes as a strict priority list. Prefer a private repository proxy as the only configured index, with explicit upstream allowlists for public packages. Where direct source binding is needed, use direct references, constraints, and hashes rather than relying on ambiguous multi-index resolution.
 
 For npm, use scoped packages and configure scopes to route to appropriate registries:
 
@@ -176,7 +176,7 @@ Following Birsan's publication, package ecosystems implemented various mitigatio
 
 **npm** emphasized scope usage and improved documentation around registry configuration security. The scoped package feature, already available, provides the most robust protection when consistently used.
 
-**pip** and the **Python Packaging Authority** clarified documentation about index configuration. [PEP 708][pep-708], provisionally accepted in 2023, extends the Simple Repository API with "tracks" metadata to help installers safely determine package source relationships, directly addressing dependency confusion risks. Projects like pip's `--require-hashes` provide integrity verification that can limit confusion attacks.
+**pip** and the **Python Packaging Authority** clarified documentation about index configuration. [PEP 708][pep-708] proposed extending the Simple Repository API with "tracks" metadata to help installers safely determine package source relationships, but it was rejected in 2026 after the required implementations were not completed. Projects like pip's `--require-hashes` provide integrity verification that can limit confusion attacks.
 
 [**Azure Artifacts**][azure-artifacts] and other enterprise package management services added explicit controls for blocking public package fallback and implemented upstream source filtering.
 

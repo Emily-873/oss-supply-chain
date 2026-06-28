@@ -28,7 +28,7 @@ This combination makes build infrastructure extraordinarily attractive to attack
 
 !!! danger "Exceptional Attack Leverage"
 
-    Rather than compromising individual developer machines or attempting to sneak malicious commits past code review, an attacker who controls the build system affects every release produced by that system. The SolarWinds attack distributed malicious updates to approximately 18,000 organizations.
+    Rather than compromising individual developer machines or attempting to sneak malicious commits past code review, an attacker who controls the build system affects every release produced by that system. The SolarWinds attack distributed malicious updates to [approximately 18,000 organizations][solarwinds-sec-filing].
 
 The leverage is exceptional. Rather than compromising individual developer machines or attempting to sneak malicious commits past code review, an attacker who controls the build system affects every release produced by that system.
 

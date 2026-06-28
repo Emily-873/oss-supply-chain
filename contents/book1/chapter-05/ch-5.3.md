@@ -32,11 +32,11 @@ The XZ Utils backdoor discovered in March 2024 exemplified zero-day dynamics: at
 
 Zero-day vulnerabilities have significant economic value because they enable attacks that cannot be prevented through patching. This value has created a market with distinct participants:
 
-**Government buyers** acquire zero-days for intelligence collection, law enforcement, and military operations. Agencies in the United States, Israel, China, Russia, and other nations purchase exploits for offensive cyber capabilities. Estimates suggest government spending on zero-days reaches hundreds of millions of dollars annually.
+**Government buyers** acquire zero-days for intelligence collection, law enforcement, and military operations. Agencies in the United States, Israel, China, Russia, and other nations purchase exploits for offensive cyber capabilities. This demand helps sustain a specialized market for high-end exploit development.
 
-**Commercial exploit brokers** like Zerodium publicly advertise bounties for zero-day exploits, with prices ranging from tens of thousands to millions of dollars depending on target and impact. Zerodium has offered up to $2.5 million for zero-click iOS exploits. These brokers sell to government customers.
+**Commercial exploit brokers** like Zerodium publicly advertise bounties for zero-day exploits, with prices ranging from tens of thousands to millions of dollars depending on target and impact. These brokers sell to government customers.
 
-**Vulnerability research firms** like NSO Group develop exploits for products sold to government customers. The Pegasus spyware, which exploited multiple iOS and Android zero-days, demonstrates the sophistication of commercial exploit development.
+**Commercial spyware vendors** such as NSO Group develop or acquire exploits for products sold to government customers. The Pegasus spyware, which exploited multiple iOS and Android zero-days, demonstrates the sophistication of commercial exploit development.
 
 **Criminal organizations** increasingly invest in zero-day capabilities, though they more commonly use known vulnerability exploits. Ransomware groups have occasionally deployed zero-days for initial access.
 
@@ -52,15 +52,15 @@ The economics shape the threat landscape. High zero-day prices reflect their val
 
 The **[Verizon Data Breach Investigations Report (DBIR)][verizon-dbir]** consistently finds that vulnerability exploitation as an initial access vector predominantly involves known, patchable vulnerabilities.
 
-**[CISA's Known Exploited Vulnerabilities (KEV) catalog][cisa-kev]** tracks vulnerabilities confirmed to be exploited in the wild. Of the 1,000+ vulnerabilities in the KEV catalog, the vast majority had patches available before exploitation was detected. Attackers exploit known vulnerabilities because they work—many organizations fail to patch even actively exploited flaws.
+**[CISA's Known Exploited Vulnerabilities (KEV) catalog][cisa-kev]** tracks vulnerabilities confirmed to be exploited in the wild. Most KEV entries have public remediation guidance by the time defenders see them in the catalog. Attackers exploit known vulnerabilities because they work—many organizations fail to patch even actively exploited flaws.
 
 Threat intelligence analysis consistently shows that known vulnerabilities with available patches are exploited far more frequently than zero-days. Even advanced persistent threat (APT) groups—nation-state actors with resources for zero-days—commonly use known vulnerability exploits because they are effective and preserve expensive zero-day capabilities for high-value targets.
 
 The implication is counterintuitive but important: organizations facing typical threat actors are more likely to be compromised through unpatched known vulnerabilities than through zero-days. Defensive investment should reflect this reality.
 
-## The Patch Gap Problem
+## The Patching Gap Problem
 
-The **patch gap** is the time between patch availability and patch deployment across vulnerable systems. As discussed in Section 5.1, vulnerability half-lives are measured in months—meaning half of vulnerable instances remain unpatched for extended periods after fixes are released.
+The **patching gap** is the time between patch availability and patch deployment across vulnerable systems. As discussed in Section 5.1, vulnerability half-lives are measured in months—meaning half of vulnerable instances remain unpatched for extended periods after fixes are released.
 
 This gap exists for multiple reasons:
 
@@ -114,9 +114,9 @@ Understanding these distinctions helps explain why CVSS alone is insufficient an
 
 !!! info "KEV Now Covers Developer Toolchains"
 
-    KEV entries are not limited to production-facing software. In early 2026, CISA added two developer-toolchain vulnerabilities: **CVE-2025-11953** (React Native Metro server OS command injection, CVSS 9.8) and **CVE-2025-15556** (Notepad++ WinGUp updater missing integrity check, CVSS 7.5). These additions signal that CISA treats developer-facing software as infrastructure warranting the same remediation urgency as production systems — a meaningful reframing for supply chain defenders.
+    KEV entries are not limited to production-facing software. In early 2026, CISA added two developer-toolchain vulnerabilities: **CVE-2025-11953** (React Native Community CLI/Metro Development Server OS command injection) and **CVE-2025-15556** (Notepad++ WinGUp updater missing integrity check). These additions signal that CISA treats developer-facing software as infrastructure warranting the same remediation urgency as production systems—a meaningful reframing for supply chain defenders.
 
-The KEV catalog's expansion into developer tooling has direct implications for supply chain security prioritization. Developer workstations and CI/CD runners hold signing keys, publishing tokens, cloud credentials, and source code. A vulnerability on a developer machine is not merely an endpoint risk — it is a potential entry point for upstream supply-chain attacks. Organizations should ensure their KEV monitoring and remediation workflows cover developer-facing software, build tooling, and IDE components, not just production infrastructure.
+The KEV catalog's expansion into developer tooling has direct implications for supply chain security prioritization. Developer workstations and CI/CD runners hold signing keys, publishing tokens, cloud credentials, and source code. A vulnerability on a developer machine is not merely an endpoint risk—it is a potential entry point for upstream supply-chain attacks. Organizations should ensure their KEV monitoring and remediation workflows cover developer-facing software, build tooling, and IDE components, not just production infrastructure.
 
 **[Exploit Prediction Scoring System (EPSS)][epss]**, maintained by FIRST, predicts the probability that a vulnerability will be exploited in the next 30 days. EPSS uses machine learning on vulnerability characteristics and threat intelligence to estimate exploitation likelihood. High EPSS scores indicate vulnerabilities that, even if not yet exploited, are likely to be soon.
 
@@ -148,4 +148,4 @@ The next section examines the patching gap in greater detail, exploring why orga
 [verizon-dbir]: https://www.verizon.com/business/resources/reports/dbir/
 [cisa-kev]: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
 [epss]: https://www.first.org/epss/
-![The patching gap: 5 days vs 74 days race](img/ch-5-patching-gap.svg)
+![Vulnerability prioritization framework: CVSS, KEV, EPSS, SSVC](img/ch-5-prioritization-framework.svg)

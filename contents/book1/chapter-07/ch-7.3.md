@@ -6,11 +6,11 @@ icon: "lucide/phone"
 
 # 7.3 Case Study: 3CX Desktop App Compromise (2023)
 
-In March 2023, customers of 3CX, a popular business communications platform, discovered that the official desktop application had been trojanized. The incident would have been concerning enough as a standalone supply chain attack—but investigation revealed something more troubling. 3CX had not been directly compromised. Instead, attackers had first compromised Trading Technologies, a financial software vendor, and used that access to infect a 3CX employee's machine, which then led to compromise of 3CX's build environment.
+In March 2023, customers of 3CX, a popular business communications platform, discovered that the official desktop application had been trojanized. The incident would have been concerning enough as a standalone supply chain attack—but investigation revealed something more troubling. 3CX was not the attackers' first supply chain foothold. Attackers had first compromised Trading Technologies, a financial software vendor, and used that access to infect a 3CX employee's machine, which then led to compromise of 3CX's build environment.
 
 !!! warning "Cascading Supply Chain Attack"
 
-    3CX was not directly compromised. Attackers first compromised Trading Technologies, infected a 3CX employee who downloaded their software, then pivoted to 3CX's build environment. Your security depends not only on your direct vendors but on your vendors' vendors.
+    The 3CX intrusion began with a prior compromise of Trading Technologies. Attackers infected a 3CX employee who downloaded their software, then pivoted to 3CX's build environment. Your security depends not only on your direct vendors but on your vendors' vendors.
 
 This **cascading supply chain attack** demonstrated a new dimension of supply chain risk: your security depends not only on your direct vendors but on your vendors' vendors, creating chains of trust that extend far beyond what organizations typically assess.
 
@@ -31,7 +31,7 @@ Like SolarWinds Orion (see Section 7.2), the 3CX Desktop App represented a trust
 
 ## The Cascading Attack: From Trading Technologies to 3CX
 
-The 3CX compromise was not a direct attack on 3CX's infrastructure. It was the result of an earlier, separate supply chain attack.
+The 3CX compromise began with an earlier, separate supply chain attack before the attackers reached 3CX's infrastructure.
 
 **Stage 1: Trading Technologies Compromise (2022)**
 
@@ -278,7 +278,7 @@ The 3CX incident demonstrated that supply chain security cannot stop at the firs
 
 [crowdstrike-3cx]: https://www.crowdstrike.com/blog/crowdstrike-detects-and-prevents-active-intrusion-campaign-targeting-3cxdesktopapp-customers/
 [cisa-3cx]: https://www.cisa.gov/news-events/alerts/2023/03/30/supply-chain-attack-against-3cxdesktopapp
-[mandiant-3cx]: https://www.mandiant.com/resources/blog/3cx-software-supply-chain-compromise
+[mandiant-3cx]: https://cloud.google.com/blog/topics/threat-intelligence/3cx-software-supply-chain-compromise
 [kaspersky-gopuram]: https://securelist.com/gopuram-backdoor-deployed-through-3cx-supply-chain-attack/109344/
 [3cx-advisory]: https://www.3cx.com/blog/news/desktopapp-security-alert/
 [3cx-forum]: https://www.3cx.com/community/threads/threat-alerts-from-sentinelone-for-desktop-update-initiated-from-desktop-client.119806/

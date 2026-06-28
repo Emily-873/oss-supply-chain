@@ -87,11 +87,11 @@ The two-month window during which the modified script was active (January 31 - A
 
 HashiCorp rotated affected credentials, including the GPG key used to sign product releases—a significant operational undertaking.
 
-**[Twilio][twilio-disclosure]** disclosed that the Codecov breach led to unauthorized access to their systems:
+**[Twilio][twilio-disclosure]** disclosed that the Codecov breach led to unauthorized cloning of some GitHub repositories:
 
-> "A small number of email addresses and customer account information was accessed during this incident."
+> "A small number of email addresses had likely been exfiltrated by an unknown attacker as a result of this exposure."
 
-Twilio's disclosure indicated that attackers had moved beyond simple credential collection to active exploitation.
+Twilio's disclosure indicated that attackers had moved beyond simple credential collection to repository access using exposed tokens.
 
 **Other affected organizations** included:
 

@@ -58,7 +58,7 @@ The **[NSA][nsa-memory-safety]** published "Software Memory Safety" in November 
 
 > "NSA recommends that organizations use memory safe languages when possible and bolster protection through code-hardening defenses."
 
-The NSA specifically identified Rust, Go, C#, Java, Swift, JavaScript, and Python as memory-safe alternatives to C and C++.
+The NSA specifically identified C#, Go, Java, Ruby, Rust, and Swift as examples of memory-safe alternatives to C and C++.
 
 **[CISA][cisa-memory-safety]**, jointly with the FBI, NSA, and international partners, published "The Case for Memory Safe Roadmaps" in December 2023. This guidance called on software manufacturers to develop plans for transitioning to memory-safe languages, particularly for new development and for security-critical components.
 
@@ -76,11 +76,11 @@ Major infrastructure projects have begun incorporating Rust:
 
 **Linux kernel** accepted Rust as a supported language for driver development starting with kernel 6.1 (December 2022). While the core kernel remains in C, new drivers can be written in Rust, enabling memory-safe development for new functionality. This represents a significant philosophical shift for a project that has used C exclusively for over 30 years.
 
-**Android** has progressively increased Rust usage. Google reported that as of 2023, roughly 21% of new native Android code was being written in Rust.[^android-rust] Google's analysis showed that as Rust adoption increased, memory safety vulnerabilities in Android decreased—providing empirical evidence for the security benefits.
+**Android** has progressively increased Rust usage. Google reported that for Android 13, roughly 21% of new native code was written in Rust.[^android-rust] Google's analysis showed that as Rust adoption increased, memory safety vulnerabilities in Android decreased—providing empirical evidence for the security benefits.
 
-**Windows** includes Rust components, with Microsoft actively rewriting portions of the Windows kernel in Rust. The company has been public about its Rust investment and its motivation in reducing memory safety vulnerabilities.
+**Windows** includes Rust components, with Microsoft experimenting with and shipping Rust in low-level Windows code. The company has been public about its Rust investment and its motivation in reducing memory safety vulnerabilities.
 
-**curl**, the ubiquitous data transfer library, has integrated HTTP backend support written in Rust (hyper). This allows users to choose a memory-safe implementation for HTTP handling in a tool with over 20 billion installations.[^curl-installs]
+**curl**, the ubiquitous data transfer library, experimented with HTTP backend support written in Rust (hyper). This work illustrated both the appeal of memory-safe components and the integration challenges of introducing Rust into long-lived C projects with enormous deployment footprints.[^curl-installs]
 
 **Sudo and su** received a Rust reimplementation (sudo-rs) sponsored by Amazon Web Services' Prossimo project, targeting one of the most security-critical Unix utilities.
 
@@ -98,7 +98,7 @@ For organizations evaluating their supply chain exposure to memory safety vulner
 
 **Support memory-safe rewrites.** The Prossimo project (Internet Security Research Group) funds memory-safe rewrites of critical infrastructure. Corporate sponsorship and contribution to these efforts accelerates ecosystem-wide safety improvements.
 
-**Apply hardening to remaining C/C++ dependencies.** Where migration is not feasible, mitigation helps. Compile-time hardening (ASLR, stack canaries, control flow integrity), memory-safe standard library usage, and fuzzing reduce exploitation likelihood without eliminating underlying vulnerability risk.
+**Apply hardening to remaining C/C++ dependencies.** Where migration is not feasible, mitigation helps. Platform and compiler hardening (ASLR/PIE, stack canaries, control flow integrity), memory-safe standard library usage, and fuzzing reduce exploitation likelihood without eliminating underlying vulnerability risk.
 
 ## Challenges and Realistic Timelines
 
@@ -141,6 +141,8 @@ Given both the security imperative and practical constraints, we recommend a bal
 **6. Evaluate supply chain exposure.** Understand which of your critical dependencies are written in memory-unsafe languages and assess the risk implications. This awareness informs both patching priority and long-term strategy.
 
 The memory safety challenge illustrates a broader supply chain security principle: some risks cannot be eliminated through patching and monitoring alone. Fundamental improvements to the software development ecosystem—in this case, language evolution—can eliminate entire vulnerability classes in ways that addressing individual CVEs cannot. Supply chain security strategy should include awareness of and support for these foundational improvements alongside operational security measures.
+
+![Memory safety and the 70% problem](img/ch-5-memory-safety.svg)
 
 [nsa-memory-safety]: https://media.defense.gov/2022/Nov/10/2003112742/-1/-1/0/CSI_SOFTWARE_MEMORY_SAFETY.PDF
 [cisa-memory-safety]: https://www.cisa.gov/resources-tools/resources/case-memory-safe-roadmaps

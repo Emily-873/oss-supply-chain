@@ -26,7 +26,7 @@ This intermediary role provides security benefits that language-specific package
 
 **Security patching**: When vulnerabilities are discovered, distribution security teams assess impact, backport fixes to stable versions, and coordinate disclosure. Major distributions maintain dedicated security teams (Debian Security Team, Red Hat Product Security, Ubuntu Security Team) with established processes for tracking and addressing vulnerabilities.
 
-**Build environment control**: Distribution packages are built in controlled, auditable environments operated by the distribution. This provides assurance that compiled binaries match their source code—addressing Ken Thompson's "trusting trust" concern at the distribution level.
+**Build environment control**: Distribution packages are built in controlled, auditable environments operated by the distribution. This provides assurance that compiled binaries match their source code—partially addressing Ken Thompson's "trusting trust" concern at the distribution level.
 
 **Cryptographic signing**: All major distributions sign their packages and repository metadata. The `apt` system verifies signatures against trusted distribution keys. RPM-based systems use GPG signatures on individual packages. These signatures ensure that packages have not been modified after publication.
 

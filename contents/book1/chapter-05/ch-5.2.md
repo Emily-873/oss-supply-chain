@@ -25,7 +25,7 @@ The scale of Log4j deployment is difficult to overstate. At the time of disclosu
 
 !!! note "The Scale of Log4j Deployment"
 
-    A Google analysis of Maven Central found over 35,000 Java packages had direct or transitive dependencies on Log4j, with potential to impact hundreds of millions of devices worldwide.
+    A [Google analysis][google-analysis] of Maven Central found over 35,000 Java packages had direct or transitive dependencies on Log4j, with potential to impact hundreds of millions of devices worldwide.
 
 This ubiquity derived from exactly the dynamic described throughout this book: developers choose useful libraries that become dependencies of other libraries that become dependencies of applications, creating transitive dependency chains that spread components throughout the ecosystem.
 
@@ -33,11 +33,11 @@ This ubiquity derived from exactly the dynamic described throughout this book: d
 
 The vulnerability exploited Log4j's **message lookup** feature, which allowed log messages to include special syntax that would be interpreted and expanded. For example, a log message could include `${java:version}` to automatically insert the Java version into the log output.
 
-Among the supported lookup types was **JNDI (Java Naming and Directory Interface)**, a Java API for looking up and retrieving data—including executable code—from remote servers. Think of it like a phone directory lookup, except instead of just returning a phone number, it can automatically download and run whatever program is listed at that address.
+Among the supported lookup types was **JNDI (Java Naming and Directory Interface)**, a Java API for looking up names and retrieving objects or references from naming services such as LDAP. Think of it like a directory lookup, except the returned reference can influence what code or objects the application loads.
 
-The fateful feature allowed log messages to include lookups like `${jndi:ldap://example.com/object}`, which would cause Log4j to connect to the specified server and load the referenced object.
+The fateful feature allowed log messages to include lookups like `${jndi:ldap://example.com/object}`, which would cause Log4j to connect to the specified server and resolve the referenced object.
 
-The security implications were catastrophic: if an attacker could get a JNDI lookup string into a log message, they could make the vulnerable server connect to an attacker-controlled server, download malicious code, and execute it—all automatically, with no further interaction required. The attack required no authentication, no special privileges—just the ability to inject a string into something that would be logged.
+The security implications were catastrophic: if an attacker could get a JNDI lookup string into a log message, they could make the vulnerable server connect to an attacker-controlled server and, in susceptible Java/runtime configurations, load attacker-controlled classes or trigger gadget-based code execution. The attack required no authentication, no special privileges—just the ability to inject a string into something that would be logged.
 
 This proved trivially easy to exploit. Applications commonly log user-controlled data: usernames, form inputs, HTTP headers, user agents, search queries. An attacker could trigger the vulnerability by simply:
 
@@ -50,7 +50,7 @@ Within hours of disclosure, security researchers observed widespread scanning fo
 
 !!! danger "CISA Director's Assessment"
 
-    "This vulnerability is one of the most serious that I've seen in my entire career, if not the most serious. We expect the vulnerability to be widely exploited by sophisticated actors and we have limited time to take necessary steps." — Jen Easterly, CISA Director
+    "This vulnerability is one of the most serious that I've seen in my entire career, if not the most serious. We expect the vulnerability to be widely exploited by sophisticated actors and we have limited time to take necessary steps." — [Jen Easterly, CISA Director][easterly-quote]
 
 ## Discovery and Disclosure Timeline
 
@@ -58,21 +58,21 @@ The timeline of Log4Shell demonstrates both the speed of modern vulnerability re
 
 **November 24, 2021**: Researchers at Alibaba Cloud Security discover the vulnerability and report it to the Apache Software Foundation.
 
-**November 30, 2021**: Apache begins working on a fix. The vulnerability is assigned **CVE-2021-44228**—the identifier that would become synonymous with Log4Shell.
+**November 30, 2021**: Apache begins working on a fix for the issue that would become **CVE-2021-44228**—the identifier later synonymous with Log4Shell.
 
-**December 1, 2021**: A fix is developed, and testing begins.
+**Early December 2021**: Fixes are developed and tested under private disclosure.
 
 **December 5, 2021**: Evidence suggests the vulnerability may have been known in Chinese security communities, with reports of Minecraft server exploitation.
 
 **December 6, 2021**: Log4j 2.15.0 is released, containing the fix.
 
-**December 9, 2021**: Full public disclosure occurs after details appear on Twitter and Chinese blogs. The security community mobilizes. CISA issues its initial alert.
+**December 9, 2021**: Full public disclosure occurs after details appear on Twitter and Chinese blogs. The security community mobilizes.
 
-**December 10, 2021**: Mass exploitation begins in earnest. Security firms observe millions of exploit attempts.
+**December 10, 2021**: CISA issues initial guidance. Mass exploitation begins in earnest, and security firms observe millions of exploit attempts.
 
-**December 11, 2021**: CISA issues Emergency Directive 22-02, requiring federal civilian agencies to assess and mitigate Log4Shell within days.
+**December 13-14, 2021**: A second vulnerability (CVE-2021-45046) is disclosed, revealing that the 2.15.0 fix was incomplete. Log4j 2.16.0 is released.
 
-**December 14, 2021**: A second vulnerability (CVE-2021-45046) is disclosed, revealing that the 2.15.0 fix was incomplete. Log4j 2.16.0 is released.
+**December 17, 2021**: CISA issues Emergency Directive 22-02, requiring federal civilian agencies to assess and mitigate Log4Shell on an accelerated timeline.
 
 **December 18, 2021**: Apache discloses a denial-of-service vulnerability (CVE-2021-45105). Log4j 2.17.0 is released.
 
@@ -100,7 +100,7 @@ The Log4Shell response revealed the state of vulnerability management across the
 
 **Mitigation alternatives added confusion.** For systems that could not be immediately patched, Apache suggested mitigations: removing the vulnerable JndiLookup class, setting configuration flags, or using Java agents to block exploit attempts. These mitigations had varying effectiveness, and guidance evolved as understanding deepened.
 
-CISA's Emergency Directive 22-02 required federal civilian agencies to enumerate all instances of Log4j, assess whether they were vulnerable, and apply mitigation within 5 days for internet-facing systems. Private sector organizations faced similar pressure without explicit directives.
+CISA's Emergency Directive 22-02 required federal civilian agencies to enumerate Log4j exposure, assess whether instances were vulnerable, and rapidly apply mitigations or updates for internet-facing systems. Private sector organizations faced similar pressure without explicit directives.
 
 ## Challenges: Why Log4Shell Was So Hard to Address
 
@@ -138,7 +138,7 @@ Log4Shell did not end with patching. Years after disclosure, the vulnerability r
 
 - CISA's [Known Exploited Vulnerabilities][cisa-kev] catalog lists Log4Shell as actively exploited, requiring federal agencies to maintain patching compliance.
 - Security firms continue to observe Log4Shell exploitation attempts in threat actor campaigns.
-- The 2022 attack on Albanian government systems used Log4Shell as part of the initial access vector.
+- CISA and Coast Guard Cyber Command warned in 2022 that state-sponsored actors continued to exploit Log4Shell in unpatched VMware Horizon and Unified Access Gateway servers to obtain initial access.[^cisa-vmware-log4shell]
 - Ransomware groups have incorporated Log4Shell into their toolkits.
 
 [Research by Tenable][tenable-log4shell] found that as of October 2022—nearly a year after disclosure—72% of organizations still had assets vulnerable to Log4Shell. The vulnerability's persistence reflects the challenges of achieving complete remediation across complex environments.
@@ -181,4 +181,4 @@ Log4Shell was a watershed moment for supply chain security. It demonstrated conc
 [easterly-quote]: https://www.cnn.com/2021/12/13/politics/us-warning-software-vulnerability
 [google-analysis]: https://security.googleblog.com/2021/12/understanding-impact-of-apache-log4j.html
 [tenable-log4shell]: https://www.tenable.com/press-releases/tenable-research-finds-72-of-organizations-remain-vulnerable-to-nightmare-log4j
-![Vulnerability prioritization framework: CVSS, KEV, EPSS, SSVC](img/ch-5-prioritization-framework.svg)
+[^cisa-vmware-log4shell]: CISA and Coast Guard Cyber Command, "Threat Actors Exploiting Log4Shell in VMware Horizon Systems," June 23, 2022. <https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-174a>

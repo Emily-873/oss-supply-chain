@@ -115,7 +115,7 @@ Threat modeling produces insights that should inform decisions beyond the immedi
 **Tools for collaboration** should match organizational practices. Options include:
 
 - Wiki platforms (Confluence, Notion) for narrative documentation
-- Diagramming tools (Threat Dragon, Draw.io) for visual models
+- Diagramming tools (Threat Dragon, diagrams.net) for visual models
 - Issue trackers (Jira, GitHub Issues) for action item management
 - Code repositories for version-controlled documents
 - Specialized tools (IriusRisk, ThreatModeler) for organizations with extensive threat modeling programs

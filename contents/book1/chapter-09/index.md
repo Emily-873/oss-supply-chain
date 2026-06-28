@@ -8,7 +8,7 @@ Mobile application supply chains introduce risks through platform-specific depen
 
 Browser extensions pose exceptional risks due to their broad permissions and automatic update mechanisms. Attackers acquire extensions through account compromise, purchase, or abandonment takeover, as seen with The Great Suspender and MEGA.nz incidents. Manifest V3 provides some mitigations by restricting remote code execution.
 
-Content management systems, particularly WordPress, represent high-impact targets given their 43% web market share. Plugin supply chain compromises like AccessPress affected hundreds of thousands of websites. Automatic updates accelerate both legitimate patches and malicious code distribution.
+Content management systems, particularly WordPress, represent high-impact targets given their roughly 40% web market share. Plugin supply chain compromises like AccessPress can expose hundreds of thousands of websites. Automatic updates accelerate both legitimate patches and malicious code distribution.
 
 Client-side JavaScript introduces real-time supply chain risks where compromises affect users instantly without site operator intervention. The Ledger Connect Kit attack stole over $600,000 in cryptocurrency within hours. Subresource Integrity and Content Security Policy offer partial protection but see limited adoption.
 

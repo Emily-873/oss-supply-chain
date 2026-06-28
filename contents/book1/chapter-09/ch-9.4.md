@@ -28,7 +28,7 @@ Modern websites load extensive third-party JavaScript. [HTTP Archive data][http-
 - **Analytics**: Google Analytics, Adobe Analytics, Mixpanel, Hotjar
 - **Advertising**: Google Ads, Facebook Pixel, ad network scripts
 - **Tag managers**: Google Tag Manager, Tealium, Segment
-- **A/B testing**: Optimizely, VWO, Google Optimize
+- **A/B testing**: Optimizely, VWO, legacy Google Optimize tags
 - **Social buttons**: Facebook Like, Twitter share, LinkedIn widgets
 - **Chat widgets**: Intercom, Drift, Zendesk
 - **Payment processors**: Stripe.js, PayPal buttons

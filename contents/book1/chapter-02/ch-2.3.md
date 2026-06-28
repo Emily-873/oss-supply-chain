@@ -156,3 +156,5 @@ For now, the essential insight is that supply chain security is inseparable from
 [^xz-cve]: NVD, "CVE-2024-3094: XZ Utils Backdoor." https://nvd.nist.gov/vuln/detail/CVE-2024-3094
 [^xz-timeline]: Evan Boehs, "Everything I Know About the XZ Backdoor" (March 2024). https://boehs.org/node/everything-i-know-about-the-xz-backdoor; see also Sam James's comprehensive timeline: https://gist.github.com/thesamesam/223949d5a074ebc3dce9ee78baad9e27
 [^pushkarev-sentence]: Denis Pushkarev, "So, what's next?" (February 2023). https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md
+
+![The open source maintainer crisis: statistics on burnout and security implications](img/ch-2-maintainer-crisis.svg)

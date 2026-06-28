@@ -33,10 +33,10 @@ Security considerations specific to CocoaPods include:
 - **Trunk account security**: Pod authors register through CocoaPods Trunk. Compromised Trunk accounts can push malicious updates (similar to npm account compromises)
 - **Podspec manipulation**: The centralized specs repository is a single point of trust
 - **Build script execution**: Podspecs can include build scripts that execute during `pod install`
-- **Remote Code Execution vulnerabilities** (2023): Three separate RCE vulnerabilities were discovered in Trunk by evasec.io, including pod takeover via the claim process, email verification exploits, and shell command execution. All user sessions were reset following patching.
-- **`prepare_command` restrictions** (May 2025): New pods using `prepare_command` are now blocked to prevent script-based attacks during pod installation
+- **Trunk vulnerabilities** (2021 and 2023): CocoaPods patched a Trunk RCE in 2021, then reset user sessions again in 2023 after E.V.A reported three additional Trunk issues: pod takeover via the claim process, email verification link manipulation, and shell command execution.
+- **`prepare_command` scrutiny**: Podspecs using `prepare_command`, which allows arbitrary script execution during pod installation, warrant particular care as a script-based supply chain attack vector
 
-[In 2021, security researchers disclosed][cocoapods-vuln] that the CocoaPods Trunk server contained vulnerabilities allowing account takeover, potentially enabling attackers to modify widely-used pods. Additional RCE vulnerabilities discovered in 2023 further demonstrated the ongoing security challenges of centralized package registries.
+[CocoaPods disclosed a Trunk RCE in 2021][cocoapods-rce-2021], and [patched three additional Trunk vulnerabilities reported by E.V.A in 2023][cocoapods-trunk-2023]. E.V.A's later technical write-up detailed how orphaned-pod ownership and Trunk server weaknesses could have enabled attackers to modify widely-used pods.[^cocoapods-eva]
 
 **Swift Package Manager:**
 
@@ -287,7 +287,9 @@ Supply chain attacks on mobile platforms follow patterns shaped by platform cons
 Mobile supply chains combine the dependency challenges of server-side development with unique factors: platform-controlled distribution, opaque SDK ecosystems, and the concentration of sensitive data on user devices. The XcodeGhost and malicious SDK incidents demonstrate that attackers understand these dynamics. Effective mobile security requires treating SDK integration as seriously as any other dependency decision and recognizing that app store review, while valuable, does not guarantee supply chain integrity.
 
 [cocoapods]: https://cocoapods.org/
-[cocoapods-vuln]: https://www.evasec.io/blog/eva-discovered-supply-chain-vulnerabities-in-cocoapods
+[cocoapods-rce-2021]: https://blog.cocoapods.org/CocoaPods-Trunk-RCE/
+[cocoapods-trunk-2023]: https://blog.cocoapods.org/CocoaPods-Trunk-RCEs-2023/
+[^cocoapods-eva]: E.V.A Information Security, "E.V.A Discovered Supply Chain Vulnerabilities in CocoaPods," 2024, https://www.evasec.io/blog/eva-discovered-supply-chain-vulnerabities-in-cocoapods
 [xcodeghost-paloalto]: https://unit42.paloaltonetworks.com/malware-xcodeghost-infects-39-ios-apps-including-wechat-affecting-hundreds-of-millions-of-users/
 [xcodeghost-fireeye]: https://www.ciodive.com/news/fireeye-many-us-enterprises-still-running-infected-apple-apps/408639/
 [swanalytics]: https://research.checkpoint.com/2019/operation-sheep-pilfer-analytics-sdk-in-action/

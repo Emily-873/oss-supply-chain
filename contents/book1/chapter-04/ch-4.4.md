@@ -231,19 +231,19 @@ We recommend prioritizing defenses that:
 
 ## Tools for Attack Tree Development
 
-Several tools support attack tree creation and analysis:
+Several tools can support attack tree development or related threat modeling work:
 
-**OWASP Threat Dragon** is an open source threat modeling tool that supports attack tree creation with a visual interface. It integrates with development workflows and supports export to various formats.
+**OWASP Threat Dragon** is an open source threat modeling tool for creating threat model diagrams and documenting threats. It is useful for broader threat modeling workflows, though specialized attack tree analysis typically requires other tools.
 
 **ADTool** (Attack-Defense Tree Tool) is academic software specifically designed for attack tree analysis, supporting quantitative evaluation and defense placement optimization.
 
-**Microsoft Threat Modeling Tool** supports tree-like threat decomposition as part of its broader threat modeling capabilities, though it is oriented toward STRIDE rather than pure attack trees.
+**Microsoft Threat Modeling Tool** supports STRIDE-oriented threat modeling around data flow diagrams rather than pure attack tree analysis, but it can help document threats that later feed into attack trees.
 
-**Draw.io/diagrams.net** and similar general-purpose diagramming tools can create attack tree visualizations without specialized features. This approach works well for presentation and documentation.
+**diagrams.net** (formerly draw.io) and similar general-purpose diagramming tools can create attack tree visualizations without specialized features. This approach works well for presentation and documentation.
 
 **Text-based representations** using indentation (as in this section's examples) are simple to create and version-control, making them practical for teams that want to maintain trees alongside code.
 
 For most organizations, we recommend starting with simple tools—text files or general-purpose diagrams—and adopting specialized tools only if quantitative analysis or complex tree management becomes necessary. The value of attack trees lies in the thinking process they structure, not in the sophistication of the tools used to draw them.
 
 Attack trees connect directly to the red teaming approaches discussed in Book 2, Chapter 15. The trees you construct during threat modeling become roadmaps for offensive testing, validating whether the attack paths you identified are actually viable and whether the defenses you implemented actually work.
-![Dependency criticality tiers pyramid](img/ch-4-dependency-tiers.svg)
+![Attack tree: compromising production via dependencies](img/ch-4-attack-tree.svg)

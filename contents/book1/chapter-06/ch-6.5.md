@@ -72,7 +72,7 @@ Package managers rely on manifest files (`package.json`, `setup.py`, `Cargo.toml
 
 **Hidden files**: Including files in the published package that are not present in the source repository. Developers reviewing the GitHub repository see clean code, but the published package contains additional malicious files.
 
-[Snyk research][snyk-manifest-confusion] documented npm packages where the published tarball contained files absent from the linked GitHub repository. Without comparing repository contents to published package contents, these additions would be invisible.
+Attackers can exploit this gap by publishing tarballs that contain files absent from the linked source repository. Without comparing repository contents to published package contents, these additions remain invisible to reviewers who inspect only the source repository.
 
 **Detection challenges:**
 
@@ -306,7 +306,6 @@ Defending against these advanced techniques requires layered approaches:
 These advanced techniques represent the current frontier of package attacks. As detection improves for simpler attacks, sophisticated adversaries increasingly employ these methods. Security teams must anticipate this evolution and implement defenses that address not just current threats but emerging techniques.
 
 [checkmarx-starjacking]: https://checkmarx.com/blog/starjacking-making-your-new-open-source-package-popular-in-a-snap/
-[snyk-manifest-confusion]: https://snyk.io/blog/why-npm-lockfiles-can-be-a-security-blindspot-for-injecting-malicious-modules/
 [socket]: https://socket.dev/
 [snyk-lockfile-injection]: https://snyk.io/blog/why-npm-lockfiles-can-be-a-security-blindspot-for-injecting-malicious-modules/
 [xz-utils-backdoor]: https://www.openwall.com/lists/oss-security/2024/03/29/4
