@@ -81,6 +81,9 @@ Research identifying the most critical open source packages, informing where sec
 **CNCF Software Supply Chain Best Practices White Paper v2** (November 2024)[^cncf-sscp-v2]
 Updated guidance from CNCF TAG Security on supply chain security best practices, including persona-based recommendations for developers, operators, and security teams. Referenced by NIST SSDF.
 
+**CoSAI AI Supply Chain and Agentic Security Publications** (2025-2026)[^cosai-resources]
+Coalition for Secure AI workstream publications covering AI supply chain risks and controls, signing ML artifacts, defending and responding to AI incidents, shared responsibility, Model Context Protocol security, agentic identity and access management, and secure design patterns for agentic systems.[^cosai-risks-controls][^cosai-signing-ml][^cosai-defenders][^cosai-ir][^cosai-shared-responsibility][^cosai-mcp][^cosai-agentic-iam][^cosai-agentic-future]
+
 **Synopsys Open Source Security and Risk Analysis (OSSRA) Report** (Annual)[^synopsys-ossra]
 Analysis based on audits of commercial codebases, revealing open source usage patterns and risk exposure.
 
@@ -92,6 +95,9 @@ Analysis based on audits of commercial codebases, revealing open source usage pa
 
 **Open Source Security Foundation (OpenSSF)**[^openssf]
 The primary cross-industry initiative for improving open source security. Hosts working groups on vulnerability disclosure, supply chain integrity, security tooling, and education. Essential for anyone working in this space.
+
+**Coalition for Secure AI (CoSAI)**[^cosai]
+OASIS Open Project launched in 2024 to coordinate industry guidance for secure AI systems. Its workstreams cover AI software supply chain security, defender readiness, AI security risk governance, and secure design patterns for agentic systems.
 
 **Cybersecurity and Infrastructure Security Agency (CISA)**[^cisa]
 U.S. federal agency providing guidance, alerts, and coordination for software security. Key source for government policy and requirements.
@@ -413,6 +419,26 @@ Commercial vulnerability intelligence with broader coverage than NVD alone.
 [^synopsys-ossra]: Synopsys, "Open Source Security and Risk Analysis (OSSRA) Report," https://www.synopsys.com/software-integrity/resources/analyst-reports/open-source-security-risk-analysis.html
 
 [^openssf]: Open Source Security Foundation, "OpenSSF," https://openssf.org
+
+[^cosai]: Coalition for Secure AI, https://www.coalitionforsecureai.org/
+
+[^cosai-resources]: Coalition for Secure AI, "Resources," https://www.coalitionforsecureai.org/resources/
+
+[^cosai-risks-controls]: Coalition for Secure AI, "Establish Risks and Controls for the AI Supply Chain," V1.0, 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/risks-and-controls-for-the-ai-supply-chain-v1.pdf
+
+[^cosai-signing-ml]: Coalition for Secure AI, "Signing ML Artifacts," 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/signing-ml-artifacts-1.pdf
+
+[^cosai-defenders]: Coalition for Secure AI, "Preparing Defenders of AI Systems," V1.0, 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/preparing-defenders-of-ai-systems.pdf
+
+[^cosai-ir]: Coalition for Secure AI, "AI Incident Response Framework," V1.0, 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/AI-Incident-Response-1.pdf
+
+[^cosai-shared-responsibility]: Coalition for Secure AI, "AI Shared Responsibility Framework," V1.0, 2026, https://www.coalitionforsecureai.org/wp-content/uploads/2026/05/CoSAI-Shared-Responsibility-Framework.pdf
+
+[^cosai-mcp]: Coalition for Secure AI, "Model Context Protocol (MCP) Security," 2026, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/model-context-protocol-security-1.pdf
+
+[^cosai-agentic-iam]: Coalition for Secure AI, "Agentic Identity and Access Management," 2026, https://www.coalitionforsecureai.org/wp-content/uploads/2026/04/agentic-identity-and-access-control.pdf
+
+[^cosai-agentic-future]: Coalition for Secure AI, "The Future of Agentic Security: From Chatbots to Autonomous Swarms," 2026, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/the-future-of-agentic-security.pdf
 
 [^cisa]: CISA, "Cybersecurity and Infrastructure Security Agency," https://www.cisa.gov
 

@@ -37,7 +37,7 @@ Several characteristics distinguish supply chain threat modeling from traditiona
 
 **Visibility is limited.** You can examine your own code in detail, but external dependencies are often opaque. You may have access to source code, but you typically lack visibility into maintainers' security practices, build environments, or the vetting applied to contributions. Threat modeling must account for this uncertainty rather than assuming complete knowledge.
 
-**Control is asymmetric.** Traditional threat modeling identifies threats and then implements mitigations. Supply chain threats often cannot be mitigated directly—you cannot patch a vulnerability in a dependency you don't maintain, change a registry's authentication policies, or improve a maintainer's security practices. Your controls are limited to choices about what to depend on, how to verify what you receive, and how to limit the impact of compromise.
+**Control is asymmetric.** Traditional threat modeling identifies threats and then implements mitigations. Supply chain threats often cannot be mitigated directly—you usually cannot patch an upstream vulnerability in a dependency you don't maintain, change a registry's authentication policies, or improve a maintainer's security practices. Your controls are limited to choices about what to depend on, how to verify what you receive, and how to limit the impact of compromise.
 
 **The system is dynamic.** Dependencies update continuously. New versions introduce new functionality—and potentially new vulnerabilities or malicious code. Threat models for traditional applications change when the application is redesigned; supply chain threat models change every time a dependency updates.
 
@@ -49,11 +49,13 @@ Academic research is increasingly providing systematic frameworks for this chall
 
 [^arxiv-sok-ssc]: Ladisa et al., "SoK: Analysis of Software Supply Chain Security by Establishing Secure Design Properties," arXiv:2406.10109, 2024, https://arxiv.org/abs/2406.10109
 
+[^cosai-ai-supply-chain]: CoSAI, "Establish Risks and Controls for the AI Supply Chain," V1.0, Workstream 1, 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/risks-and-controls-for-the-ai-supply-chain-v1.pdf
+
 ## Defining Scope: Where Does Your Supply Chain Begin and End?
 
 One of the most challenging aspects of supply chain threat modeling is defining scope. Unlike an application with clear boundaries, a supply chain extends outward through dependencies, infrastructure, and trust relationships without obvious limits.
 
-**Depth decisions** determine how far into the dependency graph you model. Your application has direct dependencies, and those have their own dependencies (transitive), which have further dependencies. Modeling every transitive dependency—potentially thousands of packages—is impractical. Yet ignoring transitive dependencies misses real risks; the Log4j vulnerability affected applications that had no direct relationship with Log4j.
+**Depth decisions** determine how far into the dependency graph you model. Your application has direct dependencies, and those have their own dependencies (transitive), which have further dependencies. Modeling every transitive dependency—potentially thousands of packages—is impractical. Yet ignoring transitive dependencies misses real risks; the Log4j vulnerability affected applications that did not depend on Log4j directly.
 
 !!! tip "Practical Approaches to Depth"
 
@@ -69,6 +71,10 @@ One of the most challenging aspects of supply chain threat modeling is defining 
 - Distribution infrastructure (registries, CDNs, mirrors)
 - Deployment infrastructure (container registries, artifact repositories)
 - Operational dependencies (cloud providers, DNS, certificate authorities)
+
+AI/ML systems add another scope expansion. CoSAI describes AI supply chains as four interdependent dimensions—data, model, application, and infrastructure—and emphasizes that training data, model weights, fine-tuning, and serving context can all change system behavior.[^cosai-ai-supply-chain] The artifact you consume may be both data and code with opaque provenance: a pretrained model can carry poisoned training data, altered weights, unsafe fine-tuning, or undocumented evaluation assumptions into your application.
+
+When threat modeling AI/ML features, include training, validation, fine-tuning, and evaluation datasets; preprocessing and feature pipelines; model architecture code and ML frameworks; hyperparameters and mixture weights; pretrained models, checkpoints, and model registries; RAG sources and embedding models; and inference or model-serving infrastructure. We recommend treating each of these as a supply chain input with its own trust boundary, provenance requirements, and integrity checks. Appendix C describes how AI-BOMs can capture this documentation, while Chapter 33 returns to AI as an emerging supply chain frontier.
 
 Attempting to model everything produces analysis paralysis. We recommend starting with the code dependency graph—the packages your application imports—and expanding to build and deployment infrastructure as capability matures. Chapter 3's attack surface analysis provides a framework for deciding which infrastructure elements warrant inclusion.
 
