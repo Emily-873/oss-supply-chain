@@ -278,7 +278,7 @@ For example, "Ch. 11.1" refers to Book 2, Chapter 11, Section 1. Cross-reference
 | A.8.8 | Management of technical vulnerabilities | Ch. 12.4-12.5, Ch. 13.4 |
 | A.8.9 | Configuration management | Ch. 16.3, Ch. 17.1 |
 | A.8.16 | Monitoring activities | Ch. 18.4, Ch. 19.1 |
-| A.8.20 | Networks security | Ch. 17.1, Ch. 18.4 |
+| A.8.20 | Network security | Ch. 17.1, Ch. 18.4 |
 | A.8.21 | Security of network services | Ch. 17.2, Ch. 18.1 |
 | A.8.24 | Use of cryptography | Ch. 17.4-17.6, Ch. 5.5 |
 | A.8.25 | Secure development life cycle | Ch. 16.1-16.5, Ch. 17.1-17.6 |

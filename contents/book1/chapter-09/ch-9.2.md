@@ -285,20 +285,18 @@ The two major IDE extension distribution channels are:
 
 The critical difference is **supply chain leverage**: a compromised browser extension steals passwords and browsing data from end users. A compromised IDE extension steals signing keys, registry tokens, SSH keys, and cloud credentials from developers — enabling the attacker to publish malicious packages, tamper with CI/CD pipelines, or access production infrastructure. A single compromised developer can become the vector for an upstream supply-chain attack affecting thousands of downstream users.
 
-**GlassWorm and the Open VSX Attack Pattern:**
+**GlassWASM and the Open VSX Attack Pattern:**
 
-The GlassWorm malware cluster demonstrated this risk concretely. First identified as a self-propagating worm in October 2025 (the first major such infection on Open VSX), GlassWorm resurfaced in January 2026 through a **publisher credential compromise** that poisoned four established extensions with staged loaders targeting developer credentials (`~/.aws`, `~/.ssh`, browser passwords, cryptocurrency wallets).[^glassworm-openvsx] See Chapter 16, Section 16.3 for the full case study.
+The GlassWASM campaign demonstrated this risk concretely. In June 2026, Socket researchers found TinyGo-compiled WebAssembly malware embedded in trojanized Open VSX extensions, including a theme and a transaction-hash debugging utility.[^glasswasm-openvsx] The extensions auto-executed on activation, used obfuscation and Solana transaction memos to resolve command-and-control infrastructure, and delivered staged payloads into developer environments.
 
-[^glassworm-openvsx]: Socket Security, "GlassWorm Strikes Open VSX," January 30, 2026; Veracode, "The First Self-Propagating VS Code Extension Worm: GlassWorm," October 20, 2025.
-
-The Eclipse Foundation's response signals an ecosystem-level shift: in January 2026, they announced a commitment to **pre-publish security checks** for Open VSX, with a monitoring phase beginning February 2026 and staged enforcement in March 2026. The announcement explicitly framed Open VSX as "core infrastructure in the developer supply chain" and named recurring abuse modes: impersonation, secrets leakage, malicious code patterns, and quiet supply-chain propagation through trusted extensions.
+[^glasswasm-openvsx]: Socket Security, "GlassWASM: WebAssembly Malware Found in Trojanized Open VSX Extensions," June 15, 2026, https://socket.dev/blog/glasswasm-malware-open-vsx-extensions
 
 **Recommendations for IDE Extension Ecosystems:**
 
 1. **Treat IDE extensions as supply chain dependencies.** Apply the same governance (allowlisting, review, monitoring) that you apply to npm or PyPI packages.
 2. **Inventory all IDE extension distribution channels.** Organizations may not realize that VSCodium, Gitpod, or Eclipse Theia installations pull from Open VSX rather than the VS Code Marketplace.
 3. **Monitor for publisher credential compromise.** Sudden behavioral changes in established extensions (new network calls, new permissions, obfuscated code) warrant investigation regardless of the extension's reputation.
-4. **Support and adopt pre-publish verification.** As marketplaces move toward pre-publish checks, participate in feedback cycles and adopt verification features as they become available.
+4. **Support and adopt marketplace verification.** As marketplaces add stronger checks, participate in feedback cycles and adopt verification features as they become available.
 
 ## Recommendations
 

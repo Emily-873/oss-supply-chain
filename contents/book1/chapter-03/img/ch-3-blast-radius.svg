@@ -172,18 +172,18 @@
       <text x="100" y="32" font-size="10" fill="#78350f">100Ms of devices</text>
 
       <text x="0" y="52" font-size="10" fill="#78350f" font-weight="500">Org-level:</text>
-      <text x="100" y="52" font-size="10" fill="#78350f">Every Java org</text>
+      <text x="100" y="52" font-size="10" fill="#78350f">Most Java orgs</text>
 
-      <text x="0" y="72" font-size="10" fill="#78350f" font-weight="500">Cost estimate:</text>
-      <text x="100" y="72" font-size="10" fill="#78350f">$10B+ remediation</text>
+      <text x="0" y="72" font-size="10" fill="#78350f" font-weight="500">Response:</text>
+      <text x="100" y="72" font-size="10" fill="#78350f">Global remediation</text>
 
       <line x1="0" y1="85" x2="240" y2="85" stroke="#d97706"/>
 
       <text x="120" y="105" text-anchor="middle" font-size="9" fill="#92400e" font-style="italic">
-        "The most serious vulnerability
+        Among the most serious
       </text>
       <text x="120" y="118" text-anchor="middle" font-size="9" fill="#92400e" font-style="italic">
-        I have seen in my entire career"
+        vulnerabilities of her career
       </text>
     </g>
   </g>

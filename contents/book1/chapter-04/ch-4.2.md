@@ -58,7 +58,7 @@ Mitigations include signed commits and releases, build provenance attestations (
 
 **Information Disclosure** involves unauthorized access to information. Supply chain information disclosure threats include:
 
-- **Secret leakage in repositories**: Developers accidentally commit API keys, credentials, or other secrets to source code repositories. The TruffleHog and GitLeaks tools exist specifically because this threat is so common.
+- **Secret leakage in repositories**: Developers accidentally commit API keys, credentials, or other secrets to source code repositories. The TruffleHog and Gitleaks tools exist specifically because this threat is so common.
 
 - **Secret exposure in builds**: CI/CD systems often have access to secrets for deployment and publication. Attacks like Codecov specifically targeted secret exfiltration from build environments.
 
@@ -164,7 +164,7 @@ Each node can be annotated with:
 
 Attack trees help identify which attack paths are most feasible and where mitigations would be most effective. If multiple attack paths converge through a single node (like "CI/CD credential compromise"), securing that node provides high-leverage protection. If attack paths have many independent routes to the goal, defense in depth across multiple nodes becomes necessary.
 
-Tools like OWASP Threat Dragon, Microsoft Threat Modeling Tool, and specialized attack tree software support creating and analyzing attack trees systematically.
+General threat modeling tools such as OWASP Threat Dragon and Microsoft Threat Modeling Tool can document related threats, while specialized attack tree software supports creating and analyzing attack trees systematically.
 
 ## LINDDUN for Privacy in Supply Chains
 
@@ -234,7 +234,7 @@ ATT&CK organizes adversary behavior into **tactics** (the adversary's goals) and
 
 **Practical application**: When applying STRIDE or constructing attack trees, annotate identified threats with corresponding ATT&CK technique IDs. For example:
 
-- A STRIDE "Spoofing" threat involving typosquatting maps to T1036 (Masquerading)
+- A STRIDE "Spoofing" threat involving typosquatting maps to T1195.001 (Compromise Software Dependencies and Development Tools), and may also relate to T1036 (Masquerading)
 - A "Tampering" threat involving build script modification maps to T1195.002 (Compromise Software Supply Chain)
 - An attack tree node for "credential theft from CI/CD" maps to T1552.001 (Credentials In Files) or T1528 (Steal Application Access Token)
 

@@ -235,7 +235,7 @@ While npm has dominated package attack news, **Python Package Index (PyPI)** has
 
 **2023 W4SP Stealer Campaign**: Security researchers identified packages containing "W4SP Stealer" malware targeting Discord tokens, browser passwords, and cryptocurrency wallets. Packages used obfuscation and legitimate-appearing code.
 
-**2024 Ultralytics Incident** (December 2024): The popular machine learning library was compromised after an attacker exploited a [GitHub Actions script injection vulnerability][pypi-ultralytics]. Malicious versions were published to PyPI, containing credential-stealing code. The incident affected a mainstream package with legitimate users.
+**2024 Ultralytics Incident** (December 2024): The popular machine learning library was compromised after an attacker exploited a vulnerable GitHub Actions workflow using a malicious branch name.[^ultralytics-yossarian] [Malicious versions were published to PyPI][pypi-ultralytics], containing cryptocurrency-mining code. The incident affected a mainstream package with legitimate users.
 
 **Common Patterns:**
 
@@ -381,3 +381,4 @@ These case studies demonstrate that package attacks are not theoretical risks bu
 [cisa-ua-parser]: https://www.cisa.gov/news-events/alerts/2021/10/22/malware-discovered-popular-npm-package-ua-parser-js
 [pypi-ultralytics]: https://blog.pypi.org/posts/2024-12-11-ultralytics-attack-analysis/
 [^event-stream-downloads]: Security Boulevard, "Malicious code in npm 'event-stream' package targets a bitcoin wallet and causes 8 million downloads in two months" (November 27, 2018). <https://securityboulevard.com/2018/11/malicious-code-in-npm-event-stream-package-targets-a-bitcoin-wallet-and-causes-8-million-downloads-in-two-months/>
+[^ultralytics-yossarian]: William Woodruff, "zizmor would have caught the Ultralytics workflow vulnerability," December 6, 2024, https://blog.yossarian.net/2024/12/06/zizmor-ultralytics-injection

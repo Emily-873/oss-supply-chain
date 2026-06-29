@@ -87,4 +87,3 @@ Understanding this history matters for supply chain security because the values 
 The open source movement succeeded beyond what its founders imagined, becoming the foundation of modern software infrastructure. But that success created new challenges the original philosophy did not anticipate: how to secure software that the entire world depends upon, maintained by volunteers who never signed up for that responsibility. The sections that follow explore how the ecosystem has evolved to address—or failed to address—these challenges.
 
 [heartbleed]: https://heartbleed.com/
-![Open source governance models from BDFL to Foundation with security implications](img/ch-2-governance-models.svg)

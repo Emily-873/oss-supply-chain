@@ -104,7 +104,8 @@ When the research became public, the Linux kernel community reacted strongly:
 
 !!! quote "Greg Kroah-Hartman, Linux Kernel Maintainer"
 
-    "Our community does not appreciate being experimented on, and being 'tested' by submitting known-bad patches to see if we catch them."
+    "Our community does not appreciate being experimented on, and being 'tested' by submitting known patches that are either do nothing on purpose, or introduce bugs on purpose."
+    — [Greg Kroah-Hartman][kroah-hartman-response], Linux kernel mailing list (April 2021)
 
 The Linux kernel maintainers:
 
@@ -129,12 +130,12 @@ The incident demonstrated both that malicious commits are a viable attack vector
 
 ## Reviewer Fatigue and Its Exploitation
 
-Maintainers of popular projects face overwhelming review burdens. [Research on code review effectiveness][code-review-quality] found that review thoroughness decreased significantly as:
+Maintainers of popular projects face overwhelming review burdens. [Research on modern code review][code-review-quality] and practitioner experience both show that review thoroughness suffers as:
 
-- PR size increased beyond 200 lines of changes
-- Review backlog grew
-- Reviewers handled multiple PRs in succession
-- Reviews occurred late in the work day
+- PR size increases
+- Review backlog grows
+- Reviewers handle multiple PRs in succession
+- Reviews occur late in the work day
 
 Attackers can exploit these patterns:
 
@@ -279,4 +280,3 @@ Code review remains valuable—it catches bugs, improves quality, and raises the
 [trojan-source]: https://trojansource.codes/
 [code-review-quality]: https://research.google/pubs/modern-code-review-a-case-study-at-google/
 [kroah-hartman-response]: https://lore.kernel.org/lkml/YH%2FfM%2FTsbmcZzwnX@kroah.com/
-![Typosquatting techniques matrix](img/ch-8-typosquatting-techniques.svg)

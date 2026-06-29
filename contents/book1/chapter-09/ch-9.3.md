@@ -20,13 +20,13 @@ WordPress dominates the CMS landscape with extraordinary reach:
 
 !!! note inline end "WordPress Scale"
 
-    **43.5%** of all websites use WordPress. Over **60,000 plugins** available. A single compromised popular plugin can affect millions of websites within days.
+    **41.5%** of all websites use WordPress according to W3Techs' current survey. Tens of thousands of plugins are available. A single compromised popular plugin can affect millions of websites within days.
 
-- **Approximately 43.5% of all websites** use WordPress as of 2024 [according to W3Techs data][w3techs-wordpress]
-- Over **75 million websites** run WordPress globally
-- The WordPress.org plugin directory hosts over **60,000 plugins**
+- **Approximately 41.5% of all websites** use WordPress [according to W3Techs data][w3techs-wordpress]
+- WordPress runs on tens of millions of websites globally
+- The WordPress.org plugin directory hosts tens of thousands of plugins
 - Additional tens of thousands of premium plugins exist outside the official directory
-- Over **11,000 themes** are available through WordPress.org
+- More than **8,000 themes** are available through WordPress.org
 
 This scale means that a single compromised popular plugin can affect millions of websites within days of a malicious update. The potential attack surface rivals or exceeds that of major package registries.
 
@@ -113,10 +113,10 @@ In late 2021, [security researchers discovered][jetpack-accesspress] that **over
 
 !!! example "AccessPress Backdoor (2021-2022)"
 
-    Over **90 themes and plugins** backdoored, affecting **360,000+ websites**. Attackers compromised distribution infrastructure—products were modified before download rather than at the source.
+    Over **90 themes and plugins** were backdoored on the vendor's own website. AccessPress products had **360,000+ active installations**, but Jetpack found the WordPress.org copies were clean.
 
-- Over **360,000 websites** running AccessPress products
-- Products distributed through both WordPress.org and the AccessPress website
+- Over **360,000 active installations** across AccessPress products
+- Backdoored copies distributed from the AccessPress website; Jetpack reported that WordPress.org copies were clean
 - Themes and plugins that had been backdoored for months
 
 The backdoor, discovered by Jetpack and Sucuri researchers, was injected into products distributed from the AccessPress website. It:
@@ -190,9 +190,9 @@ While WordPress dominates, other CMS platforms have their own supply chain dynam
 
 **Drupal:**
 
-[Drupal][drupal] powers approximately 1.8% of all websites, with particular strength in enterprise and government. Its module ecosystem:
+[Drupal][drupal] powers approximately 0.7% of all websites according to W3Techs' current survey, with particular strength in enterprise and government.[^w3techs-drupal] Its module ecosystem:
 
-- Hosts over 45,000 contributed modules
+- Hosts tens of thousands of contributed modules
 - Implements a more formal security team structure
 - Maintains an active Security Advisories process
 - Generally serves more technically sophisticated users
@@ -201,7 +201,7 @@ Drupal's smaller scale and more technical user base may reduce some risks, but h
 
 **Joomla:**
 
-[Joomla][joomla] holds approximately 1.5% market share with:
+[Joomla][joomla] holds approximately 1.2% of all websites according to W3Techs' current survey:[^w3techs-joomla]
 
 - Thousands of extensions in the Joomla Extensions Directory
 - A history of significant security vulnerabilities
@@ -299,7 +299,7 @@ Enterprise WordPress deployments typically disable automatic updates in favor of
 
 6. **Consider WordPress VIP or enterprise platforms.** For high-value sites, managed platforms provide additional security investment.
 
-The WordPress ecosystem demonstrates how supply chain risk scales with market dominance. With over 43% of websites depending on it, WordPress plugin security affects more internet users than almost any other single technology. The AccessPress backdoor affecting 360,000 sites and the ongoing targeting of vulnerable plugins show that attackers understand this leverage. Site owners who treat plugin selection and management as seriously as any other security decision significantly reduce their exposure to this pervasive threat.
+The WordPress ecosystem demonstrates how supply chain risk scales with market dominance. With roughly 40% of websites depending on it, WordPress plugin security affects more internet users than almost any other single technology. The AccessPress backdoor in products with 360,000+ active installations and the ongoing targeting of vulnerable plugins show that attackers understand this leverage. Site owners who treat plugin selection and management as seriously as any other security decision significantly reduce their exposure to this pervasive threat.
 
 [w3techs-wordpress]: https://w3techs.com/technologies/details/cm-wordpress
 [woocommerce]: https://wordpress.org/plugins/woocommerce/
@@ -313,3 +313,5 @@ The WordPress ecosystem demonstrates how supply chain risk scales with market do
 [cve-2014-3704]: https://nvd.nist.gov/vuln/detail/CVE-2014-3704
 [cve-2018-7600]: https://nvd.nist.gov/vuln/detail/CVE-2018-7600
 [joomla]: https://www.joomla.org/
+[^w3techs-drupal]: W3Techs, "Usage statistics and market share of Drupal," https://w3techs.com/technologies/details/cm-drupal
+[^w3techs-joomla]: W3Techs, "Usage statistics and market share of Joomla," https://w3techs.com/technologies/details/cm-joomla

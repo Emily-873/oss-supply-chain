@@ -599,12 +599,12 @@ This playbook addresses incidents involving:
 - [ ] No
 - [ ] N/A
 
-2.4 What SLSA level do your build processes achieve?
+2.4 What SLSA Build Track level do your build processes achieve?
 
-- [ ] SLSA Level 1
-- [ ] SLSA Level 2
-- [ ] SLSA Level 3
-- [ ] SLSA Level 4
+- [ ] SLSA Build L0
+- [ ] SLSA Build L1
+- [ ] SLSA Build L2
+- [ ] SLSA Build L3
 - [ ] Not assessed
 - [ ] N/A
 
@@ -713,7 +713,7 @@ This playbook addresses incidents involving:
 |-------------|--------|-------|------------|
 | Dependency Vulnerabilities | [LOW/MED/HIGH/CRITICAL] | [↑↓→] | [X] critical vulns in production |
 | Third-Party Code Exposure | [LOW/MED/HIGH/CRITICAL] | [↑↓→] | [X]% of codebase is third-party |
-| Build System Security | [LOW/MED/HIGH/CRITICAL] | [↑↓→] | SLSA Level [X] achieved |
+| Build System Security | [LOW/MED/HIGH/CRITICAL] | [↑↓→] | SLSA Build L[X] achieved |
 | Vendor/Supplier Risk | [LOW/MED/HIGH/CRITICAL] | [↑↓→] | [X] vendors assessed |
 
 **Key Metrics This Period**

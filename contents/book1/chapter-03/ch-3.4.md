@@ -72,7 +72,7 @@ These network effects mean that supply chain risk cannot be understood by examin
 
 !!! example "Case Study: Log4Shell's Cascade"
 
-    Log4j was a direct dependency of 7,800+ Maven packages and transitive dependency of 35,000+. The vulnerability affected products from Apple, Amazon, Google, Microsoft, IBM, Oracle, Cisco, VMware—essentially every major tech company. CISA Director Easterly called it "the most serious vulnerability I have seen in my decades-long career." Industry estimates suggest total remediation cost likely exceeded **$10 billion globally**.
+    Google estimated that more than 35,000 Maven Central packages were affected when counting both direct and transitive dependencies to the vulnerable Log4j components. The vulnerability affected products from Apple, Amazon, Google, Microsoft, IBM, Oracle, Cisco, VMware—essentially every major tech company. CISA Director Jen Easterly described it as among the most serious vulnerabilities she had seen in her career. Remediation required a global response across software vendors, governments, and critical infrastructure operators.
 
 The Log4Shell vulnerability (CVE-2021-44228), disclosed in December 2021, provides a detailed illustration of cascading supply chain impact.
 
@@ -80,15 +80,15 @@ Log4j is a logging library for Java applications. Logging is a universal require
 
 The vulnerability itself was severe: an attacker who could control logged text (often possible through user input fields, HTTP headers, or other external data) could achieve remote code execution on the vulnerable system. But the vulnerability's impact derived primarily from Log4j's position in the dependency graph.
 
-**Package-level propagation**: Log4j was a direct dependency of over 7,800 other Maven packages. When counting transitive dependencies—packages that depended on packages that depended on Log4j—the number reached into the tens of thousands. [Google's Open Source Insights team][google-oss-insights] estimated that over 35,000 packages had Log4j somewhere in their dependency tree.
+**Package-level propagation**: Log4j was a direct dependency of thousands of Maven packages. When counting transitive dependencies—packages that depended on packages that depended on Log4j—the number reached into the tens of thousands. [Google's Open Source Insights team][google-oss-insights] initially estimated that over 35,000 packages were affected across the vulnerable Log4j components, later clarifying that `log4j-core` alone affected more than 17,000 packages.
 
 **Project-level propagation**: The affected packages were themselves incorporated into applications throughout the Java ecosystem. Security researchers estimated that hundreds of millions of devices ran software containing vulnerable Log4j versions. The vulnerability affected products from Apple, Amazon, Google, Microsoft, IBM, Oracle, Cisco, VMware, and essentially every major technology company.
 
-**Organizational propagation**: Virtually every organization with Java in their technology stack required remediation. Government agencies issued emergency directives. Critical infrastructure operators scrambled to identify affected systems. The vulnerability was so pervasive that CISA director Jen Easterly called it "the most serious vulnerability I have seen in my decades-long career."
+**Organizational propagation**: Virtually every organization with Java in their technology stack required remediation. Government agencies issued emergency directives. Critical infrastructure operators scrambled to identify affected systems. The vulnerability was so pervasive that CISA director Jen Easterly described it as among the most serious vulnerabilities she had seen in her career.
 
 The remediation challenge illustrated cascading risk in reverse. Organizations could update Log4j directly, but vulnerable versions persisted in third-party applications, vendor products, and embedded systems. Even organizations that patched immediately remained exposed through systems they did not control. The propagation that enabled the vulnerability also complicated its remediation.
 
-Estimates of the total cost of Log4Shell remediation vary, but the direct response effort alone—identifying affected systems, applying patches, monitoring for exploitation—likely exceeded $10 billion globally. The incident demonstrated how a single vulnerability in a well-connected package could generate economic damage vastly exceeding any conceivable security investment in the package itself.
+Estimates of the total cost of Log4Shell remediation vary, but the direct response effort alone—identifying affected systems, applying patches, monitoring for exploitation—was substantial. The incident demonstrated how a single vulnerability in a well-connected package could generate economic damage vastly exceeding any conceivable security investment in the package itself.
 
 ## The Interconnected Ecosystem
 

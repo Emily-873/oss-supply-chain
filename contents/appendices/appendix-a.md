@@ -14,7 +14,7 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **Attack surface**: The sum of all points where an unauthorized user could attempt to enter or extract data from a system. In software supply chain security, attack surface includes dependencies, build systems, distribution channels, and any external inputs the software accepts. Reducing attack surface is a fundamental security principle.
 
-**Attestation**: A cryptographically signed statement that asserts specific claims about a software artifact, such as how it was built, what inputs were used, or what security checks it passed. Attestations provide verifiable evidence that certain procedures were followed during the software development lifecycle. In the SLSA framework, attestations are used to document build provenance and verify supply chain integrity. *See also: Build provenance, In-toto, SLSA.*
+**Attestation**: A cryptographically signed statement that asserts specific claims about a software artifact, such as how it was built, what inputs were used, or what security checks it passed. Attestations provide verifiable evidence that certain procedures were followed during the software development lifecycle. In the SLSA framework, attestations are used to document build provenance and verify supply chain integrity. *See also: Build provenance, in-toto, SLSA.*
 
 ---
 
@@ -22,9 +22,9 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **Binary hardening**: A collection of techniques applied during compilation or post-compilation to make compiled software more resistant to exploitation. Common hardening measures include enabling stack canaries, position-independent executables (PIE), ASLR support, and Control Flow Integrity. Binary hardening represents a defense-in-depth approach that reduces the likelihood that vulnerabilities will be successfully exploited. *See also: Address Space Layout Randomization (ASLR), Control Flow Integrity (CFI).*
 
-**Build provenance**: Metadata that describes how a software artifact was produced, including the source code location, build system used, builder identity, build parameters, and input dependencies. Build provenance enables consumers to verify that an artifact was built from expected sources using expected processes. The SLSA framework defines specific requirements for build provenance at different security levels. *See also: Attestation, Hermetic build, SLSA.*
-
 **Bug bounty**: A program offered by organizations that provides financial rewards to security researchers who responsibly disclose vulnerabilities. Bug bounty programs incentivize security research and help organizations identify and fix vulnerabilities before they can be exploited by malicious actors. Some programs include patch bounties that reward researchers for submitting working fixes alongside vulnerability reports.
+
+**Build provenance**: Metadata that describes how a software artifact was produced, including the source code location, build system used, builder identity, build parameters, and input dependencies. Build provenance enables consumers to verify that an artifact was built from expected sources using expected processes. The SLSA framework defines specific requirements for build provenance at different security levels. *See also: Attestation, Hermetic build, SLSA.*
 
 ---
 
@@ -70,7 +70,7 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 ### H {.unlisted .unnumbered}
 
-**Hermetic build**: A build process that is isolated from the host environment and produces the same output regardless of when or where it is executed. Hermetic builds achieve reproducibility by explicitly declaring all inputs (source code, dependencies, tools, and environment) and preventing access to external resources during the build. Hermetic builds are a key requirement for achieving higher SLSA levels. *See also: Reproducible build, Build provenance, SLSA.*
+**Hermetic build**: A build process that is isolated from the host environment and produces the same output regardless of when or where it is executed. Hermetic builds achieve reproducibility by explicitly declaring all inputs (source code, dependencies, tools, and environment) and preventing access to external resources during the build. Hermetic builds support stronger SLSA-aligned build assurances. *See also: Reproducible build, Build provenance, SLSA.*
 
 **Homoglyph attack**: An attack that uses visually similar characters from different character sets to create deceptive text. In the context of software supply chain security, homoglyph attacks can be used to create package names that appear identical to legitimate packages but contain different Unicode characters. For example, using the Cyrillic "а" (U+0430) instead of the Latin "a" (U+0061). *See also: Typosquatting, Malicious package.*
 
@@ -80,7 +80,7 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **IAST (Interactive Application Security Testing)**: A security testing approach that combines elements of static and dynamic analysis by instrumenting applications during testing to monitor internal behavior. IAST tools can identify vulnerabilities with lower false positive rates than traditional SAST or DAST by observing actual data flows during execution. *See also: DAST, SAST.*
 
-**In-toto**: A framework for securing the integrity of software supply chains by generating and verifying metadata about each step in the development and deployment process. In-toto uses cryptographically signed attestations called "link metadata" to create an auditable record of the supply chain. The framework was developed at NYU and is now a Cloud Native Computing Foundation project. *See also: Attestation, Build provenance, SLSA.*
+**in-toto**: A framework for securing the integrity of software supply chains by generating and verifying metadata about each step in the development and deployment process. in-toto uses cryptographically signed attestations called "link metadata" to create an auditable record of the supply chain. The framework was developed at NYU and is now a Cloud Native Computing Foundation project. *See also: Attestation, Build provenance, SLSA.*
 
 ---
 
@@ -94,9 +94,9 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **Malicious package**: A software package that intentionally contains harmful functionality such as data exfiltration, cryptocurrency mining, backdoors, or destructive payloads. Malicious packages may be published under names designed to deceive (typosquatting), may compromise legitimate packages through account hijacking, or may be introduced by malicious maintainers. Package registries employ automated scanning and community reporting to detect and remove malicious packages. *See also: Typosquatting, Account hijacking, Protestware.*
 
-**Memory safety**: A property of programming languages or runtime environments that prevents programs from accessing memory in unsafe ways, such as buffer overflows, use-after-free errors, and null pointer dereferences. Memory safety issues are a leading cause of security vulnerabilities; Microsoft and Google have reported that approximately 70% of their security bugs are memory safety issues. Languages like Rust, Go, and Java provide memory safety guarantees, while C and C++ require careful programming practices to avoid memory safety vulnerabilities.
+**Memory safety**: A property of programming languages or runtime environments that prevents programs from accessing memory in unsafe ways, such as buffer overflows, use-after-free errors, and null pointer dereferences. Memory safety issues are a leading cause of security vulnerabilities in systems software. Languages like Rust, Go, and Java provide memory safety guarantees, while C and C++ require careful programming practices to avoid memory safety vulnerabilities.
 
-**Multi-factor authentication (MFA)**: A security mechanism that requires users to provide two or more verification factors to gain access to a resource. MFA significantly reduces the risk of account hijacking by ensuring that compromised passwords alone are insufficient for unauthorized access. Hardware security keys (phishing-resistant) and time-based one-time passwords (TOTP) are preferred over SMS-based methods due to their resistance to SIM-swapping attacks. Also referred to as two-factor authentication (2FA). *See also: Account hijacking, Trusted publishing.*
+**Multi-factor authentication (MFA)**: A security mechanism that requires users to provide two or more verification factors to gain access to a resource. MFA significantly reduces the risk of account hijacking by ensuring that compromised passwords alone are insufficient for unauthorized access. Hardware security keys (phishing-resistant) and time-based one-time passwords (TOTP) are preferred over SMS-based methods due to their resistance to SIM-swapping attacks. Often implemented as two-factor authentication (2FA). *See also: Account hijacking, Trusted publishing.*
 
 ---
 
@@ -122,9 +122,9 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **Patch bounty**: A bug bounty program that provides rewards for security researchers who submit working patches to fix vulnerabilities, not just vulnerability reports. Patch bounties incentivize researchers to contribute remediation work and can accelerate the time to fix, particularly for open source projects with limited maintainer resources. Google's Patch Rewards program pioneered this approach.
 
-**Provenance**: Information about the origin and history of a software artifact, including its source, how it was built, and its chain of custody. Provenance information enables consumers to make trust decisions about software and detect tampering or substitution. *See also: Build provenance, Attestation, SLSA.*
-
 **Protestware**: Software that has been intentionally modified by its maintainer to include functionality that protests or makes a political statement, often in ways that harm users. Unlike traditional malware, protestware originates from legitimate maintainers rather than external attackers. Notable examples include the `node-ipc` incident in March 2022, where the maintainer added code targeting users with Russian or Belarusian IP addresses. Protestware represents a unique supply chain threat because it exploits the trust relationship between maintainers and users. *See also: Malicious package.*
+
+**Provenance**: Information about the origin and history of a software artifact, including its source, how it was built, and its chain of custody. Provenance information enables consumers to make trust decisions about software and detect tampering or substitution. *See also: Build provenance, Attestation, SLSA.*
 
 ---
 
@@ -150,9 +150,9 @@ This glossary provides definitions for key terms used throughout this book. Term
 
 **Sigstore (Fulcio/Rekor)**: The industry-standard project that provides free code signing and verification infrastructure for the open source community through keyless signing and transparency logs. Sigstore includes Fulcio (a certificate authority for issuing short-lived code signing certificates), Rekor (an immutable transparency log that records signing events), and Cosign (a signing tool). By eliminating the need for developers to manage their own long-lived signing keys, Sigstore significantly reduces barriers to code signing adoption. Sigstore is a Linux Foundation project with support from Google, Red Hat, and other organizations. *See also: Code signing, Attestation, Trusted publishing.*
 
-**SLSA (Supply-chain Levels for Software Artifacts)**: A security framework that defines a series of levels representing increasing supply chain integrity guarantees. Pronounced "salsa," SLSA provides a checklist of standards and controls to prevent tampering, improve artifact integrity, and secure the build process. The framework defines four levels (L1-L4), with each level requiring stricter security controls. SLSA is a project of the Open Source Security Foundation (OpenSSF). *See also: Build provenance, Attestation, Hermetic build.*
-
 **Slopsquatting**: A supply chain attack that exploits AI code assistants' tendency to hallucinate non-existent package names. When an AI assistant suggests a dependency that doesn't exist, attackers can register that package name and publish malicious code, which will then be installed by developers following the AI's recommendation. The term combines "slop" (AI-generated content) with "squatting." This attack vector emerged as a significant concern with the widespread adoption of AI coding assistants in 2023-2024. *See also: Typosquatting, Dependency confusion, Malicious package.*
+
+**SLSA (Supply-chain Levels for Software Artifacts)**: A security framework that defines graduated requirements for increasing supply chain integrity guarantees. Pronounced "salsa," SLSA provides standards and controls to prevent tampering, improve artifact integrity, and secure the build process; the current specification organizes requirements into tracks such as the Build Track. SLSA is a project of the Open Source Security Foundation (OpenSSF). *See also: Build provenance, Attestation, Hermetic build.*
 
 **Software Composition Analysis (SCA)**: Tools and processes that identify open source and third-party components in a codebase, catalog their versions, and detect known vulnerabilities. SCA tools typically maintain databases of component-vulnerability mappings and integrate with development workflows to alert teams when vulnerable components are detected. *See also: SBOM, Dependency management.*
 

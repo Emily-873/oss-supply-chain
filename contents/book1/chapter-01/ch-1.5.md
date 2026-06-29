@@ -6,7 +6,7 @@ icon: "lucide/alarm-clock"
 
 # 1.5 Why Supply Chain Security Has Become Urgent Now
 
-Software supply chain security is not a new concept. Security researchers have warned about these risks for decades, and sophisticated attackers have exploited supply chains for just as long. Yet within the past five years, supply chain security has transformed from a concern discussed primarily at specialized security conferences to a board-level priority commanding attention from heads of state. This section examines the confluence of factors that created this urgency, establishing why the material in this book matters now more than at any previous moment.
+Software supply chain security is not a new concept. Security researchers have warned about these risks for decades, and sophisticated attackers have exploited supply chains for just as long. Yet over the past several years, supply chain security has transformed from a concern discussed primarily at specialized security conferences to a board-level priority commanding attention from heads of state. This section examines the confluence of factors that created this urgency, establishing why the material in this book matters now more than at any previous moment.
 
 ## High-Profile Incidents as Catalysts
 
@@ -84,7 +84,7 @@ Organizations should monitor agency-specific guidance closely, as the practical 
 
 The European Union has moved even more aggressively. The **Cyber Resilience Act (CRA)**, published as Regulation (EU) 2024/2847, establishes mandatory cybersecurity requirements for products with digital elements sold in the EU market.[^eu-cra] The CRA entered into force on December 10, 2024, with main obligations applying from December 11, 2027 and reporting obligations from September 11, 2026. Non-compliance with essential cybersecurity requirements can result in administrative fines of up to €15 million or 2.5% of total worldwide annual turnover, whichever is higher.
 
-These regulations transform supply chain security from a best practice to a compliance requirement. Organizations selling to government or operating in regulated industries must demonstrate software supply chain controls, driving investment that market forces alone had not motivated. The regulatory trajectory is clearly toward more requirements, not fewer, with additional jurisdictions likely to follow the US and EU lead.
+These regulations transform supply chain security from a best practice into a compliance consideration. Organizations selling to government or operating in regulated industries increasingly must demonstrate software supply chain controls, driving investment that market forces alone had not motivated. Even where implementation shifts toward risk-based discretion, the broader trajectory is toward more explicit expectations, with additional jurisdictions likely to follow the U.S. and EU lead.
 
 ## The Economics of Supply Chain Attack
 

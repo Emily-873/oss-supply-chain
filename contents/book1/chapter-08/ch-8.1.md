@@ -125,17 +125,17 @@ The attacks above share a common factor: none of the compromised accounts had ro
 
 !!! tip "2FA Adoption Progress"
 
-    As of 2024, npm reports over 93% of download traffic comes from packages whose maintainers have 2FA enabled. PyPI mandated 2FA for critical projects in May 2023, covering the top 1% of packages by download count.
+    npm has phased in mandatory 2FA for high-impact packages. PyPI began mandating 2FA for critical projects in 2022, then required all project maintainers to enable 2FA by the end of 2023.
 
 **npm:**
 
-npm [introduced mandatory 2FA for high-impact packages][npm-2fa] in February 2022. Packages with more than 1 million weekly downloads or 500+ dependents require maintainers to enable 2FA.
+npm [began rolling out mandatory 2FA for high-impact packages][npm-2fa] in February 2022, starting with maintainers of the top 100 packages by dependents. npm defines high-impact packages as those with more than 1 million weekly downloads or 500+ dependents.
 
-[As of 2024, npm reports][npm-2fa-stats] that over 93% of download traffic comes from packages whose maintainers have 2FA enabled. However, the long tail of smaller packages remains less protected.
+npm's phased rollout has expanded mandatory 2FA from top packages toward high-impact maintainers. However, the long tail of smaller packages remains less protected.
 
 **PyPI:**
 
-PyPI [announced mandatory 2FA for critical projects][pypi-2fa] in May 2023, covering the top 1% of packages by download count. The rollout expanded throughout 2023 and 2024.
+PyPI began mandating 2FA for its most-downloaded projects in 2022, covering the top 1% of packages by download count. In May 2023, PyPI [announced that every account maintaining any project or organization][pypi-2fa] would be required to enable 2FA by the end of 2023.
 
 PyPI has actively distributed hardware security keys to maintainers of critical packages, providing phishing-resistant 2FA at no cost to maintainers. [The Python Software Foundation, with support from Google's Open Source Security Team, distributed over 4,000 Titan Security Keys][pypi-titan-keys] to maintainers of critical packages.
 
@@ -152,7 +152,7 @@ Despite progress, gaps remain:
 - The long tail of packages outside mandatory 2FA thresholds remains weakly protected
 - Organizational accounts and shared credentials complicate enforcement
 
-Research by the Open Source Security Foundation found that even among top packages, not all maintainers comply with 2FA requirements. Enforcement mechanisms vary in effectiveness across registries.
+Even where registries mandate 2FA, enforcement mechanisms and recovery exceptions vary across ecosystems.
 
 ## MFA Bypass Techniques
 
@@ -274,7 +274,7 @@ Tools like JFrog's [npm_domain_check][npm-domain-check] help organizations audit
 
 [ctx-attack]: https://python-security.readthedocs.io/pypi-vuln/index-2022-05-24-ctx-domain-takeover.html
 [ctx-analysis]: https://thehackernews.com/2022/05/pypi-package-ctx-and-php-library-phpass.html
-[foreach-disclosure]: https://www.theregister.com/2022/05/10/security_npm_email/
+[foreach-disclosure]: https://www.theregister.com/security/2022/05/10/expert-grabs-expired-domain-for-npm-package-to-make-a-point/1341031
 [jfrog-research]: https://jfrog.com/blog/npm-package-hijacking-through-domain-takeover-how-bad-is-this-new-attack/
 [pypi-domain-monitoring]: https://blog.pypi.org/posts/2025-08-18-preventing-domain-resurrections/
 [npm-security]: https://docs.npmjs.com/threats-and-mitigations/
@@ -349,7 +349,6 @@ Maintainer account security is one of the most cost-effective supply chain secur
 
 [eslint-postmortem]: https://eslint.org/blog/2018/07/postmortem-for-malicious-package-publishes/
 [npm-2fa]: https://github.blog/security/supply-chain-security/top-100-npm-package-maintainers-require-2fa-additional-security/
-[npm-2fa-stats]: https://github.blog/security/supply-chain-security/introducing-even-more-security-enhancements-to-npm/
 [pypi-2fa]: https://blog.pypi.org/posts/2023-05-25-securing-pypi-with-2fa/
 [pypi-titan-keys]: https://blog.google/technology/safety-security/making-open-source-software-safer-and-more-secure/
 [rubygems-2fa]: https://blog.rubygems.org/2022/08/15/requiring-mfa-on-popular-gems.html

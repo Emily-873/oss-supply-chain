@@ -43,7 +43,7 @@ Consider a concrete example: a developer begins building a simple web applicatio
 
 ![dependency-explosion](img/ch-1-dependency-explosion.svg)
 
-[^vite-react]: Empirical measurement using Vite 5.x with React template. Note: create-react-app, the previous standard, was deprecated in early 2024 in favor of frameworks like Next.js and Vite. The deprecation itself illustrates how the supply chain evolves—organizations that built tooling around create-react-app now face migration decisions, and their dependency trees will change significantly.
+[^vite-react]: Empirical measurement using Vite 5.x with React template. Note: Create React App, the previous standard, was officially deprecated for new apps in February 2025 in favor of frameworks or build tools like Vite. The deprecation itself illustrates how the supply chain evolves—organizations that built tooling around Create React App now face migration decisions, and their dependency trees will change significantly. See React, "Sunsetting Create React App" (February 14, 2025), <https://react.dev/blog/2025/02/14/sunsetting-create-react-app>.
 
 This is not a JavaScript-specific phenomenon. A new Spring Boot project in Java will bring in approximately 50-70 direct dependencies, which expand to several hundred when transitive dependencies are included. A Python machine learning project using TensorFlow inherits a dependency tree spanning scientific computing libraries (NumPy, SciPy), data manipulation tools (pandas), and visualization packages (Matplotlib)—each with their own nested dependencies.
 

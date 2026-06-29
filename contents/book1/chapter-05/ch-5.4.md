@@ -14,13 +14,13 @@ Understanding why the patching gap exists is the first step toward closing it. F
 
 !!! note "The Attacker Advantage"
 
-    Qualys TruRisk Research found attackers weaponize vulnerabilities in an average of 19.5 days, while organizations patch in 30.6 days—an 11-day gap of continuous exposure. Web applications average 74.3 days to patch.
+    Qualys TruRisk Research found attackers weaponize vulnerabilities in an average of 19.5 days, while organizations patch in 30.6 days—an 11-day gap of continuous exposure.
 
 Research consistently shows that patching takes longer than security teams would like and policy often demands:
 
 The **[Kenna Security/Cyentia Institute Prioritization to Prediction research][kenna-p2p]** on vulnerability remediation found that organizations typically remediate only about 10% of their vulnerabilities in any given month. Their analysis of 3.6 billion vulnerability observations across hundreds of organizations showed that this ratio remains remarkably constant regardless of organization size—every tenfold increase in open vulnerabilities is met with a roughly tenfold increase in closed vulnerabilities. High-severity vulnerabilities receive faster attention, but even critical CVEs have a median remediation time measured in weeks, not days.
 
-**[Verizon's 2025 DBIR][verizon-dbir]** has documented that web applications take an average of 74.3 days to patch—significantly longer than network vulnerabilities at 54.8 days. This extended exposure window provides ample opportunity for attackers, who can begin mass exploitation of vulnerabilities within a median of just 5 days. The 2025 report found that edge device and VPN vulnerabilities saw an eight-fold increase in exploitation, yet only 54% of these critical vulnerabilities were fully remediated throughout the year—with a median time of 32 days to patch.
+**[Verizon's 2025 DBIR][verizon-dbir]** documented that vulnerability exploitation as an initial access vector increased 34% from the previous year and appeared in 20% of breaches. The report also highlighted the remediation challenge for edge device and VPN vulnerabilities: exploitation grew nearly eight-fold, yet only 54% of these critical vulnerabilities were fully remediated during the year, with a median time of 32 days to patch.
 
 **[Qualys TruRisk Research][qualys-trurisk]** found that weaponized vulnerabilities are patched within an average of 30.6 days, while attackers weaponize those same vulnerabilities in just 19.5 days on average. This 11-day gap represents continuous exposure to significant cyber risk. For vulnerabilities on CISA's Known Exploited Vulnerabilities list, the disparity is even more pronounced.
 
@@ -185,4 +185,5 @@ Closing the patching gap requires commitment across technical, process, and orga
 7. **Consider update practices in dependency selection.** Book 2, Chapter 13 explores dependency evaluation criteria; maintainer responsiveness to security issues should be among them.
 
 The patching gap will never close completely—resource constraints, testing requirements, and coordination challenges are inherent to complex systems. But organizations that deliberately invest in patching capability dramatically reduce their exposure to the known vulnerability attacks that dominate real-world breaches.
-![Memory safety and the 70% problem](img/ch-5-memory-safety.svg)
+
+![The patching gap: 19.5 days to weaponize vs. 30.6 days to patch](img/ch-5-patching-gap.svg)

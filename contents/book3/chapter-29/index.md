@@ -10,7 +10,7 @@ This chapter examines the collective efforts by industry, foundations, and the s
 
 The Open Source Security Foundation (OpenSSF) serves as the primary coordination mechanism, uniting technology leaders to produce essential tools including Sigstore for artifact signing, SLSA for supply chain integrity levels, and Scorecard for automated security assessment. The Alpha-Omega program directly funds security improvements in critical projects, distributing nearly $6 million in grants in 2024 alone.
 
-Package registries have transformed their security posture, with npm, PyPI, RubyGems, and Maven Central converging on a common baseline of mandatory multi-factor authentication, OIDC-based trusted publishing, and Sigstore-powered provenance attestations. Cross-registry coordination through OpenSSF working groups accelerates improvements across ecosystems.
+Package registries have transformed their security posture, with npm, PyPI, RubyGems, and Maven Central moving toward a common baseline of stronger multi-factor authentication, OIDC-based trusted publishing where supported, and provenance attestations. Cross-registry coordination through OpenSSF working groups accelerates improvements across ecosystems.
 
 The vulnerability disclosure ecosystem has matured through distributed CVE assignment via CVE Numbering Authorities, the package-centric OSV schema enabling precise vulnerability identification, and coordination platforms like GitHub Security Advisories and VINCE for multi-party disclosure.
 

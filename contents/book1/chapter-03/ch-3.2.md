@@ -73,7 +73,7 @@ Build systems transform source code into deployable artifacts. This transformati
 
 **CI/CD pipeline manipulation** exploits the automation that has replaced manual builds. The **Codecov breach** (January 2021) compromised a bash script used in CI pipelines to upload coverage data.[^codecov-breach] The modified script exfiltrated environment variables from builds—including credentials and secrets used by downstream systems. The attack demonstrates both the criticality of build infrastructure and CI/CD environments' access to sensitive credentials. See §19.1 for the detection case study.
 
-[^codecov-breach]: Codecov, "Bash Uploader Security Update," Codecov Blog, April 2021, https://about.codecov.io/security-update/; "Codecov Supply Chain Attack," CISA Alert AA21-151A, May 2021.
+[^codecov-breach]: Codecov, "Bash Uploader Security Update," Codecov Blog, April 2021, https://about.codecov.io/security-update/; CISA, "Remediate Codecov Supply-Chain Compromise," April 2021.
 
 **Build script modification** can occur through the repository itself, since build configurations (`Makefile`, `build.gradle`, `package.json` scripts) typically live alongside source code. An attacker who can modify build scripts can introduce arbitrary behavior without touching application code. The scripts that run during `npm install`, `pip install`, or Maven builds execute with full user privileges.
 
@@ -99,7 +99,7 @@ Package registries—npm, PyPI, Maven Central, and the ecosystems surveyed in Se
 
 Between build completion and production execution lies deployment infrastructure: container registries, artifact repositories, content delivery networks, and orchestration systems.
 
-**Container registry compromise** provides access to the images deployed across organizations. Docker Hub has experienced credential breaches; private registries may have weaker security. The **Codecov attack** ultimately targeted container images, using harvested credentials to access customer container registries and modify deployed images.
+**Container registry compromise** provides access to the images deployed across organizations. Docker Hub has experienced credential breaches; private registries may have weaker security. The **Codecov attack** originated in a flaw in Codecov's Docker image creation process, showing how weaknesses in container build workflows can expose credentials used later in delivery and deployment.
 
 **Artifact repository manipulation** affects organizations using repository managers like Nexus, Artifactory, or cloud equivalents. These systems cache and proxy external packages while hosting internal artifacts—combining external supply chain risk with internal infrastructure criticality.
 
@@ -117,7 +117,7 @@ Software updates present a unique attack surface because they leverage existing 
 
 [^asus-shadowhammer]: Kim Zetter, "The Hunt for the Missing Data from the World's Biggest Hack," Wired, October 23, 2019; Kaspersky, "Operation ShadowHammer: a high-profile supply chain attack," Kaspersky Securelist, March 2019.
 
-**Hosting infrastructure compromise** represents a different model for attacking update mechanisms. In 2025, attackers attributed to a state-sponsored group compromised the shared hosting provider used by Notepad++ to intercept update requests and selectively redirect targeted victims to malicious servers — while legitimate users received normal updates.[^kaspersky-notepadpp] Unlike ShadowHammer, where all users received the same backdoored binary and targeting was implemented in the payload, the Notepad++ attack served entirely different binaries to different users based on network-level targeting. The attack persisted for approximately five months, in part because most users never encountered malicious content. See Section 7.9 for the full case study.
+**Hosting infrastructure compromise** represents a different model for attacking update mechanisms. In 2025, attackers compromised the shared hosting provider used by Notepad++ to intercept update requests and selectively redirect targeted victims to malicious servers — while legitimate users received normal updates.[^kaspersky-notepadpp] Unlike ShadowHammer, where all users received the same backdoored binary and targeting was implemented in the payload, the Notepad++ attack served entirely different binaries to different users based on network-level targeting. The attack persisted for several months, in part because most users never encountered malicious content. See Section 7.9 for the full case study.
 
 [^kaspersky-notepadpp]: Kaspersky Securelist, "A Supply Chain Attack on Notepad++," February 2, 2026, https://securelist.com/notepad-supply-chain-attack/118708/
 

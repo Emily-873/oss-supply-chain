@@ -23,11 +23,11 @@ The **Domain Name System (DNS)** translates human-readable domain names into IP 
 
 DNS compromise enables powerful attacks:
 
-**DNS hijacking** redirects traffic intended for legitimate services to attacker-controlled servers. If an attacker can control DNS resolution for `registry.npmjs.org`, they can serve malicious packages to any developer whose DNS queries they intercept. The **DNSpionage** attacks (2018-2019), attributed to Iranian threat actors, hijacked DNS records for government and private organizations across the Middle East and North Africa, demonstrating nation-state capability and interest in DNS-based attacks.[^dnspionage]
+**DNS hijacking** redirects traffic intended for legitimate services to attacker-controlled servers. If an attacker can control DNS resolution for `registry.npmjs.org`, they can disrupt package installation, harvest metadata, or—if TLS or certificate validation is also undermined—serve malicious packages to developers whose DNS queries they intercept. The **DNSpionage** attacks (2018-2019), attributed to Iranian threat actors, hijacked DNS records for government and private organizations across the Middle East and North Africa, demonstrating nation-state capability and interest in DNS-based attacks.[^dnspionage]
 
 **DNS cache poisoning** inserts malicious records into DNS resolvers, affecting all users of those resolvers. While modern DNS implementations include protections against classic poisoning attacks, vulnerabilities continue to emerge. The **SAD DNS** attack (2020) demonstrated that cache poisoning remained viable against significant portions of DNS infrastructure.[^saddns]
 
-**Registrar compromise** provides control over authoritative DNS records. Attackers who compromise accounts at domain registrars can redirect any domain those accounts control. The **Perl.com hijacking** (January 2021) saw the perl.com domain redirected after a social engineering attack against the registrar, temporarily disrupting access to Perl resources.[^perl-hijack]
+**Registrar compromise** provides control over authoritative DNS records. Attackers who compromise accounts at domain registrars can redirect any domain those accounts control. The **Perl.com hijacking** (January 2021) saw the perl.com domain redirected after an unauthorized registrar transfer, temporarily disrupting access to Perl resources.[^perl-hijack]
 
 **Availability attacks** on DNS infrastructure can prevent access to package registries entirely. A DDoS attack against the DNS infrastructure serving npm or PyPI would prevent developers from installing packages, potentially breaking CI/CD pipelines and deployments globally. The **Dyn DDoS attack** (October 2016), executed using the Mirai botnet, demonstrated this risk by disrupting DNS for major internet services including GitHub, Twitter, Netflix, and Reddit, affecting developer workflows worldwide.[^dyn-ddos]
 
@@ -60,10 +60,10 @@ The attacker can then:
 
 BGP hijacking could target software supply chains in several ways:
 
-**Package registry hijacking**: An attacker announcing routes for npm, PyPI, or Maven Central IP space could intercept package download requests. Even with TLS protection, attackers could:
+**Package registry hijacking**: An attacker announcing routes for npm, PyPI, or Maven Central IP space could intercept package download requests. If TLS is absent, misconfigured, or undermined through certificate compromise, attackers could modify those requests; even when TLS holds, they could still disrupt availability or observe connection metadata. Potential effects include:
 
-- Serve cached older (vulnerable) package versions
-- Present fraudulent certificates if they've also compromised a CA
+- Serve cached older (vulnerable) package versions when integrity checks are absent
+- Present fraudulent certificates if they have also compromised a CA
 - Harvest metadata about which organizations use which packages
 - Cause availability disruptions that force developers to seek alternative sources
 
@@ -124,7 +124,7 @@ Modern software supply chains are deeply entangled with cloud providers. Package
 
 **Infrastructure compromise** at cloud providers would have cascading effects throughout the software ecosystem. If an attacker compromised AWS infrastructure hosting npm's registry backend, they could potentially modify packages served to millions of developers. While major cloud providers invest heavily in security, their central position makes them attractive targets for sophisticated adversaries.
 
-**Cloud service vulnerabilities** periodically affect supply chains. The **Codecov breach** (2021) exploited a vulnerability in Codecov's Docker image creation process that exposed credentials, enabling attackers to modify the Bash Uploader script and harvest secrets from over 23,000 customer CI pipelines for more than two months before detection.[^codecov] Cloud-based CI/CD services—GitHub Actions, GitLab CI, CircleCI, Travis CI—execute customer code with access to credentials and secrets, making them high-value targets.
+**Cloud service vulnerabilities** periodically affect supply chains. The **Codecov breach** (2021) exploited a vulnerability in Codecov's Docker image creation process that exposed credentials, enabling attackers to modify the Bash Uploader script and harvest secrets from customer CI environments for more than two months before detection.[^codecov] Cloud-based CI/CD services—GitHub Actions, GitLab CI, CircleCI, Travis CI—execute customer code with access to credentials and secrets, making them high-value targets.
 
 **Multi-tenancy risks** arise because cloud services serve many customers from shared infrastructure. Security boundaries between tenants are logical rather than physical, and vulnerabilities that break these boundaries enable cross-tenant attacks. The **ChaosDB vulnerability** (2021), discovered by Wiz researchers, allowed unauthorized access to other customers' Azure Cosmos DB instances through a flaw in the Jupyter Notebook feature, illustrating how cloud multi-tenancy risks can affect data and potentially supply chain assets.[^chaosdb]
 
@@ -140,7 +140,7 @@ The **Polyfill.io incident** (June 2024) demonstrated CDN supply chain risk vivi
 
 !!! danger "Case Study: Polyfill.io (2024)"
 
-    After a Chinese company acquired the polyfill.io domain, they modified JavaScript to redirect mobile users to betting/adult sites. Over **380,000 websites** were found to be embedding the script, including 182 government sites and properties from Warner Bros., Hulu, Mercedes-Benz, and the World Economic Forum. Site operators had delegated trust by including `<script src="https://cdn.polyfill.io/...">`—with no control over what code that URL would serve in the future.
+    After a Chinese company acquired the polyfill.io domain, they modified JavaScript to redirect mobile users to betting/adult sites. Censys found over **380,000 hosts** embedding the script, including 182 `.gov` hosts and properties from Warner Bros., Hulu, Mercedes-Benz, and the World Economic Forum. Site operators had delegated trust by including `<script src="https://cdn.polyfill.io/...">`—with no control over what code that URL would serve in the future.
 
 **Background**: Polyfill.io was a popular CDN service providing JavaScript polyfills—code that implements modern JavaScript features in older browsers. The service was created in 2014 by the Financial Times as an open source project to help developers support older browsers without bundling unnecessary code for modern browsers. The service dynamically detected browser capabilities and served only the polyfills needed, making it an elegant solution adopted by hundreds of thousands of websites.
 
@@ -156,7 +156,7 @@ The **Polyfill.io incident** (June 2024) demonstrated CDN supply chain risk vivi
 
 **Scale and Impact**: Security researchers at Sansec initially identified the attack affecting over 100,000 websites.[^sansec-polyfill] Subsequent analysis by Censys found over 380,000 hosts embedding the malicious polyfill script, including 182 government websites.[^censys-polyfill] High-profile properties operated by major corporations were found to be embedding the script, including Warner Bros., Hulu, Mercedes-Benz, JSTOR, Intuit, and the World Economic Forum.
 
-**Response**: The CDN providers Cloudflare and Fastly responded by creating their own mirrors of the legitimate polyfill.io library code and automatically redirecting requests for cdn.polyfill.io to their clean versions. Google began warning advertisers that their ads would be blocked if served on pages including polyfill.io scripts. Domain registrars eventually suspended the polyfill.io domain, though the attackers registered alternative domains in attempts to continue operations.
+**Response**: Cloudflare and Fastly responded by creating mirrors of the legitimate polyfill.io library code; Cloudflare also automatically rewrote polyfill.io links for sites proxied through its network. Google began warning advertisers that their ads would be blocked if served on pages including polyfill.io scripts. Domain registrars eventually suspended the polyfill.io domain, though the attackers registered alternative domains in attempts to continue operations.
 
 **Why It Succeeded**: The attack was effective because website operators had delegated trust to a third party by including `<script src="https://cdn.polyfill.io/...">` in their pages. They had no control over what code that URL would serve in the future. When the service changed hands, so did control over code executing on their visitors' browsers. Many site operators were unaware they included this dependency—it had been added years earlier, perhaps by developers who had since left, or included transitively through other libraries and frameworks.
 
@@ -248,6 +248,6 @@ Chapter 7 examines attacks targeting distribution infrastructure in detail, and 
 [^codecov]: Codecov, "Bash Uploader Security Update" (April 2021). https://about.codecov.io/security-update/
 [^chaosdb]: Wiz, "ChaosDB: How we hacked thousands of Azure customers' databases" (August 2021). https://www.wiz.io/blog/chaosdb-how-we-hacked-thousands-of-azure-customers-databases
 [^sansec-polyfill]: Sansec, "Polyfill supply chain attack hits 100K+ sites" (June 2024). https://sansec.io/research/polyfill-supply-chain-attack
-[^censys-polyfill]: Censys, "Polyfill.io Supply Chain Attack - Digging into the Web of Compromised Domains" (July 2024). https://censys.com/blog/july-2-polyfill-io-supply-chain-attack-digging-into-the-web-of-compromised-domains
+[^censys-polyfill]: Censys, "Polyfill.io Supply Chain Attack - Digging into the Web of Compromised Domains" (July 2024). https://www.censys.com/blog/july-2-polyfill-io-supply-chain-attack-digging-into-the-web-of-compromised-domains
 [^diginotar]: Fox-IT, "Black Tulip: Report of the investigation into the DigiNotar Certificate Authority breach" (August 2012). https://www.researchgate.net/publication/269333601_Black_Tulip_Report_of_the_investigation_into_the_DigiNotar_Certificate_Authority_breach
 [^nts-rfc]: IETF, RFC 8915: "Network Time Security for the Network Time Protocol" (September 2020). https://datatracker.ietf.org/doc/html/rfc8915

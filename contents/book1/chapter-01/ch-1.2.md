@@ -33,7 +33,7 @@ In 2021, the [European Commission published a study][ec-oss-study] on the econom
 
 These numbers reflect a fundamental economic reality: open source software represents a shared infrastructure that virtually all technology companies build upon. Just as businesses benefit from public roads without bearing the full cost of highway construction, software companies benefit from open source without paying for its development. This creates enormous economic efficiency but also raises profound questions about who bears responsibility for maintaining and securing this shared infrastructure.
 
-The Harvard study highlighted a troubling asymmetry in this equation. While the demand-side value of open source reaches into the trillions, the supply-side investment—the resources actually devoted to creating and maintaining this software—is orders of magnitude smaller. Much of the most critical open source infrastructure is maintained by volunteers or small teams with minimal funding, creating a fragility at the foundation of the digital economy.
+The [Harvard study][harvard-oss-value] highlighted a troubling asymmetry in this equation. While the demand-side value of open source reaches into the trillions, the supply-side investment—the resources actually devoted to creating and maintaining this software—is orders of magnitude smaller. Much of the most critical open source infrastructure is maintained by volunteers or small teams with minimal funding, creating a fragility at the foundation of the digital economy.
 
 ## Categories of Open Source Usage
 

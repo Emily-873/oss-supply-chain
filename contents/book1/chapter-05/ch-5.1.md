@@ -18,9 +18,9 @@ Each stage presents distinct challenges and opportunities for defenders. The tim
 
 Vulnerabilities are born when code is written, reviewed, tested, and merged—yet still contains exploitable flaws. This happens constantly, across all software projects, regardless of the developers' skill or intentions.
 
-**Coding errors** are the most common source. A developer writes code that behaves correctly for expected inputs but fails dangerously for unexpected ones. Buffer overflows, SQL injection, cross-site scripting, and similar vulnerability classes result from code that lacks proper input validation, boundary checking, or output encoding. The Log4j vulnerability (CVE-2021-44228) emerged from code that interpreted user-controlled strings as commands—a coding decision that seemed reasonable for legitimate use cases but created a remote code execution vector.
+**Coding errors** are the most common source. A developer writes code that behaves correctly for expected inputs but fails dangerously for unexpected ones. Buffer overflows, SQL injection, cross-site scripting, and similar vulnerability classes result from code that lacks proper input validation, boundary checking, or output encoding. The Log4j vulnerability (CVE-2021-44228) emerged from code that resolved user-controlled lookup strings through JNDI—a feature that seemed reasonable for legitimate use cases but created a remote code execution vector.
 
-**Design flaws** are more fundamental. The code may work exactly as designed, but the design itself is insecure. Authentication bypasses, insecure default configurations, and cryptographic weaknesses often stem from design decisions rather than implementation errors. The Heartbleed vulnerability (CVE-2014-0160) in OpenSSL resulted from a design that trusted client-supplied length values without verification—a design choice that implementation-level review might not catch.
+**Design flaws** are more fundamental. The code may work exactly as designed, but the design itself is insecure. Authentication bypasses, insecure default configurations, and cryptographic weaknesses often stem from design decisions rather than implementation errors. Unlike implementation bugs such as Heartbleed, design flaws can be difficult to detect through localized code review because the insecure behavior follows from the intended architecture.
 
 **Misconfigurations** introduce vulnerabilities at deployment rather than development time. Default credentials, overly permissive access controls, and exposed management interfaces are configuration-level issues that affect security regardless of code quality. While not strictly code vulnerabilities, misconfigurations in dependencies—especially in infrastructure components like databases and web servers—represent significant supply chain risk.
 
@@ -50,9 +50,9 @@ Vulnerability discovery occurs through various channels, each with different imp
 
 **Fuzzing and automated testing** identify vulnerabilities through systematic input generation. **Fuzzing** (or fuzz testing) is a technique that automatically generates thousands or millions of random, malformed, or unexpected inputs to a program, watching for crashes, hangs, or unexpected behavior that might indicate security vulnerabilities. Rather than manually crafting test cases, fuzzing tools essentially throw random data at software to see what breaks.
 
-Tools like **AFL** (American Fuzzy Lop), **libFuzzer**, and [Google's OSS-Fuzz][oss-fuzz] have industrialized this process. AFL pioneered "coverage-guided" fuzzing, which tracks which parts of the code each input exercises and intelligently mutates inputs to explore new code paths—dramatically more effective than purely random input generation. OSS-Fuzz applies these techniques at scale, continuously fuzzing critical open source projects. It has identified over 13,000 security vulnerabilities and found more than 50,000 bugs across 1,000+ projects.[^oss-fuzz-stats]
+Tools like **AFL** (American Fuzzy Lop), **libFuzzer**, and [Google's OSS-Fuzz][oss-fuzz] have industrialized this process. AFL pioneered "coverage-guided" fuzzing, which tracks which parts of the code each input exercises and intelligently mutates inputs to explore new code paths—dramatically more effective than purely random input generation. OSS-Fuzz applies these techniques at scale, continuously fuzzing critical open source projects. As of August 2023, it had helped identify and fix over 10,000 security vulnerabilities and 36,000 bugs across 1,000 projects.[^oss-fuzz-stats]
 
-[^oss-fuzz-stats]: Google OSS-Fuzz, "Trophies," 2025, https://google.github.io/oss-fuzz/; Oliver Chang and Abhishek Arya, "OSS-Fuzz: Five Years Later, and Continuous Fuzzing for Open Source Software," Google Security Blog, December 2021.
+[^oss-fuzz-stats]: Google OSS-Fuzz, "Trophies," 2023, https://google.github.io/oss-fuzz/; Oliver Chang and Abhishek Arya, "OSS-Fuzz: Five Years Later, and Continuous Fuzzing for Open Source Software," Google Security Blog, December 2021.
 
 **Routine code review** occasionally surfaces security issues. Maintainers or contributors examining code for unrelated purposes sometimes notice security flaws. The XZ Utils backdoor was discovered not through security research but because a Microsoft engineer noticed unusual SSH latency and investigated.
 
@@ -72,7 +72,7 @@ Coordinated disclosure protects users by ensuring patches exist before attackers
 
 **Full disclosure** involves immediate public release of vulnerability details without vendor coordination. Proponents argue this forces vendors to address issues quickly and provides defenders with information needed to protect themselves. Critics note that full disclosure often benefits attackers more than defenders—attackers can weaponize vulnerability details faster than organizations can deploy patches.
 
-**Hybrid approaches** have emerged to balance competing concerns. Google's Project Zero uses a 90-day disclosure deadline: vendors receive 90 days to patch, after which disclosure occurs regardless of patch availability. This approach incentivizes timely patching while still providing a coordination window.
+**Hybrid approaches** have emerged to balance competing concerns. Google's Project Zero uses a 90-day disclosure deadline, with a short grace period when a patch is imminent and shorter deadlines for vulnerabilities under active exploitation. This approach incentivizes timely patching while still providing a coordination window.
 
 The disclosure process typically includes assigning a **CVE (Common Vulnerabilities and Exposures)** identifier. CVE IDs provide unique, stable references that enable coordination across the security ecosystem. The National Vulnerability Database (NVD) enriches CVE records with severity scores, affected product information, and references to patches and advisories.
 
@@ -108,7 +108,7 @@ Testing and deployment delays are often the longest part of the propagation time
 
 !!! note "Vulnerability Half-Life"
 
-    Research by Kenna Security (now Cisco) and Cyentia Institute found vulnerability half-lives vary from ~36 days for Windows systems to over 360 days for network appliances. This means weeks to months after a patch is released, half of vulnerable systems remain unpatched.
+    Research by [Kenna Security (now Cisco) and Cyentia Institute][kenna-cyentia] found vulnerability half-lives vary from ~36 days for Windows systems to over 360 days for network appliances. This means weeks to months after a patch is released, half of vulnerable systems remain unpatched.
 
 Some vulnerabilities have extremely long tails. The EternalBlue vulnerability (CVE-2017-0144) was patched by Microsoft in March 2017, but vulnerable systems remained common years later—as the WannaCry and NotPetya ransomware attacks demonstrated.
 

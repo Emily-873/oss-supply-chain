@@ -91,7 +91,7 @@ Different ecosystems use different conventions (hyphens vs. underscores, dots vs
 
 **Brandsquatting** exploits cross-ecosystem name recognition by registering a package name popular in one ecosystem within a different ecosystem:
 
-- Registering Python's `scipy` name in a Rust repository
+- Registering Python's `scipy` name in a Rust registry
 - Using `org.fasterxml.jackson.core` instead of `com.fasterxml.jackson.core` on Maven (exploiting `.org` vs `.com` confusion)
 
 **Brand-volatility typosquatting** exploits rapid project renames to create confusion about which name is "real." When the open-source AI agent Clawdbot renamed to Moltbot in January 2026 (following a trademark request), attackers immediately registered typosquat domains and cloned GitHub repositories impersonating the project under both old and new names.[^malwarebytes-moltbot-typo] A second rename to OpenClaw compounded the confusion.[^cnbc-openclaw-typo]
@@ -110,7 +110,7 @@ A [2016 academic study by Nikolai Tschacher][tschacher-2016] at the University o
 - Match names of popular packages in other ecosystems (registering `requests` on RubyGems to match the Python package)
 - Anticipate names of packages not yet published (claiming `aws-sdk-v4` before AWS releases version 4)
 - Match names of internal corporate packages that might be requested from public registries (the dependency confusion vector discussed in Section 6.2)
-- Use generic names that developers might guess (`` `mysql-connector` ``, `` `json-parser` ``)
+- Use generic names that developers might guess (`mysql-connector`, `json-parser`)
 
 Namesquatting may not involve malicious payloads initially. Some namesquatters simply reserve names for later use, potential sale, or to block others. Others immediately publish malicious content under the squatted name.
 
@@ -140,9 +140,9 @@ The incident prompted npm to implement additional monitoring for typosquatting p
 
 Similar incidents have occurred across ecosystems:
 
-- **`` `colourama` ``** (PyPI, 2018): Typosquat of the popular `colorama` package
-- **`` `python3-dateutil` ``** (PyPI, 2019): Exploited confusion between pip and OS package naming
-- **`` `electorn` ``** (npm, various): Multiple typosquats of the popular Electron framework
+- **`colourama`** (PyPI, 2018): Typosquat of the popular `colorama` package
+- **`python3-dateutil`** (PyPI, 2019): Exploited confusion between pip and OS package naming
+- **`electorn`** (npm, various): Multiple typosquats of the popular Electron framework
 
 ## Case Study: PyPI March 2024 Campaign (500+ Packages)
 

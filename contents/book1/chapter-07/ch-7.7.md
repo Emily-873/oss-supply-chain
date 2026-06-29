@@ -20,9 +20,9 @@ This pattern reveals a critical truth about code signing: it is necessary but no
 
 1. **Key generation**: A signer creates a public-private key pair. The private key is kept secret; the public key is distributed.
 
-2. **Signature creation**: The signer computes a cryptographic hash of the software, then encrypts this hash with their private key. The encrypted hash is the signature.
+2. **Signature creation**: The signer computes a cryptographic hash of the software, then uses their private key to create a digital signature over that hash.
 
-3. **Signature verification**: Anyone can decrypt the signature using the signer's public key, revealing the hash. They compute the hash of the software independently. If the hashes match, the signature is valid.
+3. **Signature verification**: Anyone can use the signer's public key to verify the signature. They compute the hash of the software independently; if it matches the signed value, the signature is valid.
 
 Valid signatures prove two things:
 

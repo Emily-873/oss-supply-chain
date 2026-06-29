@@ -10,6 +10,6 @@ Dynamic analysis addresses the limitations of static approaches by observing act
 
 Security regression testing ensures that dependency updates do not reintroduce vulnerabilities or break security controls. Integration with automated update tools like Dependabot and Renovate enables continuous validation as dependencies evolve.
 
-For high-assurance systems, the chapter introduces symbolic execution and formal methods, explaining when mathematical verification is justified and which verified libraries (libsodium, s2n-tls) provide stronger guarantees than testing alone.
+For high-assurance systems, the chapter introduces symbolic execution and formal methods, explaining when mathematical verification is justified and which verified components (HACL*, EverCrypt, s2n-tls) provide stronger guarantees than testing alone.
 
 Finally, chaos engineering principles applied to supply chains help organizations test resilience against dependency failures, registry outages, and infrastructure disruptions before real incidents occur.

@@ -6,7 +6,7 @@ The chapter begins with guidance on writing security advisories, emphasizing str
 
 Internal communication during incidents requires established escalation procedures, executive briefing formats, and coordination mechanisms across security, engineering, legal, and HR teams. The chapter provides templates for incident logs, decision documentation, and handoff procedures that enable effective multi-team response.
 
-External communication covers customer notifications, partner coordination, and coordinated disclosure with upstream projects. Regulatory notification requirements under GDPR, CCPA, HIPAA, and other frameworks are detailed, along with timing considerations and multi-jurisdictional complexity. The chapter uses the contrast between Okta's problematic and Cloudflare's effective handling of the 2022 Lapsus$ incident to illustrate how transparency builds trust while minimization erodes it.
+External communication covers customer notifications, partner coordination, and coordinated disclosure with upstream projects. Regulatory notification requirements under GDPR, California breach-notification law, HIPAA, and other frameworks are detailed, along with timing considerations and multi-jurisdictional complexity. The chapter uses the contrast between Okta's problematic and Cloudflare's effective handling of the 2022 LAPSUS$ incident to illustrate how transparency builds trust while minimization erodes it.
 
 Media relations guidance includes spokesperson preparation, key message development, social media monitoring, and strategies for handling misinformation. Long-term reputation recovery requires sustained transparency and demonstrated security investment.
 

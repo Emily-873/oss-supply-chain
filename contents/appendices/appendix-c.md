@@ -18,7 +18,7 @@ Both formats can express the same fundamental information but differ in their or
 
 **SPDX (Software Package Data Exchange)** is the oldest and most mature SBOM standard, first released in 2010. SPDX provides comprehensive support for license information, making it particularly strong for compliance use cases. The format supports multiple serializations including JSON, XML, RDF, YAML, and a human-readable tag-value format.
 
-SPDX 2.3 is the current stable version widely supported by tools, while SPDX 3.0 introduces significant enhancements including profiles for AI/ML, security, and build information.
+SPDX 2.3 remains widely supported by tools, while SPDX 3.0 introduces significant enhancements including profiles for AI/ML, security, and build information.
 
 #### Key Concepts
 
@@ -159,7 +159,7 @@ CycloneDX supports JSON and XML serializations and is currently at version 1.6, 
       "version": "1.0.0",
       "purl": "pkg:npm/example-webapp@1.0.0"
     },
-    "manufacture": {
+    "manufacturer": {
       "name": "Example Corp",
       "url": ["https://example.com"]
     }
@@ -239,6 +239,16 @@ CycloneDX supports JSON and XML serializations and is currently at version 1.6, 
 ### AI-BOM Formats
 
 As organizations deploy AI and machine learning systems, documenting model provenance, training data, and dependencies becomes critical. Both SPDX and CycloneDX have extended their specifications to address AI/ML transparency requirements.
+
+CoSAI's AI supply chain guidance provides a useful completeness test for AI-BOMs. It frames the AI supply chain as data, model, application, and infrastructure, and recommends documentation that combines machine-readable provenance with human-readable review artifacts such as model cards.[^cosai-ai-supply-chain] An AI-BOM should therefore describe more than the final model file; it should connect the model to the data, training process, evaluation evidence, and serving context that shape its behavior.
+
+| Documentation Area | Include in the AI-BOM |
+|--------------------|-----------------------|
+| **Model provenance and integrity** | Model name, version, source, registry location, base model or checkpoint lineage, hashes or signatures for model artifacts, and verification status before deployment or fine-tuning. |
+| **Dataset documentation** | Training, validation, fine-tuning, and evaluation datasets; source identifiers such as URLs, repositories, or providers; dataset versions; checksums or content hashes; collection methods; preprocessing and transformation steps; and usage characteristics such as token counts or distribution metrics. |
+| **Training and fine-tuning configuration** | Model architecture, ML framework and version, hyperparameters, mixture weights or sampling strategies, training code and container images, pipeline dependencies, and relevant compute environment details. |
+| **Model card content** | Intended use, limitations, performance metrics, operational constraints, bias or safety considerations, evaluation methodology, and links to full model cards when the AI-BOM only carries a summary. |
+| **Application and serving context** | RAG components, embedding models, retrieval algorithms, vector database providers and isolation controls, filters or guardrails, tools and plugins available during inference, serving infrastructure, authentication and authorization boundaries, and dependency trees for these components. |
 
 #### SPDX 3.0 AI Profile
 
@@ -563,13 +573,17 @@ Use this checklist when implementing SBOM processes:
 #### AI-BOM Specific
 
 - [ ] Document model architecture and parameters
-- [ ] Include training data lineage and characteristics
+- [ ] Include training, validation, fine-tuning, and evaluation data lineage and characteristics
+- [ ] Record dataset source identifiers, versions, hashes, collection methods, preprocessing steps, and transformation logs
+- [ ] Capture base model, checkpoint, and model-weight provenance with hashes or signatures
+- [ ] Document training configuration, including hyperparameters, mixture weights, sampling strategies, and framework versions
 - [ ] Capture performance metrics with confidence intervals
 - [ ] Document known limitations and biases
 - [ ] Specify intended use cases and constraints
 - [ ] Include ethical considerations and mitigation strategies
 - [ ] Link to full model cards where applicable
 - [ ] Capture software dependencies of ML pipelines
+- [ ] Document serving context, including RAG components, embedding models, vector databases, filters, tools, plugins, and trust boundaries
 
 ---
 
@@ -582,6 +596,7 @@ Use this checklist when implementing SBOM processes:
 - **CISA SBOM Resources**[^cisa-sbom]
 - **SPDX License List**[^spdx-licenses]
 - **Package URL Specification**[^purl-spec]
+- **CoSAI AI Supply Chain Risks and Controls**[^cosai-ai-supply-chain]
 
 [^spdx-spec]: Linux Foundation, "SPDX Specification," https://spdx.github.io/spdx-spec/
 
@@ -596,3 +611,5 @@ Use this checklist when implementing SBOM processes:
 [^spdx-licenses]: Linux Foundation, "SPDX License List," https://spdx.org/licenses/
 
 [^purl-spec]: GitHub, "Package URL Specification," https://github.com/package-url/purl-spec
+
+[^cosai-ai-supply-chain]: CoSAI, "Establish Risks and Controls for the AI Supply Chain," V1.0, Workstream 1, 2025, https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/risks-and-controls-for-the-ai-supply-chain-v1.pdf

@@ -99,17 +99,17 @@ The Ruby community's relatively close-knit nature has some security benefits: ma
 
 !!! tip inline end "Rust's Security-First Design"
 
-    crates.io was designed after major supply chain incidents raised awareness. **Immutable versions** (once published, cannot be modified), **mandatory source links**, and built-in audit tooling (`cargo-audit`, `cargo-vet`) reflect lessons learned.
+    crates.io was designed after major supply chain incidents raised awareness. **Immutable versions** (once published, cannot be modified), archived source packages, and ecosystem audit tooling (`cargo-audit`, `cargo-vet`) reflect lessons learned.
 
 **crates.io** hosts over 140,000 crates for the Rust programming language. Operated by the Rust Foundation, crates.io was designed with explicit attention to lessons learned from earlier ecosystems.
 
 Rust's ecosystem benefits from launching after major supply chain incidents had raised awareness. Security-conscious design choices include:
 
-- **Immutable package versions**: Once published, a version cannot be modified or deleted (only yanked, which prevents new installations but doesn't remove existing cached copies)
-- **Mandatory source availability**: Packages link to source repositories
-- **Namespace policies**: Preventing some common typosquatting patterns
-- **cargo-audit**: First-party tooling for vulnerability checking
-- **cargo-vet**: Mozilla's tool for tracking dependency audits
+- **Immutable package versions**: Once published, a version cannot be modified or deleted (only yanked, which prevents new dependency resolution from selecting it but doesn't remove existing cached copies)
+- **Source archive availability**: Published crate archives are hosted by the registry; repository links are encouraged but not required
+- **Name rules and reserved crates**: Reducing some confusion patterns, though crates.io remains a first-come namespace
+- **cargo-audit**: Ecosystem tooling for vulnerability checking
+- **cargo-vet**: Ecosystem tooling for tracking dependency audits
 - **Sigstore integration**: Through community tooling
 
 crates.io has experienced relatively few major security incidents compared to older ecosystems, though researchers have demonstrated **typosquatting vulnerabilities** and identified **malicious crates** that were removed. The ecosystem's smaller size and newer vintage make comparison difficult—it may simply have not yet attracted the same attacker attention as larger ecosystems.
@@ -169,26 +169,26 @@ The .NET ecosystem's enterprise orientation means many organizations use private
 
 The Apple ecosystem relies on two primary package management systems: **CocoaPods**, a community-driven dependency manager established in 2011, and **Swift Package Manager (SPM)**, Apple's official tool introduced in 2016 and integrated into Xcode.
 
-!!! warning "CocoaPods Entering Read-Only Mode (December 2026)"
+!!! warning "CocoaPods in Maintenance Mode"
 
-    CocoaPods is in **maintenance mode** and the CocoaPods team has announced that **Trunk will become permanently read-only on December 2nd, 2026**. After this date, no new pods or pod versions will be accepted. Organizations should audit their iOS dependencies and prioritize migration to Swift Package Manager before Q3 2026 to allow adequate buffer time. Projects using React Native or Flutter—which rely on CocoaPods as a hidden abstraction—face particular migration challenges.
+    CocoaPods is in **maintenance mode**, with no active feature development planned. The CocoaPods team has discussed eventually making the Specs repository read-only as a long-term security simplification, but has not announced a cutoff date. Organizations should audit iOS dependencies and plan migrations to Swift Package Manager where feasible. Projects using React Native or Flutter—which rely on CocoaPods as a hidden abstraction—face particular migration challenges.
 
-**CocoaPods** manages over 100,000 pods (libraries) and has historically been widely used in iOS, macOS, watchOS, and tvOS development. However, the project entered **maintenance mode** with no active feature development, and usage is now primarily sustained by React Native and Flutter ecosystems that depend on CocoaPods as a hidden abstraction layer. The CocoaPods Trunk[^cocoapods-trunk] serves as the centralized registry, operated by a small team of volunteers under the CocoaPods organization.
+**CocoaPods** manages over 100,000 pods (libraries) and has historically been widely used in iOS, macOS, watchOS, and tvOS development. However, the project entered **maintenance mode** with no active feature development, and usage is now primarily sustained by React Native and Flutter ecosystems that depend on CocoaPods as a hidden abstraction layer.[^cocoapods-support-plans] The CocoaPods Trunk[^cocoapods-trunk] serves as the centralized registry, operated by a small team of volunteers under the CocoaPods organization.
 
 CocoaPods has experienced notable security challenges:
 
-- **Trunk server vulnerabilities** (2021): Security researchers identified a vulnerability in the CocoaPods Trunk API that could have allowed attackers to claim ownership of abandoned pods, with the potential to affect applications using those dependencies. The issue stemmed from how the trunk server handled ownership verification for pods whose original maintainers had abandoned their email addresses.
-- **Remote Code Execution vulnerabilities** (2023): Security researchers at evasec.io discovered three separate RCE vulnerabilities in Trunk, including the ability to claim ownership of pods through the verification process, email verification exploits, and shell command execution on the Trunk server.[^cocoapods-rce-2023] All user sessions were reset following disclosure and patching.
+- **Trunk remote code execution** (2021): A vulnerability in Trunk's podspec source validation allowed crafted input to execute arbitrary shell commands on the Trunk server. CocoaPods patched the issue server-side and reset user sessions.[^cocoapods-rce-2021]
+- **Trunk ownership and verification vulnerabilities** (2023): Security researchers at E.V.A Information Security reported three additional Trunk vulnerabilities, including the ability to claim some pods through the ownership process, email verification flaws, and shell command execution on the Trunk server.[^cocoapods-rce-2023] All user sessions were reset following disclosure and patching.
 - **Dependency confusion risks**: Like other ecosystems, CocoaPods is vulnerable to dependency confusion attacks where private pod names could be claimed on the public trunk.
 - **Podspec tampering**: The Podspec files that define pod metadata are fetched from the centralized specs repository, creating a single point where modifications could affect downstream consumers.
 
-Security improvements include:
+Security practices and mitigations include:
 
 - **Two-factor authentication** for Trunk accounts
-- **Session management** improvements following the 2021 vulnerability disclosures
+- **Session management** improvements following the 2021 and 2023 vulnerability disclosures
 - **Pod ownership verification** requiring email confirmation
 - **Spec repository mirroring** through CDN for improved availability
-- **`prepare_command` restrictions** (May 2025): New pods using `prepare_command`—which allows arbitrary script execution during pod installation—are now blocked to prevent script-based supply chain attacks
+- **`prepare_command` scrutiny**: Podspecs using `prepare_command`—which allows arbitrary script execution during pod installation—require particular care because they can become script-based supply chain attack vectors
 
 **Swift Package Manager** represents Apple's modern approach, integrated directly into Xcode and the Swift compiler. Unlike CocoaPods' centralized registry, SPM uses a decentralized model similar to Go modules—packages are referenced by their Git repository URLs and fetched directly from source.
 
@@ -226,7 +226,7 @@ Examining these ecosystems reveals both common patterns and significant divergen
 | Go modules | Google (mirror/checksum) | Corporate |
 | Packagist | Private Packagist GmbH | Commercial |
 | NuGet | Microsoft | Corporate |
-| CocoaPods | CocoaPods Volunteers | Community/Donations (maintenance mode; read-only Dec 2026) |
+| CocoaPods | CocoaPods Volunteers | Community/Donations (maintenance mode; future read-only Specs repo discussed) |
 | Swift PM | Apple (decentralized) | N/A (uses Git hosts) |
 
 **Dependency scale varies dramatically by ecosystem:**
@@ -246,8 +246,6 @@ The "dependency explosion" phenomenon—where a single installation brings in hu
 | crates.io | `tokio` (full features) | ~930 | ~25 | ~50-70 | ~15 MB |
 | Go | `k8s.io/client-go` | ~640 | ~40 | ~100+ | ~50 MB |
 | NuGet | `Microsoft.AspNetCore.App` | ~1,350 | ~15 | ~100-150 | ~80 MB |
-
-[^ds-stack]: Data science stack totals include `pandas`, `scikit-learn`, `matplotlib`, and their shared dependencies (NumPy, etc.). Contributor count shown is for pandas alone.
 
 Note: Contributor counts from GitHub as of late 2024. Create React App is now deprecated; dependency measurements from version 5.x. Size estimates from Package Phobia and ecosystem-specific tools. The Sonatype 2024 State of the Software Supply Chain Report provides additional ecosystem analysis.
 
@@ -290,8 +288,10 @@ Cross-ecosystem dependencies create particular challenges:
 Organizations securing multi-ecosystem applications need tooling and processes that span all involved package managers. Single-ecosystem solutions leave gaps that attackers can exploit. Book 2, Chapter 13 explores dependency management strategies that address this cross-ecosystem reality.
 
 [^ds-stack]: Data science stack totals include `pandas`, `scikit-learn`, `matplotlib`, and their shared dependencies (NumPy, etc.). Contributor count shown is for pandas alone.
+[^cocoapods-support-plans]: CocoaPods, "CocoaPods Support Plans," https://blog.cocoapods.org/CocoaPods-Support-Plans/
 [^cocoapods-trunk]: CocoaPods Trunk, https://trunk.cocoapods.org
-[^cocoapods-rce-2023]: evasec, "Remote Code Execution Vulnerabilities in CocoaPods Trunk," 2023, https://evasec.io/research/cocoapods-vulnerabilities/
+[^cocoapods-rce-2021]: CocoaPods, "CocoaPods Trunk RCE," April 2021, https://blog.cocoapods.org/CocoaPods-Trunk-RCE/
+[^cocoapods-rce-2023]: CocoaPods, "CocoaPods Trunk RCEs 2023," October 2023, https://blog.cocoapods.org/CocoaPods-Trunk-RCEs-2023/
 [^npm-downloads]: Socket.dev, "npm in Review: A 2023 Retrospective on Growth, Security, and Community" (2023). <https://socket.dev/blog/2023-npm-retrospective>
 
 ![Major package ecosystem comparison showing security features across registries](img/ch-2-package-ecosystems.svg)

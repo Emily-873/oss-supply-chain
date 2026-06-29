@@ -20,7 +20,7 @@ The scale of this threat has grown dramatically. [Sonatype's 2024 State of the S
 
 Attackers publish malicious packages for diverse objectives, each influencing the attack's design:
 
-**Credential and token harvesting** is among the most common motivations. Malicious packages target authentication credentials, API keys, cloud access tokens, and other secrets accessible in development and build environments. The `ua-parser-js` compromise (October 22, 2021) exfiltrated environment variables that often contain npm tokens, AWS credentials, and other sensitive values. Stolen credentials enable further attacks: publishing additional malicious packages, accessing cloud infrastructure, or selling credentials in underground markets.
+**Credential and token harvesting** is among the most common motivations. Malicious packages target authentication credentials, API keys, cloud access tokens, and other secrets accessible in development and build environments. The 2017 `crossenv` typosquat and later malicious npm packages such as `1337qq-js` harvested environment variables that often contain npm tokens, AWS credentials, and other sensitive values. Stolen credentials enable further attacks: publishing additional malicious packages, accessing cloud infrastructure, or selling credentials in underground markets.
 
 **Cryptocurrency theft** specifically targets developers working with cryptocurrency projects. Attackers seek wallet private keys, seed phrases, and exchange credentials. The `event-stream` incident (November 20, 2018) specifically targeted Copay Bitcoin wallet developers, attempting to steal wallet contents from users of the wallet application.
 

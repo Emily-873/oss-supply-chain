@@ -555,15 +555,15 @@ Or use a dedicated scanning action:
 3. Test commands
 4. How to verify the build locally matches CI
 
-This ensures anyone can reproduce the build, which is essential for SLSA compliance and for verifying that released artifacts match the source code.
+This helps contributors reproduce the build and supports verifying that released artifacts match the source code.
 
 ##### Compiler Security Flags [D.C.10]
 
 **Process Guidance**: For compiled languages, enable security-hardening flags in your build configuration. Document these in your `BUILD.md`. Common flags:
 
 - **C/C++**: `-fstack-protector-strong`, `-D_FORTIFY_SOURCE=2`, `-fPIE`, `-Wformat-security`
-- **Go**: Enabled by default (PIE, stack canaries)
-- **Rust**: Enabled by default (stack protection, overflow checks in debug)
+- **Go**: Memory-safety protections are provided by the Go toolchain; verify PIE and linker hardening for your target platform
+- **Rust**: Memory safety is built in; enable release overflow checks if required and verify linker hardening for native targets
 
 In your workflow, verify flags are applied:
 
@@ -952,7 +952,7 @@ The advisory creation form is divided into sections: **Affected products** (ecos
 
 **Step 3**: Request a CVE [D.D.14]:
 
-GitHub is a CVE Numbering Authority (CNA). Click **Request CVE** on the advisory page. GitHub will assign a CVE identifier, typically within 1-2 business days.
+GitHub is a CVE Numbering Authority (CNA). Click **Request CVE** on the advisory page. GitHub will assign a CVE identifier if the request is approved.
 
 **Step 4**: Publish the advisory [D.D.15]:
 

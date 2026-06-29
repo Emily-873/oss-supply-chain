@@ -6,7 +6,7 @@ icon: "lucide/sun"
 
 # 7.2 Case Study: SolarWinds and the SUNBURST Attack
 
-In December 2020, the cybersecurity industry confronted an attack that would fundamentally reshape understanding of supply chain risk. The compromise of SolarWinds' Orion platform—subsequently named **SUNBURST** by Microsoft and **SUNSPOT** by CrowdStrike for the implant that modified the build—demonstrated that nation-state adversaries could infiltrate trusted software distribution channels with extraordinary sophistication. The attack [reached approximately 18,000 organizations][solarwinds-sec], including critical U.S. government agencies and Fortune 500 companies, through software updates that customers had every reason to trust.
+In December 2020, the cybersecurity industry confronted an attack that would fundamentally reshape understanding of supply chain risk. The compromise of SolarWinds' Orion platform—subsequently named **SUNBURST** by FireEye/Mandiant (and **Solorigate** by Microsoft), with **SUNSPOT** used by CrowdStrike for the implant that modified the build—demonstrated that nation-state adversaries could infiltrate trusted software distribution channels with extraordinary sophistication. The attack [reached approximately 18,000 organizations][solarwinds-sec], including critical U.S. government agencies and Fortune 500 companies, through software updates that customers had every reason to trust.
 
 !!! danger "SUNBURST Impact"
 
@@ -251,11 +251,11 @@ The SolarWinds attack marked a turning point in supply chain security awareness.
 
 The incident established expectations that supply chain attacks would become more common and that organizations must implement defenses beyond trusting their vendors. The case studies that follow—3CX (Section 7.3) and Codecov (Section 7.4)—demonstrate that these expectations were warranted: adversaries continued to target build and distribution infrastructure, applying lessons from both SolarWinds' success and its eventual detection.
 
-[fireeye]: https://www.csoonline.com/article/570179/fireeye-breach-explained-how-worried-should-you-be.html
+[fireeye]: https://cloud.google.com/blog/topics/threat-intelligence/unauthorized-access-of-fireeye-red-team-tools
 [solarwinds-sec]: https://www.sec.gov/ix?doc=/Archives/edgar/data/1739942/000173994220000075/swi-20201231.htm
 [crowdstrike-sunspot]: https://www.crowdstrike.com/blog/sunspot-malware-technical-analysis/
 [microsoft-sunburst]: https://www.microsoft.com/en-us/security/blog/2020/12/18/analyzing-solorigate-the-compromised-dll-file-that-started-a-sophisticated-cyberattack-and-how-microsoft-defender-helps-protect/
-[fireeye-sunburst]: https://www.mandiant.com/resources/blog/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor
+[fireeye-sunburst]: https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor
 [cisa-ed-21-01]: https://www.cisa.gov/news-events/directives/ed-21-01-mitigate-solarwinds-orion-code-compromise
 [whitehouse-attribution]: https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2021/04/15/fact-sheet-imposing-costs-for-harmful-foreign-activities-by-the-russian-government/
 [eo-14028]: https://www.federalregister.gov/documents/2021/05/17/2021-10460/improving-the-nations-cybersecurity
