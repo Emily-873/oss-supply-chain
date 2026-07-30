@@ -53,7 +53,7 @@ Unlike origin servers, CDN infrastructure is typically operated by third parties
 
 **Corporate interception**: Enterprise TLS inspection proxies decrypt and re-encrypt traffic. If these proxies are compromised or misconfigured, they can modify package downloads.
 
-**DNS-based interception**: Attackers who control DNS resolution can direct traffic to their own servers, serving valid TLS certificates for attacker-controlled domains.
+**DNS-based interception**: An attacker who can manipulate DNS resolution can redirect a client to an attacker-controlled server. The attacker cannot present a valid TLS certificate for the legitimate target domain, as TLS certificate validation verifies that the certificate's Subject Alternative Name (SAN) matches the requested hostname. However, the attacker can present a valid certificate for a domain they control. This attack succeeds only if the client fails to perform proper certificate and hostname validation, or if the attacker has otherwise obtained a valid certificate for the target domain.
 
 Package managers have historically been inconsistent about transport security. pip long defaulted to HTTP before switching to HTTPS. npm has required HTTPS for years but allows users to disable verification. Configuration errors can leave package downloads unprotected.
 
