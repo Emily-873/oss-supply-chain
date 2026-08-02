@@ -26,13 +26,14 @@ for svg_file in $(find "$BOOK_DIR/chapter-"* -name "*.svg" -type f); do
     pdf_file="${svg_file%.svg}.pdf"
     if [ "$OVERWRITE" -eq 1 ] || [ ! -f "$pdf_file" ] || [ "$svg_file" -nt "$pdf_file" ]; then
         echo "  Converting: $svg_file"
-        # Try rsvg-convert first (better SVG support), fall back to magick
-        #if command -v rsvg-convert &> /dev/null; then
-        #    rsvg-convert -f pdf -d 300 -p 300 "$svg_file" -o "$pdf_file" 2>/dev/null || \
-        #        magick -density 300 -gravity center -background white -quality 100 "$svg_file" "$pdf_file" 2>/dev/null
-        #else
+        # rsvg-convert with --zoom keeps text vector while rasterizing
+        # filter effects (drop shadows) at ~300 dpi; fall back to magick.
+        if command -v rsvg-convert &> /dev/null; then
+            rsvg-convert -f pdf -z 3.125 "$svg_file" -o "$pdf_file" 2>/dev/null || \
+                magick -density 300 -gravity center -background white -quality 100 "$svg_file" "$pdf_file" 2>/dev/null
+        else
             magick -density 300 -gravity center -background white -quality 100 "$svg_file" "$pdf_file" 2>/dev/null
-        #fi
+        fi
     fi
 done
 echo "SVG to PDF conversion complete."
@@ -152,11 +153,16 @@ done
 # Build the PDF
 MERMAID_FILTER="$BOOK_DIR/../../scripts/node_modules/.bin/mermaid-filter"
 ADMONITION_FILTER="$BOOK_DIR/../../scripts/admonition-filter.lua"
+SVG_PDF_FILTER="$BOOK_DIR/../../scripts/use-pdf-images.lua"
+
+# Render mermaid diagrams at 3x resolution (default 800px is ~140 dpi in print)
+export MERMAID_FILTER_SCALE=3
 pandoc \
     --from=markdown \
     --to=pdf \
     -F "$MERMAID_FILTER" \
     --lua-filter="$ADMONITION_FILTER" \
+    --lua-filter="$SVG_PDF_FILTER" \
     --pdf-engine=xelatex \
     --template=../../scripts/custom_template.latex \
     --toc \
@@ -203,7 +209,7 @@ magick \
     book-2-cover-front.pdf
 
 if [ "$INCLUDE_COVER" -eq 1 ]; then
-    gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=temp_output.pdf book-2-cover-front.pdf "$OUTPUT_FILE"
+    pdfunite book-2-cover-front.pdf "$OUTPUT_FILE" temp_output.pdf
     mv temp_output.pdf "$OUTPUT_FILE"
 fi
 
