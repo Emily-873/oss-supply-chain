@@ -363,7 +363,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Zensical
-        run: pip install zensical==0.0.16
+        run: pip install zensical==0.0.52
 
       - name: Prepare docs directory
         run: |

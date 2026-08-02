@@ -8,7 +8,7 @@ CVSS scores were first added to CVE records, providing true enrichment delays.
 Metrics calculated:
 - Median enrichment delay
 - 90th percentile delay
-- By year: 2021, 2022, 2023, 2024, 2025
+- By year: 2021, 2022, 2023, 2024, 2025, 2026
 
 Usage:
     export NVD_API_KEY=your_api_key_here
@@ -354,8 +354,8 @@ Examples:
         '--years',
         type=int,
         nargs='+',
-        default=[2021, 2022, 2023, 2024, 2025],
-        help='Years to analyze (default: 2021-2025)'
+        default=[2021, 2022, 2023, 2024, 2025, 2026],
+        help='Years to analyze (default: 2021-2026)'
     )
     return parser.parse_args()
 

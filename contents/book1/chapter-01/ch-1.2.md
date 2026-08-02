@@ -1,7 +1,7 @@
 ---
 title: "The Role of Open Source in Modern Software"
 description: "Understand why open source powers 96% of commercial software and what this unprecedented reliance means for security."
-icon: "lucide/github"
+icon: "material/github"
 ---
 
 # 1.2 The Role of Open Source in Modern Software

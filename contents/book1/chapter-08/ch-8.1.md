@@ -119,9 +119,15 @@ The attack affected approximately 7 million weekly downloads. The malicious vers
 
 The maintainer's npm account had been protected with a password but not two-factor authentication. The specific compromise vector was not publicly disclosed, but credential stuffing or phishing were likely candidates.
 
+**Megalodon (May 2026):**
+
+The Megalodon campaign showed what account compromise looks like at industrial scale. On May 18, 2026, an attacker used GitHub credentials harvested by infostealer malware on developer machines to push [5,718 malicious commits against 5,561 repositories in roughly six hours][megalodon-stepsecurity]. Forged author identities like `build-bot`, `auto-ci`, and `pipeline-bot` disguised the commits as routine automation, while injected GitHub Actions workflows exfiltrated CI secrets, cloud credentials, SSH keys, and OIDC tokens. A targeted variant replaced existing workflows with dormant `workflow_dispatch` backdoors the attacker could trigger on demand—meaning cleanup required auditing workflow files, not just reverting malicious commits.
+
+Megalodon illustrates two shifts in the account-compromise landscape. First, credentials increasingly arrive in bulk from infostealer infections rather than one-at-a-time phishing, turning a single malware campaign into thousands of simultaneous repository compromises. Second, stolen session tokens and personal access tokens often sidestep two-factor authentication entirely, because the authentication already happened on the victim's machine.
+
 ## Two-Factor Authentication: Progress and Gaps
 
-The attacks above share a common factor: none of the compromised accounts had robust two-factor authentication enabled. Registries have responded by encouraging or mandating stronger authentication.
+The eslint-scope, rest-client, and ua-parser-js attacks share a common factor: none of the compromised accounts had robust two-factor authentication enabled. Registries have responded by encouraging or mandating stronger authentication.
 
 !!! tip "2FA Adoption Progress"
 
@@ -348,6 +354,7 @@ Some registries allow restricting publication to specific IP ranges, limiting th
 Maintainer account security is one of the most cost-effective supply chain security investments. The asymmetry between attack cost (obtaining one password) and impact (millions of affected installations) makes strong authentication essential. As registries continue expanding mandatory 2FA and providing phishing-resistant authentication, the ecosystem becomes meaningfully more secure—but maintaining this progress requires continued vigilance from maintainers, platforms, and organizations alike.
 
 [eslint-postmortem]: https://eslint.org/blog/2018/07/postmortem-for-malicious-package-publishes/
+[megalodon-stepsecurity]: https://www.stepsecurity.io/blog/megalodon-mass-github-actions-secret-exfiltration-across-5-500-public-repositories
 [npm-2fa]: https://github.blog/security/supply-chain-security/top-100-npm-package-maintainers-require-2fa-additional-security/
 [pypi-2fa]: https://blog.pypi.org/posts/2023-05-25-securing-pypi-with-2fa/
 [pypi-titan-keys]: https://blog.google/technology/safety-security/making-open-source-software-safer-and-more-secure/

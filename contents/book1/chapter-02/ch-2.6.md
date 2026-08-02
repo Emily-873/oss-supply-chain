@@ -20,6 +20,8 @@ Public goods are systematically underproduced by markets because of the **free-r
 
 This dynamic explains why millions of companies use open source while vanishingly few contribute to its maintenance. According to [Tidelift's surveys][tidelift-2024], the median maintainer of even widely-used packages receives effectively zero corporate sponsorship. The [2024 Harvard Business School study on open source value][harvard-oss-value] estimated that while demand-side value reaches $8.8 trillion, supply-side investment is orders of magnitude smaller. The gap between value extracted and value reinvested represents the free-rider problem operating at global scale.
 
+The puzzle, as ecosystem researcher Andrew Nesbitt observes, is that [open source violates nearly every prediction standard market theory makes][nesbitt-invisible-hand]—public goods should be underproduced, yet npm hosts over five million packages; rising demand should raise prices or attract more suppliers, yet single maintainers carry libraries with millions of weekly downloads and over half of tracked packages have exactly one maintainer. Nesbitt's conclusion matters for policy: open source persists as overlapping gift economies and reputation systems rather than markets, which is why purely market-styled fixes—bounties, tokenized rewards—often misdiagnose the problem they claim to solve. We return to this tension in the funding models discussion below and in Book 3, Chapter 30.
+
 The situation parallels what Garrett Hardin famously called the **Tragedy of the Commons** in his [1968 Science article][hardin-1968]. Each individual actor—whether a developer adding a dependency or a company shipping products—makes locally rational decisions that collectively deplete a shared resource. No single company's decision to not contribute is decisive, but the aggregate effect is chronic underinvestment in infrastructure everyone depends on.
 
 ## Business Models Around Open Source
@@ -117,6 +119,7 @@ These hidden costs often exceed what funding maintenance would require, but they
 Book 3, Chapter 30 explores potential solutions to these economic challenges in greater depth, examining models from government funding to insurance markets to collective action frameworks. For now, the essential insight is that supply chain security cannot be solved through technical measures alone. The economic structures that underfund maintenance generally underfund security specifically, and changing those structures requires engaging with incentives, not just tools.
 
 [tidelift-2024]: https://www.tidelift.com/open-source-maintainer-survey-2024
+[nesbitt-invisible-hand]: https://nesbitt.io/2026/06/18/open-source-vs-the-invisible-hand.html
 [harvard-oss-value]: https://www.hbs.edu/faculty/Pages/item.aspx?num=65230
 [hardin-1968]: https://www.science.org/doi/10.1126/science.162.3859.1243
 [valsorda-essay]: https://words.filippo.io/professional-maintainers/

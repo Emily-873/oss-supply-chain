@@ -10,6 +10,9 @@ scripts/_site
 scripts/docs
 scripts/node_modules/
 
+# Logs
+mermaid-filter.err
+
 # Intermediate PDFs
 contents/**/img/*.pdf
 

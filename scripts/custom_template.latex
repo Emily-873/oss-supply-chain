@@ -27,18 +27,20 @@ $endif$
 \setmainfont{Libertinus Serif}
 \setmonofont{Libertinus Mono}
 \setsansfont{Libertinus Sans}
-\newfontfamily{\fallbackfont}{FreeSerif} 
-\newfontfamily{\emojifont}{Symbola}
+\newfontfamily{\fallbackfont}{FreeSerif}
+% DISABLED \newfontfamily{\emojifont}{NotoColorEmoji}[Renderer=HarfBuzz]
+% DISABLED \newfontfamily{\emojifont}{Symbola}
 
 % 2. Manual Mapping (If you want ✗ to look different from other Dingbats)
 % If Inconsolata is a system font, remove the brackets.
-\newfontface{\arrows}{Inconsolata} 
+% DISABLED \newfontface{\arrows}{Inconsolata} 
 \usepackage{newunicodechar}
+\usepackage{twemojis}
 
 % Cyrillic homoglyphs
 \newunicodechar{^^^^0430}{{\fallbackfont\char"0430}} % Cyrillic 'а'
 \newunicodechar{^^^^0435}{{\fallbackfont\char"0435}} % Cyrillic 'е'
-\newunicodechar{^^^^251c}{{\fallbackfont\char"251c}} % ├
+\newunicodechar{^^^^251c}{{\fallbackfont\char"251C}} % ├
 \newunicodechar{^^^^2500}{{\fallbackfont\char"2500}} % ─
 \newunicodechar{^^^^2514}{{\fallbackfont\char"2514}} % └
 \newunicodechar{^^^^2502}{{\fallbackfont\char"2502}} % │
@@ -65,13 +67,11 @@ $endif$
 \newunicodechar{^^^^2260}{{\fallbackfont\char"2260}} % ≠
 \newunicodechar{^^^^2265}{{\fallbackfont\char"2265}} % ≥
 
-% Colored Circle Emojis
-% Note: FreeSerif may show these as black and white; 
-% for color, a font like 'Noto Color Emoji' would be needed.
-\newunicodechar{^^^^^^01f534}{{\emojifont\char"1F534}} % 🔴
-\newunicodechar{^^^^^^01f7e1}{{\emojifont\char"1F7E1}} % 🟡
-\newunicodechar{^^^^^^01f535}{{\emojifont\char"1F535}} % 🔵
-\newunicodechar{^^^^^^01f7e2}{{\emojifont\char"1F7E2}} % 🟢
+% Colored Circle Emojis (Native XeLaTeX vector graphics via twemoji)
+\newunicodechar{^^^^^^01f534}{\texttwemoji{red circle}}    % 🔴
+\newunicodechar{^^^^^^01f7e1}{\texttwemoji{yellow circle}} % 🟡
+\newunicodechar{^^^^^^01f535}{\texttwemoji{blue circle}}   % 🔵
+\newunicodechar{^^^^^^01f7e2}{\texttwemoji{green circle}}  % 🟢
 
 % The "Invisible" Variation Selector
 \newunicodechar{^^^^fe0f}{}
@@ -88,7 +88,7 @@ $endif$
 
 % Hook into the 'tabular' environment to switch to sans serif
 \AtBeginEnvironment{tabular}{\sffamily\small\renewcommand{\arraystretch}{1.3}}
-\AtBeginEnvironment{tabularx}{\sffamily\small\renewcommand{\arraystretch}{1.3}}
+% DISABLED \AtBeginEnvironment{tabularx}{\sffamily\small\renewcommand{\arraystretch}{1.3}}
 \AtBeginEnvironment{longtable}{\sffamily\small\renewcommand{\arraystretch}{1.3}}
 
 % END CUSTOMIZATIONS
