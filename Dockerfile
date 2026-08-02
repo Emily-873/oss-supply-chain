@@ -6,8 +6,8 @@
 # workspace (run `npm ci` in scripts/ on the host).
 #
 # Usage:
-#   docker build -f Dockerfile-dev -t oss-book-dev .
-#   docker run --rm -it -v "$(pwd):/work" oss-book-dev bash
+#   docker build -t oss-supply-chain-book:dev .
+#   docker run --rm -it -v "$(pwd):/data:ro" -v "$(pwd)/output:/output:rw" oss-supply-chain-book:dev
 
 FROM debian:forky
 
