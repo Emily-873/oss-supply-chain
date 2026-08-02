@@ -176,7 +176,7 @@ pandoc \
     --metadata=language:"en-US" \
     --metadata=documentclass:book \
     --metadata=fontsize:10pt \
-    --metadata=geometry:"paperwidth=7.5in,paperheight=9.25in,top=0.75in,bottom=0.75in,inner=1in,outer=0.75in" \
+    --metadata=geometry:"paperwidth=7.44in,paperheight=9.68in,top=0.75in,bottom=0.75in,inner=1in,outer=0.75in" \
     --metadata=colorlinks:true \
     --metadata=linkcolor:black \
     --metadata=urlcolor:black \

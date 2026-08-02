@@ -91,13 +91,6 @@ A useful mental model represents the software supply chain as a directed graph w
     - Every network path through which they traveled
     - Every tool used in your own build and deployment process
 
-- Every maintainer of every dependency, direct or transitive
-- Every contributor whose code those maintainers accepted
-- Every registry that distributed those dependencies
-- Every build system that compiled them
-- Every network path through which they traveled
-- Every tool used in your own build and deployment process
-
 This graph can be extraordinarily deep. A vulnerability or compromise at any node can propagate to all dependent nodes. The graph's complexity explains why supply chain attacks are so effective: attackers need only compromise one well-connected node to affect thousands or millions of downstream systems.
 
 Trust in this graph is largely implicit and unexamined. Developers run `npm install` or `pip install` without consciously choosing to trust the maintainers of each transitive dependency. Organizations deploy container images without auditing every package in the base image. This implicit trust is necessary for productivity—explicit verification of every element would be paralyzing—but it creates security exposures that require systematic management.
