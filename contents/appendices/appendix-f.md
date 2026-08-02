@@ -36,7 +36,7 @@ This appendix provides a chronological reference of significant software supply 
 
 **Sources:**
 
-- Thompson, K., "Reflections on Trusting Trust," Communications of the ACM, 1984[^thompson-1984]
+- Thompson, K., "Reflections on Trusting Trust," Communications of the ACM, 1984[^thompson-1984c]
 
 ---
 
@@ -1483,7 +1483,7 @@ In November 2025, a second wave dubbed "Shai-Hulud 2.0" emerged with modified ta
 
 These incidents collectively demonstrate that software supply chain security requires defense in depth across the entire lifecycle—from initial development through build, publication, distribution, and consumption.
 
-[^thompson-1984]: Thompson, K., "Reflections on Trusting Trust," Communications of the ACM, 1984, https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf
+[^thompson-1984c]: Thompson, K., "Reflections on Trusting Trust," Communications of the ACM, 1984, https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf
 
 [^debian-dsa-1571]: Debian, "Debian Security Advisory DSA-1571-1," 2008, https://www.debian.org/security/2008/dsa-1571
 
