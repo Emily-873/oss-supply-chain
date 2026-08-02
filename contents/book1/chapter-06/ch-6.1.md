@@ -206,7 +206,7 @@ Registries have implemented various countermeasures:
 
 **Namespace/scoping** reduces typosquatting risk by associating packages with verified publishers. A package published under `@google/package-name` has different trust properties than `google-package-name` from an anonymous account.
 
-Research by security firms suggests that despite these measures, typosquatting packages regularly reach registries. [Sonatype's 2024 State of the Software Supply Chain report][sonatype-2024] documented over 512,000 malicious packages discovered across major ecosystems in the past year—a 156% year-over-year increase—many using typosquatting techniques.
+Research by security firms suggests that despite these measures, typosquatting packages regularly reach registries. [Sonatype's 2026 State of the Software Supply Chain report][sonatype-2026] documented 454,600 malicious packages discovered across major ecosystems in 2025 alone—bringing the cumulative total past 1.23 million—many using typosquatting techniques.
 
 ## Recommendations
 
@@ -245,7 +245,7 @@ Research by security firms suggests that despite these measures, typosquatting p
 Typosquatting exploits the convenience that makes package managers valuable. Complete prevention is impossible without eliminating that convenience, but awareness, verification habits, and organizational controls significantly reduce risk.
 
 [tschacher-2016]: https://incolumitas.com/2016/06/08/typosquatting-package-managers/
-[sonatype-2024]: https://www.sonatype.com/state-of-the-software-supply-chain/introduction
+[sonatype-2026]: https://www.sonatype.com/state-of-the-software-supply-chain/2026/open-source-malware
 [checkpoint-pypi]: https://blog.checkpoint.com/securing-the-cloud/pypi-inundated-by-malicious-typosquatting-campaign/
 [pypi-suspension]: https://thehackernews.com/2024/03/pypi-halts-sign-ups-amid-surge-of.html
 [aikido-jackson]: https://www.aikido.dev/blog/maven-central-jackson-typosquatting-malware

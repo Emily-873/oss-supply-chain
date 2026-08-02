@@ -87,7 +87,7 @@ Package registries—npm, PyPI, Maven Central, and the ecosystems surveyed in Se
 
 [^ua-parser-js]: Ax Sharma, "Popular npm package ua-parser-js poisoned with cryptominer, password stealer," BleepingComputer, October 22, 2021; GitHub Advisory GHSA-pjwm-rvh2-c87w.
 
-**Typosquatting** exploits human error in package names. Attackers register packages with names similar to popular packages—`coffe-script` for `coffee-script`, `cross-env.js` for `cross-env`—hoping developers will make typos. [Sonatype's 2024 report][sonatype-2024] documented over 512,000 malicious packages discovered in major ecosystems in the past year—a 156% year-over-year increase—many using typosquatting techniques.
+**Typosquatting** exploits human error in package names. Attackers register packages with names similar to popular packages—`coffe-script` for `coffee-script`, `cross-env.js` for `cross-env`—hoping developers will make typos. [Sonatype's 2026 report][sonatype-2026] documented 454,600 malicious packages discovered in major ecosystems in 2025 alone—part of a cumulative total exceeding 1.23 million—many using typosquatting techniques.
 
 **Dependency confusion** exploits namespace collisions between public and private registries. If an organization uses internal packages named `company-utils`, an attacker can publish `company-utils` to public npm. Misconfigured package managers may prefer the public version, pulling attacker-controlled code into builds. Alex Birsan's 2021 research demonstrated successful dependency confusion attacks against Apple, Microsoft, and dozens of other companies.[^birsan-dependency-confusion]
 
@@ -168,6 +168,6 @@ Not all attack surfaces present equal risk. Several factors affect the practical
 For most organizations, the highest-priority surfaces are those combining broad reach with limited organizational control: package registries, upstream dependencies, and the update mechanisms that bridge external code to internal systems. Chapters 5-10 examine attacks against these surfaces in detail, providing the foundation for the defensive strategies presented in Book 2.
 
 [slsa]: https://slsa.dev/
-[sonatype-2024]: https://www.sonatype.com/state-of-the-software-supply-chain/introduction
+[sonatype-2026]: https://www.sonatype.com/state-of-the-software-supply-chain/2026/open-source-malware
 [vulcan-hallucination]: https://www.bleepingcomputer.com/news/security/ai-hallucinated-code-dependencies-become-new-supply-chain-risk/
 ![Attack surfaces across the software supply chain with defenses at each stage](img/ch-3-attack-surfaces.svg)

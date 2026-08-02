@@ -22,20 +22,13 @@ When a developer adds a dependency to their project, they are making a trust dec
 
     When you run `npm install <package>`, you are trusting:
     
-    - The maintainers have not inserted malicious code
+    - The maintainers of the package have not inserted malicious code
     - The maintainers' accounts have not been compromised
-    - The registry correctly delivered the intended package
+    - The npm registry correctly delivered the package the maintainers published
+    - The package you received matches what the maintainers intended to release
     - You didn't accidentally mistype the package name
     - The build process that created the package was not compromised
-    - No one tampered with the package during transit
-
-- The maintainers of the package have not inserted malicious code
-- The maintainers' accounts have not been compromised
-- The npm registry correctly delivered the package the maintainers published
-- The package you received matches what the maintainers intended to release
-- You didn't accidentally mistype the package name
-- The build process that created the package was not compromised
-- No one tampered with the package during transit to your machine
+    - No one tampered with the package during transit to your machine
 
 For a well-known package like Lodash, most developers make this trust decision instantly, without conscious evaluation. The package has millions of weekly downloads, a long history, and a strong reputation. This heuristic—trusting what others trust—is rational and necessary. Without it, modern software development would be impossible. But it is still a trust decision, and it can be wrong.
 

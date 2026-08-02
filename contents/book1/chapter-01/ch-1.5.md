@@ -36,9 +36,9 @@ These incidents shared a common lesson: the software supply chain had become a s
 
 !!! note "The Attack Volume Explosion"
 
-    Sonatype's 2024 report documented **512,000+ malicious packages** discovered in the past year alone—a **156% year-over-year increase**. The total since 2019 exceeds 704,000 malicious packages. Attacks show increasing sophistication: long-term social engineering, build infrastructure exploitation, and conditional activation to evade detection.
+    Sonatype's 2026 report documented **454,600 malicious packages** discovered in 2025 alone, bringing the cumulative total past **1.23 million** since 2019—up from roughly 704,000 in late 2024. Attacks show increasing sophistication: long-term social engineering, build infrastructure exploitation, and conditional activation to evade detection.
 
-The prominent incidents captured headlines, but they represented only the visible peak of a rapidly growing threat. Sonatype's 2024 State of the Software Supply Chain report documented over 512,000 malicious packages discovered in the past year alone—a 156% year-over-year increase—bringing the total to more than 704,000 malicious packages identified since 2019.[^sonatype-2024] The European Union Agency for Cybersecurity (ENISA) identified supply chain attacks as one of the top threats in its annual threat landscape, noting increasing sophistication and frequency.
+The prominent incidents captured headlines, but they represented only the visible peak of a rapidly growing threat. Sonatype's 2024 State of the Software Supply Chain report documented over 512,000 malicious packages discovered in a single year—a 156% year-over-year increase—and its 2026 report counted another 454,600 discovered in 2025, bringing the cumulative total to more than 1.23 million malicious packages identified across npm, PyPI, Maven Central, NuGet, and Hugging Face since 2019.[^sonatype-2024][^sonatype-2026] The European Union Agency for Cybersecurity (ENISA) identified supply chain attacks as one of the top threats in its annual threat landscape, noting increasing sophistication and frequency.
 
 The growth is not merely in raw numbers but in attacker capability and targeting. Early supply chain attacks were often opportunistic—typosquatting on popular package names, hoping unwary developers would install malicious components by mistake. Recent attacks show more sophistication: long-term social engineering campaigns to gain maintainer access, exploitation of build infrastructure, injection of malicious code that activates only under specific conditions to evade detection. Attackers have learned that supply chain vectors offer advantages no other attack path provides.
 
@@ -123,6 +123,8 @@ The chapters that follow provide the framework for responding to this urgency: u
 [^circia]: CISA, Cyber Incident Reporting for Critical Infrastructure Act of 2022 (CIRCIA). <https://www.cisa.gov/topics/cyber-threats-and-advisories/information-sharing/cyber-incident-reporting-critical-infrastructure-act-2022-circia>
 [^eu-cra]: Regulation (EU) 2024/2847 (Cyber Resilience Act), Official Journal of the European Union. <https://eur-lex.europa.eu/eli/reg/2024/2847/oj>
 [^sonatype-2024]: Sonatype, *2024 State of the Software Supply Chain Report* (October 2024). <https://www.sonatype.com/state-of-the-software-supply-chain/introduction>
+
+[^sonatype-2026]: Sonatype, *2026 State of the Software Supply Chain Report: Open Source Malware* (2026). <https://www.sonatype.com/state-of-the-software-supply-chain/2026/open-source-malware>
 [^copilot-million]: GitHub Blog, "GitHub Copilot for Business is now available" (February 14, 2023). <https://github.blog/news-insights/product-news/github-copilot-for-business-is-now-available/>
 
 ![Three landmark incidents that elevated supply chain security to board-level priority](img/ch-1-landmark-incidents.svg)
