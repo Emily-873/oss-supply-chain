@@ -12,9 +12,9 @@ A note on terminology: this section focuses on malicious packages—those create
 
 !!! note "Malicious Packages at Scale"
 
-    Sonatype's 2024 report documented 512,847 malicious packages discovered in the past year—a 156% increase year-over-year, with 704,102 total malicious packages identified since 2019.
+    Sonatype's 2026 report documented 454,600 malicious packages discovered in 2025, bringing the cumulative total to more than 1.23 million identified since 2019—with over 99% of open source malware found on npm.
 
-The scale of this threat has grown dramatically. [Sonatype's 2024 State of the Software Supply Chain report][sonatype-2024] documented 512,847 malicious packages discovered across major ecosystems in the past year—a 156% increase year-over-year, with 704,102 total malicious packages identified since 2019. The arms race between attackers publishing malicious packages and defenders attempting to detect and remove them has become a defining feature of modern package ecosystem security.
+The scale of this threat has grown dramatically. [Sonatype's 2024 State of the Software Supply Chain report][sonatype-2024] documented 512,847 malicious packages discovered across major ecosystems in a single year—a 156% increase year-over-year—and [its 2026 report][sonatype-2026] counted another 454,600 discovered in 2025, bringing the cumulative total past 1.23 million packages across npm, PyPI, Maven Central, NuGet, and Hugging Face, with over 99% of open source malware concentrated on npm. The arms race between attackers publishing malicious packages and defenders attempting to detect and remove them has become a defining feature of modern package ecosystem security.
 
 ## Motivations Behind Malicious Packages
 
@@ -218,6 +218,7 @@ The trend suggests this arms race will continue indefinitely. Organizations cann
 The malicious package threat is not a problem that will be solved but a risk that must be continuously managed. The companion volumes provide detailed guidance: Book 2, Chapter 13 explores dependency selection strategies, and Book 2, Chapter 14 covers scanning and monitoring approaches that address this ongoing threat.
 
 [sonatype-2024]: https://www.sonatype.com/state-of-the-software-supply-chain/introduction
+[sonatype-2026]: https://www.sonatype.com/state-of-the-software-supply-chain/2026/open-source-malware
 [cve-2024-3094]: https://nvd.nist.gov/vuln/detail/CVE-2024-3094
 [socket]: https://socket.dev/
 [github-advisory]: https://github.com/advisories

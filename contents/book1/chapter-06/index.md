@@ -8,7 +8,7 @@ The chapter begins with typosquatting and namesquatting, where attackers registe
 
 Dependency confusion attacks exploit how package managers resolve names when both public and private registries are configured. Alex Birsan's 2021 research demonstrated this by gaining code execution at Apple, Microsoft, and other major companies simply by publishing public packages with names matching internal packages, earning over $130,000 in bug bounties.
 
-The chapter documents the malicious package ecosystem, where over 500,000 malicious packages have been discovered across registries. Attackers use installation hooks, obfuscation, and conditional execution to evade detection while stealing credentials, mining cryptocurrency, or installing backdoors.
+The chapter documents the malicious package ecosystem, where more than 1.2 million malicious packages have been discovered across registries. Attackers use installation hooks, obfuscation, and conditional execution to evade detection while stealing credentials, mining cryptocurrency, or installing backdoors.
 
 Detailed case studies illustrate attack patterns: the event-stream compromise showed how attackers patiently build trust before striking; ua-parser-js demonstrated credential compromise impact; colors.js and node-ipc raised questions about maintainer trust and protestware. PyPI campaigns reveal ongoing threats across ecosystems.
 
